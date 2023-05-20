@@ -1,3 +1,4 @@
+import React,{useState} from 'react';
 import './App.css';
 import Head from './pages/header';
 import Footer from './pages/footer';
@@ -30,6 +31,22 @@ import Basket from './pages/basket/basket';
 import Order from './pages/order/order';
 import { Payment } from './pages/payment/payment';
 import { Deliver } from './pages/deliver/deliver';
+import ProductDetail from './pages/Sub.Category/data/ProductDetail';
+import Devices from './pages/Sub.Category/Devices';
+import Travel from './pages/Sub.Category/Travel';
+import Hiking_bag from './pages/Sub.Category/Hiking_bag'
+import Hiking_boots from './pages/Sub.Category/Hiking_boots';
+import Hiking_clothes from './pages/Sub.Category/Hiking_clothes';
+import Hiking_other from './pages/Sub.Category/Hiking_other';
+import Swimsuit from './pages/Sub.Category/Swimsuit';
+import Snorkel from './pages/Sub.Category/Snorkel';
+import Fillper from './pages/Sub.Category/Fillper';
+import Water_other from './pages/Sub.Category/Water_other';
+import Tent from './pages/Sub.Category/Tent';
+import Sleep from './pages/Sub.Category/Sleep';
+import Cooking from './pages/Sub.Category/Cooking';
+import Camping_other from './pages/Sub.Category/Camping_other';
+import MainBody from './pages/main_body';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -46,6 +63,8 @@ function App() {
       <Router>
       <Head/>
         <Routes>
+          {/* 메인 */}
+          <Route path='/' element={<MainBody/>}></Route>
           {/* 로그인 */}
         <Route path="/Login" element={<Login/>}/>
           <Route path="/Join" element={<Join/>}/>
