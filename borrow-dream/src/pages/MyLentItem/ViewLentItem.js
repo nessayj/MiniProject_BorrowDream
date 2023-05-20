@@ -291,7 +291,7 @@ const ViewLentItem = (props) =>{
                     {sendMsg && (
                       <MessageModal closeModal={() => setSendMsg(!sendMsg)}>
 
-                        <WriteMessage/>
+                        <WriteMessage writerId={lentItem.borrowId}/>
                       </MessageModal>
                     )}
                 </div>

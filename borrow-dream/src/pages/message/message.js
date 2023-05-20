@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BaroApi from "../../api/BaRoApi";
 import { useNavigate } from "react-router-dom";
 
-const WriteMessage = () => {
+const WriteMessage = ({writerId}) => {
    const getId = window.localStorage.getItem("Id");
     const navigate = useNavigate();
  
@@ -10,10 +10,10 @@ const WriteMessage = () => {
     const [inputs, setInputs] = useState ({
         title: "",
         contents: "",
-        receiver: "",
+        
     })
 
-    const {title, contents, receiver} = inputs;
+    const {title, contents} = inputs;
 
     // 정보넣기
     const onChangeMessageData = (e) => {
@@ -28,7 +28,7 @@ const WriteMessage = () => {
 
     // 메세지보내기(저장)
     const onClickToMessage = async() => {
-        const result = await BaroApi.writeMessage(title, contents, receiver, getId);
+        const result = await BaroApi.writeMessage(title, contents, writerId, getId);
         const success = result.data;
         console.log(success);
         if(success) {
@@ -45,15 +45,7 @@ const WriteMessage = () => {
           <label htmlFor="displayName">보내는사람: {getId} </label>
         </div>
         <div className="modalFormDiv">
-          <label htmlFor="email">받는사람</label>
-          <input
-            type="text" 
-            id="receiver" 
-            name="receiver" 
-            value={receiver}
-            onChange={onChangeMessageData}
-            required
-          />
+          <label htmlFor="email">받는사람: {writerId}</label>
         </div>
         <div className="modalFormDiv">
           <label htmlFor="email">제목</label>
