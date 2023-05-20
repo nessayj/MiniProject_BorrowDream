@@ -7,8 +7,7 @@ import { RiGift2Line } from 'react-icons/ri';
 import Edit from '../../images/로그인이미지/setting.png';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import AxiosApi from "../../api/axiosapi";
-import { UserContext } from "../../context/userInfo";
+import Modal from "../../utill/Modal";
 
 
 const Wrapper = styled.div`
@@ -235,7 +234,13 @@ const navigate = useNavigate()
 const isLogin = window.localStorage.getItem("isLogin"); // 로그인 들어오면 마이페이지 접속
 const id = window.localStorage.getItem("Id");
 
-
+    // 모달
+    const [comment, setComment] = useState("");
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalOption, setModalOption] = useState("");
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
 console.log(isLogin);
 if(isLogin !== "TRUE") navigate("/MainBody");
@@ -243,18 +248,18 @@ if(isLogin !== "TRUE") navigate("/MainBody");
 
 
 
- /** 로그아웃 함수 */
+ // 로그아웃모달
 const onClickLogout = () =>{
-    window.localStorage.setItem("userId", '');
-    window.localStorage.setItem("userPwd",'');
-    window.localStorage.setItem("isLogin", "false")
-    window.location.replace("/");
-    navigate("/");
+    setModalOpen(true);
+    setModalOption("로그아웃")
+    setComment("로그아웃하시겠습니까?")
+   
 }
 
 
     return(
         <div className="mypage">
+        <Modal open={modalOpen} close={closeModal} option={modalOption}>{comment}</Modal>
         <Wrapper>
         <MainContainer>
             <Titlebox>
