@@ -2,15 +2,21 @@ import React from "react";
 import baro from "../../images/회사소개/회사소개.png";
 import styled from "styled-components";
 import freedeliever from "../../images/회사소개/무료배송.png";
+import { createGlobalStyle } from 'styled-components';
 
 
-
-const Wrap = styled.body`
-    margin: 0 auto;
-    font-family: 'bitbit';
-    background-color: #B8E9FF;
- 
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #B8E9FF; /* 원하는 배경색으로 변경 */
+  }
 `;
+// const Wrap = styled.body`
+//     margin: 0 auto;
+//     font-family: 'bitbit';
+//     background-color: #B8E9FF;
+//     height: 100%;
+ 
+// `;
 
 const Section = styled.div`
     margin: 0 auto; 
@@ -59,7 +65,7 @@ const IntroCompany = () => {
 
     return (
         <>
-        <Wrap>
+        <GlobalStyle/>
         <Section>
         <div className="aboutBaro">
         <div className="companylogo-box">
@@ -76,7 +82,7 @@ const IntroCompany = () => {
             <Image1 className="freedeliever" src={freedeliever}/>
         </div>
         </Section>
-        </Wrap>
+       
         </>
      
     );

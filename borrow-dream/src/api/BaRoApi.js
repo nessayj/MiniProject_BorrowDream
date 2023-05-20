@@ -158,6 +158,17 @@ const BaroApi = {
     // 내빌드 상세보기
     viewMyLentItem: async(myNo) => {
         return await axios.get(Baro_DOMAIN + `/viewMyItem?myNo=${myNo}`);
+    },
+
+    // 쪽지보내기
+    writeMessage: async(title, contents, receiver, sender) => {
+        const object = {
+            sender: sender,
+            receiver: receiver,
+            msgTitle: title,
+            msgContents: contents
+        }
+        return await axios.post(Baro_DOMAIN + "/writeMsg", object);
     }
 
     

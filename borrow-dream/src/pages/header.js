@@ -3,7 +3,12 @@ import styled from "styled-components";
 import log from ".././images/로고/새로운로고(배경제거).png";
 import {FiMenu, FiSmile,FiShoppingCart,FiSearch} from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
-
+import {TbPlaneDeparture} from "react-icons/tb"
+import {GiMountains} from "react-icons/gi"
+import {TbBeach} from "react-icons/tb"
+import {FaCampground} from "react-icons/fa"
+import {BiFoodMenu} from "react-icons/bi"
+import {RiSpaceShipLine} from "react-icons/ri"
 
 
 
@@ -73,6 +78,7 @@ color: white;
 
 }
 .logo2{
+  display: flex;
   text-decoration: underline;
   color: white;
   font-size: 35px;
@@ -82,12 +88,13 @@ color: white;
 h4 {
 margin: 20px;
 }
-.abroad {
-margin-bottom: 20px;
+.abroad{
+  margin-top: 2rem;
 }
 
 a{
 margin-left: 0;
+margin-bottom: 1rem;
 text-decoration: none;
 color: #135CD2;
 font-size: 20px;
@@ -185,15 +192,23 @@ return (
 
     <div className="sidebar">
       <ul className="navi">
+      
 
-     <h4 className="logo2">해외여행</h4>
+      <div className="myLent">
+       <a href="/myLentItem"><h4 className="logo2"><RiSpaceShipLine size="30"/>내가 빌려 DREAM</h4></a> 
+
+      </div>
+      
+      <div className="abraod">
+     <h4 className="logo2"><TbPlaneDeparture size="30"/>해외여행</h4>
       <li><a href="/Carrier">캐리어</a></li>
       <li><a href="">카메라</a></li>
       <li><a href="">전자기기</a></li>
       <li><a href="">기타 해외여행 용품</a></li>
-      
+      </div>
+
       <div className="hiking">
-      <h4 className="logo2">산(트래킹)</h4>
+      <h4 className="logo2"><GiMountains size="30"/>산(트래킹)</h4>
       <li><a href="">등산 가방</a></li>
       <li><a href="">등산 신발</a></li>
       <li><a href="">등산 옷</a></li>
@@ -201,7 +216,7 @@ return (
       </div>
       
       <div className="swim">
-      <h4 className="logo2">물놀이</h4>
+      <h4 className="logo2"><TbBeach size="30"/>물놀이</h4>
       <li><a href="">수영복</a></li>
       <li><a href="">스노쿨</a></li>
       <li><a href="">오리발</a></li>
@@ -209,24 +224,23 @@ return (
       </div>
      
      <div className="camp">
-      <h4 className="logo2">캠핑</h4>
+      <h4 className="logo2"><FaCampground size="30"/>캠핑</h4>
       <li><a href="">텐트</a></li>
       <li><a href="">수면 용품</a></li>
       <li><a href="">취사 도구</a></li>
       <li><a href="">기타 캠핌 용품</a></li>
       </div>
 
-      <div className="myLent">
-       <a href="/myLentItem"><h4 className="logo2">내가 빌려 DREAM</h4></a> 
-
-      </div>
+    
 
       <div className="board">
-        <h4 className="logo2">게시판</h4>
-        <li><a href="/board-list">문의하기</a></li>
+      
+        <h4 className="logo2"><BiFoodMenu size="30"/>게시판</h4>
+        <h3><a href="/service">BORROWDREAM</a></h3>
         <li><a href="/review-list">후기</a></li>
         <li><a href="/qna-list">Qna</a></li>
-
+        <li><a href="/board-list">문의하기</a></li>
+        
       </div>
       
       </ul>

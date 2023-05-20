@@ -31,6 +31,11 @@ const Section = styled.div`
     float: center;
     position: relative;
     .sub_box {
+        a{
+            font-size: 1.2rem;
+            color:  #7FC2EF;
+            text-decoration: underline;
+        }
         button {
             cursor: pointer;
             font-weight: 400;
@@ -255,6 +260,7 @@ const Board = () => {
                     <div className="title">
                     <SiStarship size="50" color="7F8EEF" /><h2>문의하기</h2>
                     </div>
+                    <a href="/qna-list">대표문의보러가기</a>
                     <div className="top_sub_menu">
                         <ul>
                             <li>카테고리</li>

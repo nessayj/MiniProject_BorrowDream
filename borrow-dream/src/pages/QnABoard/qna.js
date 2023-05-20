@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BaroApi from "../../api/BaRoApi";
+import {SiStarship} from "react-icons/si"
 
 const QnaCotainer = styled.div`
+  font-family: 'bitbit';
+  .title {
+    margin-left: 10rem;
+    margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      font-size: 30px;
+      font-weight: 600;
+      color: #1a5d98;
+      h2 {margin-left: 10px; font-size: 35px; margin-top: 35px; font-weight: 500; color: #135CD2; }
+    }   
+
 .qna-container {
     display: flex;
     align-items: center;
@@ -23,6 +36,7 @@ const QnaCotainer = styled.div`
   
   .qna-card-title {
     display: flex;
+    color: #7F8EEF;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     align-items: center;
@@ -31,6 +45,7 @@ const QnaCotainer = styled.div`
   
   .qna-card-answer {
     position: relative;
+    font-size: 1.2rem;
     padding-top: 1rem;
     padding-bottom: 1.5rem;
     padding-right: 2rem;
@@ -82,7 +97,10 @@ const FAQ = () => {
   
     return (
         <>
-        <QnaCotainer>
+        <QnaCotainer> 
+            <div className="title">
+            <SiStarship size="50" color="7F8EEF" /><h2>Q&A</h2>
+            </div>
             <div className="qna-container">
             {qnaList.map((e) => {
                 return (

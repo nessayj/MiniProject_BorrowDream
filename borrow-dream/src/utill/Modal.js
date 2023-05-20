@@ -172,6 +172,11 @@ const Modal = (props) => {
         navigate("/myLentItem");
     }
 
+    // 쪽지보내기
+    const onClickToSend = () => {
+        navigate(0);
+    }
+
     return (
          <ModalStyle>
             <div className={open ? "openModal modal" : "modal"}>
@@ -208,7 +213,7 @@ const Modal = (props) => {
                             {(option === '리뷰저장') ? <button className="yes btn-m" onClick={onClickToReviewSave}>확인</button>: ''}
                             {(option === '리뷰수정후저장') ? <button className="yes btn-m" onClick={onClickToEditSave}>확인</button>: ''}
                             {(option === '내빌드저장') ? <button className="yes btn-m" onClick={onClikcToSaveMyItem}>확인</button>: ''}
-
+                            {(option === '쪽지보내기') ? <button className="yes btn-m" onClick={onClickToSend}>확인</button>: ''}
                         </footer>
                     </section>
                 

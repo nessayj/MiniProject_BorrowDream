@@ -3,6 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import BaroApi from "../../api/BaRoApi";
 import Modal from "../../utill/Modal";
+import MessageModal from "../message/messageModal";
+import WriteMessage from "../message/message";
+
 
 const Wrap = styled.div`
 @keyframes smoothAppear {
@@ -188,8 +191,12 @@ const Wrap = styled.div`
 `;
 
 
-const ViewLentItem = () =>{
+const ViewLentItem = (props) =>{
     const navigate = useNavigate();
+
+    // 쪽지보내기
+    const [sendMsg, setSendMsg] = useState(false);
+
     // 수정, 삭제는 본인만가능
     const isLogin = window.localStorage.getItem("isLogin");
     const getId = window.localStorage.getItem("Id");
@@ -280,7 +287,13 @@ const ViewLentItem = () =>{
                 <div className="borrowedStatus">
                     <div className="status">
                         {lentItem.isBorrowed === 0 ? "빌릴 수 있어요😘" : "빌려갔어요😥"}</div>
-                    <button className="borrowBtn">연락해보기</button>
+                    <button className="borrowBtn" onClick={() => setSendMsg(!sendMsg)}>연락해보기</button>
+                    {sendMsg && (
+                      <MessageModal closeModal={() => setSendMsg(!sendMsg)}>
+
+                        <WriteMessage/>
+                      </MessageModal>
+                    )}
                 </div>
                
                 <div className="board-contents">{lentItem.itemExplain}</div>
