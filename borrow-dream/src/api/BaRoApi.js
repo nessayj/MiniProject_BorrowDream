@@ -1,5 +1,4 @@
 import axios from "axios";
-import { object } from "prop-types";
 const Baro_DOMAIN = "http://localhost:8111"; // 백엔드에 대한 주소
 
 const BaroApi = {
