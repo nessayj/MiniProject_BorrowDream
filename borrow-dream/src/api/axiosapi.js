@@ -68,11 +68,11 @@ const AxiosApi = { // 객체 선언
     },
 
     // 마이페이지 정보 조회
-    customEdit : async(id) => {
+    customEdit : async(Id) => {
         const mypage = {
-            id : id
+            id : Id
         };
-        return await axios.get(KH_DOMAIN + `/mypage?id=${id}`, mypage);
+        return await axios.get(KH_DOMAIN + `/mypage?id=${Id}`, mypage);
     },
     
     // 마이페이지 정보수정 

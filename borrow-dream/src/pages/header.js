@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import log from ".././images/로고/새로운로고(배경제거).png";
 import {FiMenu, FiSmile,FiShoppingCart,FiSearch} from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -146,6 +146,25 @@ const Image = styled.img`
 
 
 const Head = () => {
+  const navigate = useNavigate();
+  // 스마일아이콘 로그인 시 마이페이지로 이동
+  const isLogin = window.localStorage.getItem("isLogin");
+
+
+  // 로그인 전 스마일누르면 로그인페이지
+  const onClickToLogin = () =>{
+    navigate("/Login");
+  }
+
+  // 로그인 확인
+  const IsLogin = () =>{
+    return isLogin === "TRUE"
+  }
+
+  // 로그인 후 스마일누르면 마이페이지
+  const onClickToMypage = () => {
+    navigate("/MyPage");
+  }
 
 return (
     <Header>
@@ -222,7 +241,9 @@ return (
     <div className="right">
       
         <FiSearch className="login" size="30" color="#5ba8ea"/>
-        <Link to ="/Login"><FiSmile className="login" size="30" color="#5ba8ea"/></Link>
+        {IsLogin() ?
+        <FiSmile className="login" size="30" color="#5ba8ea" onClick={onClickToMypage}/> :
+        <FiSmile className="login" size="30" color="#5ba8ea" onClick={onClickToLogin}/> }
         <FiShoppingCart className="cart" size="30" color="5ba8ea"/>
     </div>
     

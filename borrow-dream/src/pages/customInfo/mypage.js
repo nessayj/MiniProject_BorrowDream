@@ -232,29 +232,15 @@ const EditImg = styled.img`
 const Mypage = () => {
 
 const navigate = useNavigate()
-const [customInfo, setCustomInfo] = useState("");
 const isLogin = window.localStorage.getItem("isLogin"); // 로그인 들어오면 마이페이지 접속
+const id = window.localStorage.getItem("Id");
 
-const context = useContext(UserContext);
-const {Id} = context;
+
 
 console.log(isLogin);
 if(isLogin !== "TRUE") navigate("/MainBody");
 
 
-useEffect(()=> {
-const customInfo = async() => {
-    try {
-    const rsp = await AxiosApi.customEdit(Id); // Id를 기준으로 조회
-            setCustomInfo(rsp.data);
-            console.log(rsp.data);
-        } catch (e) {
-            console.log(e);
-        }
-};
-    customInfo();
-
-}, [Id]); // Id가 변경될 때마다 useEffect 실행
 
 
  /** 로그아웃 함수 */
@@ -263,6 +249,7 @@ const onClickLogout = () =>{
     window.localStorage.setItem("userPwd",'');
     window.localStorage.setItem("isLogin", "false")
     window.location.replace("/");
+    navigate("/");
 }
 
 
@@ -273,11 +260,11 @@ const onClickLogout = () =>{
             <Titlebox>
                 <MypageTitle><h1>마이페이지</h1></MypageTitle>
                     <div className="topinfo">
-                    <span>{Id}님 환영합니다</span>
+                    <span>{id}님 환영합니다</span>
                     {/* <p> 환영합니다</p> */}
                     <br /><br />
                     <Link to="/MypageInfo" className="setting">정보조회<EditImg src={Edit} /></Link>
-                    <Link to="/MypageInfo" className="setting" onClick={onClickLogout}>로그아웃<EditImg src={Edit} /></Link>
+                    <button className="setting" onClick={onClickLogout}>로그아웃<EditImg src={Edit} /></button>
                 </div>
             </Titlebox>   
             <ShippingStatusContainer>
