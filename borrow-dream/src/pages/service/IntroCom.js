@@ -1,7 +1,7 @@
 import React from "react";
-import baro from "../../images/회사소개/회사소개.png";
+import baro from "../../images/회사소개/회사소개.png";
 import styled from "styled-components";
-import freedeliever from "../../images/회사소개/무료배송.png";
+import freedeliever from "../../images/회사소개/무료배송.png";
 
 
 

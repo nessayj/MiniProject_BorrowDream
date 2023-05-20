@@ -5,9 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import "bootstrap"
 import friday from "../images/배너/블랙프라이데이.png";
-import summer from "../images/배너/미리여름.png";
-import summer2 from "../images/배너/여름옷.png";
-
+import summer from "../images/배너/미리여름.png";
+import summer2 from "../images/배너/여름옷.png";
 
 
 

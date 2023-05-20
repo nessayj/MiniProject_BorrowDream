@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import img from "../../images/배너/적립금모달.png";
+import img from "../../images/배너/적립금모달.png";
 
 const ModalInner2 = styled.div`
     display: flex;
