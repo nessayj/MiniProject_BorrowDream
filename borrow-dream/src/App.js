@@ -16,6 +16,14 @@ import EditReview from './pages/reviewBoard/EditReview';
 import MyLentItemList from './pages/MyLentItem/MyList';
 import LentWrite from './pages/MyLentItem/LentWrite';
 import ViewLentItem from './pages/MyLentItem/ViewLentItem';
+import Login from './pages/customInfo/login';
+import Join from './pages/customInfo/join';
+import Find from './pages/customInfo/find';
+import FindPwd from './pages/customInfo/findpwd';
+import Mypage from './pages/customInfo/mypage';
+import MypageInfo from './pages/customInfo/mypageInfo';
+import MypageEdit from './pages/customInfo/mypageEdit';
+import CustomDelete from './pages/customInfo/customdelete';
 
 function App() {
   
@@ -24,6 +32,16 @@ function App() {
       <Router>
       <Head/>
         <Routes>
+          {/* 로그인 */}
+        <Route path="/Login" element={<Login/>}/>
+          <Route path="/Join" element={<Join/>}/>
+          <Route path="/Find" element={<Find/>}/>
+          <Route path="/FindPwd" element={<FindPwd/>}/>
+          <Route path="/Mypage" element={<Mypage/>}/>
+          <Route path="/MypageInfo" element={<MypageInfo/>}/>
+          <Route path="/MypageEdit" element={<MypageEdit/>}/>
+          <Route path="/CustomDelete" element={<CustomDelete/>}/> 
+          
     
           {/* 문의게시판 */}
           <Route path='/board-list' element={<Board/>}/>
