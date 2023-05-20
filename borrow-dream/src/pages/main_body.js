@@ -121,7 +121,7 @@ const MainBody = () => {
       
         <Category>
         <div className="abroad">
-        <Link to="/categoryPage">
+        <Link to="/Ct_pages">
             <RiSuitcase2Fill size="100" color="#1a5d98" />
         </Link>
         <Text>해외여행</Text>
@@ -129,7 +129,7 @@ const MainBody = () => {
 
 
         <div  className="mountain">
-         <Link to="/categoryPage">
+         <Link to="/Ct_pages">
             <FaMountain size="100" color="#1a5d98" />
             </Link>
             <Text>산(트래킹)</Text>
@@ -137,7 +137,7 @@ const MainBody = () => {
 
 
         <div className="swimming">
-        <Link to="/categoryPage">
+        <Link to="/Ct_pages">
             <MdPool size="100" color="#1a5d98" />
         </Link>
         <Text>물놀이</Text>
@@ -145,7 +145,7 @@ const MainBody = () => {
 
 
         <div className="camping">
-        <Link to="/categoryPage">
+        <Link to="/Ct_pages">
             <GiCampingTent size="100" color="#1a5d98" />
             </Link>
             <Text>캠핑</Text>
