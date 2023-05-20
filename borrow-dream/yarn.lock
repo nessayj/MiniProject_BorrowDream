@@ -1296,7 +1296,7 @@
 
 "@ckeditor/ckeditor5-react@^6.0.0":
   version "6.0.0"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-react/-/ckeditor5-react-6.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-react/-/ckeditor5-react-6.0.0.tgz#a04721f5d1208bd06615fc4cca355c91c1c4b88c"
   integrity sha512-Yw0MlWfUXelGJ7qcFCYlaRlDEsEr0Lh7Wa2NGDT4+kscwcck9x8F1qm7xmjwJZ9bj79GC9rnCxsIqmq2etmZFA==
   dependencies:
     prop-types "^15.7.2"

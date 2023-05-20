@@ -4,7 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import { UserContext } from "../../context/userInfo";
 import AxiosApi from "../../api/axiosapi";
 import { useNavigate } from "react-router-dom";
-import Modal from "../../utils/Modal";
 import { Link } from "react-router-dom";
 
 
