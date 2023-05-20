@@ -26,7 +26,20 @@ import MypageEdit from './pages/customInfo/mypageEdit';
 import CustomDelete from './pages/customInfo/customdelete';
 import Carrier from './pages/Sub.Category/Carrier';
 import Camera from './pages/Sub.Category/Camera';
+import Basket from './pages/basket/basket';
+import Order from './pages/order/order';
+import { Payment } from './pages/payment/payment';
+import { Deliver } from './pages/deliver/deliver';
+
 function App() {
+  const [cart, setCart] = useState([]);
+  const [orderList, setOrderList] = useState([]);
+  const [checkedAll, setCheckedAll] = useState(false); // 전체 선택 체크박스 상태
+  const [checkedItems, setCheckedItems] = useState([]); // 개별 선택 체크박스 상태
+  const convertPrice = (price) => {
+    if (price === undefined || isNaN(price)) return '';
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
   
   return (
       <UserStore>
@@ -88,6 +101,14 @@ function App() {
           <Route path='/Cooking' element={<Cooking/>}/>
           <Route path='/camping_other' element={<Camping_other/>}/>
 
+          {/* 장바구니 */}
+          <Route path='/cart' element= {<Basket cart={cart} setCart={setCart} checkedAll={checkedAll} setCheckedAll={setCheckedAll} checkedItems={checkedItems} setCheckedItems={setCheckedItems} convertPrice={convertPrice}/>} />
+          {/* 주문내역 */}
+          <Route path='/order' element={<Order orderList={orderList} setOrderList={setOrderList} convertPrice={convertPrice}/>} />
+          {/* 결제정보 */}
+          <Route path='/payment' element={<Payment cart={cart} setCart={setCart} orderList={orderList} setOrderList={setOrderList} checkedItems={checkedItems} setCheckedItems={setCheckedItems} convertPrice={convertPrice} />} />
+          {/* 배송조회 */}
+          <Route path='/deliver' element={<Deliver orderList={orderList}/>} />
         </Routes>
         <Footer/>
       </Router>
