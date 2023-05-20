@@ -24,7 +24,8 @@ import Mypage from './pages/customInfo/mypage';
 import MypageInfo from './pages/customInfo/mypageInfo';
 import MypageEdit from './pages/customInfo/mypageEdit';
 import CustomDelete from './pages/customInfo/customdelete';
-
+import Carrier from './pages/Sub.Category/Carrier';
+import Camera from './pages/Sub.Category/Camera';
 function App() {
   
   return (
@@ -64,6 +65,28 @@ function App() {
           <Route path="/myLentItem/write" element={<LentWrite/>}/>
           <Route path="/myLentItem/:no" element={<ViewLentItem/>}/>
 
+
+          {/* 상품페이지 */}
+          <Route path='/product/:pno' element={<ProductDetail />} />
+            <Route path='/carrier' element={<Carrier/>}/>
+          <Route path='/camera' element={<Camera/>}/>
+          <Route path='/devices' element={<Devices/>}/>
+          <Route path='/Travel' element={<Travel/>}/>
+          {/* ----------- */}
+          <Route path='/hiking_bag' element={<Hiking_bag/>}/>
+          <Route path='/hiking_boots' element={<Hiking_boots/>}/>
+          <Route path='/hiking_clothes' element={<Hiking_clothes/>}/>
+          <Route path='/hiking_other' element={<Hiking_other/>}/>
+          {/*  */}
+          <Route path='/swimsuit' element={<Swimsuit/>}/>
+          <Route path='/snorkel' element={<Snorkel/>}/>
+          <Route path='/fillper' element={<Fillper/>}/>
+          <Route path='/water_other' element={<Water_other/>}/>
+          {/*  */}
+          <Route path='/Tent' element={<Tent/>}/>
+          <Route path='/Sleep' element={<Sleep/>}/>
+          <Route path='/Cooking' element={<Cooking/>}/>
+          <Route path='/camping_other' element={<Camping_other/>}/>
 
         </Routes>
         <Footer/>
