@@ -99,7 +99,7 @@ const ReviewList = () => {
               return(
                 <Card key={item.reviewNo}
                       username={item.rid} date={item.rdate}
-                      title={item.rtitle} rate={item.youLike} content={item.rcontents}
+                      title={item.rtitle} rate={item.youLike} 
                       boardId={item.reviewNo} img_url={item.rurl}
           />)})}
       </div>

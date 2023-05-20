@@ -134,6 +134,10 @@ const Wrap = styled.div`
       .board-content{
         font-size: 1.2rem;
       }
+      .star-container {
+      font-size: 1.4rem;
+      color: #a1f7d9;
+      }
     }
   }
   .board-body{
@@ -224,35 +228,35 @@ const ViewReview = () => {
             );
           case 2:
             return(
-              <span><HiStar size="25" color="#7F8EEF"/>
-              <HiStar size="25" color="#7F8EEF"/></span>
+              <div style={{ display: 'flex'}}><HiStar size="25" color="#7F8EEF"/>
+              <HiStar size="25" color="#7F8EEF"/></div>
             )
           case 3:
             return(
-              <span>
+              <div style={{ display: 'flex' }}>
               <HiStar size="25" color="#7F8EEF"/>
               <HiStar size="25" color="#7F8EEF"/>
               <HiStar size="25" color="#7F8EEF"/>
-              </span>
+              </div>
             )
             case 4:
               return(
-                <span>
+                <div style={{ display: 'flex' }}>
               <HiStar size="25" color="#7F8EEF"/>
               <HiStar size="25" color="#7F8EEF"/>
               <HiStar size="25" color="#7F8EEF"/>
               <HiStar size="25" color="#7F8EEF"/>
-              </span>
+              </div>
               )
             case 5:
               return(
-                <span>
+                <div style={{ display: 'flex' }}>
                   <HiStar size="25" color="#7F8EEF"/>
                   <HiStar size="25" color="#7F8EEF"/>
                   <HiStar size="25" color="#7F8EEF"/>
                   <HiStar size="25" color="#7F8EEF"/>
                   <HiStar size="25" color="#7F8EEF"/>
-                </span>
+                </div>
               );
             default: 
                 return(
@@ -288,9 +292,10 @@ const ViewReview = () => {
             </div>
             <div className="board-title-content">
                 <div className="board-title">{review.rtitle}</div>
-                <div className="board-title">
+                <div className="star-container">
                     {renderStars(review.youLike)}
-                    {review.youLike}/5</div>
+                    {review.youLike}/5
+                    </div>
                 <div className="board-contents">{review.rcontents}</div>
             </div>
         </div>

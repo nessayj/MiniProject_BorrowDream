@@ -126,35 +126,35 @@ export const Card = ({boardId, title, rate, content, img_url, username, date}) =
           );
         case 2:
           return(
-            <span><HiStar size="25" color="#7F8EEF"/>
-            <HiStar size="25" color="#7F8EEF"/></span>
+            <div style={{ display: 'flex'}}><HiStar size="25" color="#7F8EEF"/>
+            <HiStar size="25" color="#7F8EEF"/></div>
           )
         case 3:
           return(
-            <span>
+            <div style={{ display: 'flex' }}>
             <HiStar size="25" color="#7F8EEF"/>
             <HiStar size="25" color="#7F8EEF"/>
             <HiStar size="25" color="#7F8EEF"/>
-            </span>
+            </div>
           )
           case 4:
             return(
-              <span>
+              <div style={{ display: 'flex' }}>
             <HiStar size="25" color="#7F8EEF"/>
             <HiStar size="25" color="#7F8EEF"/>
             <HiStar size="25" color="#7F8EEF"/>
             <HiStar size="25" color="#7F8EEF"/>
-            </span>
+            </div>
             )
           case 5:
             return(
-              <span>
+              <div style={{ display: 'flex' }}>
                 <HiStar size="25" color="#7F8EEF"/>
                 <HiStar size="25" color="#7F8EEF"/>
                 <HiStar size="25" color="#7F8EEF"/>
                 <HiStar size="25" color="#7F8EEF"/>
                 <HiStar size="25" color="#7F8EEF"/>
-              </span>
+              </div>
             );
           default: 
               return(
