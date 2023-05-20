@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Link} from "react-router-dom";
 import styled from "styled-components";
 import { BsStars } from "react-icons/bs";
 
-
+// 주소 변경
 import cr from "../../../images/카테고리이미지/캐리어.jpg";
 import cm from "../../../images/카테고리이미지/카메라.jpg";
 import dv from"../../../images/카테고리이미지/전자기기.jpg";

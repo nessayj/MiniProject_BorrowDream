@@ -9,7 +9,7 @@ import {BsStars} from "react-icons/bs";
 import M_img from "./M_img";
 import MainModal from "./mainModal/MainModal";
 import MainModal2 from "./mainModal/MainModal2";
-
+// 
 
 
 
