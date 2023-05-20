@@ -104,6 +104,17 @@ const Modal = (props) => {
     const navigate = useNavigate();
     const {open, confirm, close, boardNo, reviewNo, onConfirm, option, type, header} = props;
 
+
+    // 로그아웃
+    const onClickLogout = () => {
+        window.localStorage.setItem("userId", '');
+        window.localStorage.setItem("userPwd",'');
+        window.localStorage.setItem("isLogin", "false")
+        window.location.replace("/");
+        navigate("/");
+    }
+
+    // 문의하기 게시물 비밀번호
     const [boardPwd, setBoardPwd] = useState("");
       
     const handleConfirm = () => {
@@ -186,6 +197,7 @@ const Modal = (props) => {
                         <footer>
                             {type && <button onClick={confirm}>확인</button>}
                             <button onClick={close}>취소</button>
+                            {(option === '로그아웃') ? <button className="yes btn-m" onClick={onClickLogout}>확인</button>: ''}
                             {(option === '작성글저장') ? <button className="yes btn-m" onClick={onClickSave}>확인</button>: ''}
                             {(option === '수정') ? <button className="yes btn-m" onClick={onClickEdit}>확인</button>: ''}
                             {(option === '수정완료') ? <button className="yes btn-m" onClick={onClickEditOk}>확인</button>: ''}
