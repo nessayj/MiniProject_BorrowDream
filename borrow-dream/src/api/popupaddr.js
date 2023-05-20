@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DaumPostcode from "react-daum-postcode";
 // import { useContext, UserContext } from "../context/userInfo";
-import { css } from 'styled-components';
+import { css } from "../pages/customInfo/post.css";
 
 
 const PostCode = (props) => {
