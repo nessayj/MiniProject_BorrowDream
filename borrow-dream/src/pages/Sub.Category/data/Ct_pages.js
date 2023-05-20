@@ -2,7 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Link} from "react-router-dom";
 
 import styled from "styled-components";
-import { BsStars } from "react-icons/bs";
+import {SiStarship} from "react-icons/si";
+import {TbPlaneDeparture} from "react-icons/tb"
+import {GiMountains} from "react-icons/gi"
+import {TbBeach} from "react-icons/tb"
+import {FaCampground} from "react-icons/fa"
 
 // 주소 변경
 import cr from "../../../images/카테고리이미지/캐리어.jpg";
@@ -24,15 +28,22 @@ import toh from "../../../images/카테고리이미지/캠핑기타.jpg";
 
 
 
+
 const PopularItems = styled.div`
-  font-size: 30px;
-  font-family: 'TAEBAEKmilkyway';
-  font-weight: bolder;
+  font-size: 2rem;
+  font-family: 'bitbit';
+  font-weight: 100;
+  .title-container {
+    color: #7FC2EF;
+    margin-bottom: 0;
+    margin-top: 5rem;
+    margin-left: 10rem;
+  }
 
   .imgContainer {
     display: grid;
     grid-template-columns: repeat(4, 3fr); /* 변경된 부분: 가로 2개의 열 */
-    gap: 40px;
+    gap: 1rem;
     justify-content: center;
     align-items: center;
     margin: 140px;
@@ -47,26 +58,31 @@ const PopularItems = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
+   
   }
 
   span {
     color: #1a5d98;
-    margin: 100px;
+    margin-left: 10rem;
+    margin-bottom: 0;
     display: flex;
     align-items: center;
+    h2{
+      margin-left: 1rem;
+    }
   }
 
-  .productName {
-    color: #1a5d98;
-    margin-top: 20px;
-    font-size: 23px;
-    font-weight: bold;
-    text-align: center;
-  }
+ 
 
   .img {
     flex-direction: column;
     align-items: center;
+      .productName {
+      font-size: 1.5rem;
+      color: #7F8EEF;
+      margin-top: 20px;
+      text-align: center;
+    }
   }
 
   @media (max-width: 768px) {
@@ -74,6 +90,12 @@ const PopularItems = styled.div`
     grid-template-columns: repeat(2, 1fr); /* 세로로 2열로 변경 */
   }
 }
+  @media (max-width: 500px){
+    .imgContainer {
+    grid-template-columns: 1fr; /* 1개의 컬럼을 가지도록 설정 */
+  }
+  }
+
 `;
 
 const Image = styled.img`
@@ -87,13 +109,14 @@ const Ct_pages = () => {
   return (
     <div className="categoryWrapper">
       <PopularItems>
-        <span><BsStars size="50" color="pink" />카테고리</span>
+        <span><SiStarship size="50" color="7F8EEF" /><h2>카테고리</h2></span>
+        <div className="title-container"><TbPlaneDeparture size="30" />해외여행</div>
         <div className="imgContainer">
           <div className="img">
             <Link to="/Carrier" className="img">
               <Image src={cr} />
             </Link>
-            <div className="productName">케리어</div>
+            <div className="productName">캐리어</div>
           </div>
           <div className="img">
             <Link to="/Camera" className="img">
@@ -113,6 +136,9 @@ const Ct_pages = () => {
             </Link>
             <div className="productName">기타 해외여행 용품</div>
           </div>
+          </div>
+          <div className="title-container"><GiMountains size="30"/>산(하이킹)</div>
+          <div className="imgContainer">
           <div className="img">
             <Link to="/hiking_bag" className="img">
               <Image src={beg} />
@@ -137,6 +163,9 @@ const Ct_pages = () => {
             </Link>
             <div className="productName">기타 등산 용품</div>
           </div>
+          </div>
+          <div className="title-container"><TbBeach size="30"/>바다/물놀이</div>
+          <div className="imgContainer">
           <div className="img">
             <Link to="/swimsuit" className="img">
               <Image src={wc} />
@@ -161,6 +190,9 @@ const Ct_pages = () => {
             </Link>
             <div className="productName">기타 물놀이 용품</div>
           </div>
+          </div>
+          <div className="title-container"><FaCampground size="30"/>캠핑</div>
+          <div className="imgContainer">
           <div className="img">
             <Link to="/tent" className="img">
               <Image src={tt} />

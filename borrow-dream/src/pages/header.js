@@ -53,7 +53,7 @@ input[id="menuicon"]:checked + label{
 div[class="sidebar"] {
 width: 20rem;
 height: 100rem;
-background-color: #58CCFF;
+background-color: #7FC2EF;
 text-align: center;
 position:fixed;
 left:-500px;
@@ -70,7 +70,15 @@ font-weight: 400;
 list-style:none;
 font-size: 35px;
 color: white;
+
 }
+.logo2{
+  text-decoration: underline;
+  color: white;
+  font-size: 35px;
+
+}
+
 h4 {
 margin: 20px;
 }
@@ -84,11 +92,9 @@ text-decoration: none;
 color: #135CD2;
 font-size: 20px;
 font-weight: 400;
+text-decoration: none;
 }
-.dream {
-color: white;
-font-size: 2rem;
-}
+
 
 
 li:hover {
@@ -177,17 +183,17 @@ return (
       <FiMenu size="30" color="#5ba8ea" />
        </label>
 
-    <div class="sidebar">
-      <ul class="navi">
+    <div className="sidebar">
+      <ul className="navi">
 
-     <h4 class="logo2">해외여행</h4>
+     <h4 className="logo2">해외여행</h4>
       <li><a href="/Carrier">캐리어</a></li>
       <li><a href="">카메라</a></li>
       <li><a href="">전자기기</a></li>
       <li><a href="">기타 해외여행 용품</a></li>
       
       <div className="hiking">
-      <h4 class="logo2">산(트래킹)</h4>
+      <h4 className="logo2">산(트래킹)</h4>
       <li><a href="">등산 가방</a></li>
       <li><a href="">등산 신발</a></li>
       <li><a href="">등산 옷</a></li>
@@ -195,7 +201,7 @@ return (
       </div>
       
       <div className="swim">
-      <h4 class="logo2">물놀이</h4>
+      <h4 className="logo2">물놀이</h4>
       <li><a href="">수영복</a></li>
       <li><a href="">스노쿨</a></li>
       <li><a href="">오리발</a></li>
@@ -203,7 +209,7 @@ return (
       </div>
      
      <div className="camp">
-      <h4 class="logo2">캠핑</h4>
+      <h4 className="logo2">캠핑</h4>
       <li><a href="">텐트</a></li>
       <li><a href="">수면 용품</a></li>
       <li><a href="">취사 도구</a></li>
@@ -211,12 +217,12 @@ return (
       </div>
 
       <div className="myLent">
-       <a href="/myLentItem"><h4 className="dream">내가 빌려 DREAM</h4></a> 
+       <a href="/myLentItem"><h4 className="logo2">내가 빌려 DREAM</h4></a> 
 
       </div>
 
       <div className="board">
-        <h4 class="logo2">게시판</h4>
+        <h4 className="logo2">게시판</h4>
         <li><a href="/board-list">문의하기</a></li>
         <li><a href="/review-list">후기</a></li>
         <li><a href="/qna-list">Qna</a></li>
