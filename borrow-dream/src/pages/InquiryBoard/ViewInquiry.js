@@ -181,10 +181,12 @@ const InquiryView = ()=> {
                 </div>
                 <p className="title-com">작성한 문의를 확인하시고 답변은 댓글에서 확인해주세요</p>
                 <table className="postInfo">
+                    <thead>
                     <tr>
                     <td className="title-input" colSpan={5}>{postViewData.title}</td>
                     </tr>
-                    <thead>
+                    </thead>
+                    <tbody>
                     <tr className="table-title">
                         <td>카테고리</td>
                         <td>글번호</td>
@@ -192,8 +194,6 @@ const InquiryView = ()=> {
                         <td>조회수</td>
                         <td>작성날짜</td>
                     </tr>
-                    </thead>
-                    <tbody>
                     <tr>
                     <td>{postViewData.category}</td>
                     <td>{postViewData.boardNo}</td>
