@@ -59,7 +59,6 @@ const MsgStyle = styled.div`
 
 
 const WriteMessage = ({writerId}) => {
-    const isLogin = window.localStorage.getItem("isLogin");
    const getId = window.localStorage.getItem("Id");
 
     // 모달

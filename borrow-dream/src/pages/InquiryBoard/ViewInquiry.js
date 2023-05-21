@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import BaroApi from "../../api/BaRoApi";
 import Modal from "../../utill/Modal";
 import styled from "styled-components";
@@ -32,18 +32,6 @@ const Section = styled.div`
     height: calc(100vh - 40px);
     float: center;
     position: relative;
-   
-    /* button {
-        margin-top: 20px;
-        cursor: pointer;
-        border: none;
-        padding-right: 20px; 
-        background-color: #135CD2;
-        color: white;
-        font-weight: 700;
-        transition: all .1s ease-in;
-        &:hover, &:hover i {background-color:  #a1f7d9; color: #135CD2;}
-    } */
 
     /* 게시판 타이틀 밑 설명 */
     .title-com{
@@ -186,10 +174,6 @@ const InquiryView = ()=> {
         };
         InquiryViewLoad();
     }, [getNum]);
-       // 게시글 삭제버튼 로그인상태와 아이디가 일치했을 때만 활성화
-       const showButtons = () => {
-        return isLogin === "TRUE" && postViewData.writerId === getId;
-    }
 
     return(
         <>
@@ -205,6 +189,7 @@ const InquiryView = ()=> {
                     <tr>
                     <td className="title-input" colSpan={5}>{postViewData.title}</td>
                     </tr>
+                    <thead>
                     <tr className="table-title">
                         <td>카테고리</td>
                         <td>글번호</td>
@@ -212,6 +197,8 @@ const InquiryView = ()=> {
                         <td>조회수</td>
                         <td>작성날짜</td>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                     <td>{postViewData.category}</td>
                     <td>{postViewData.boardNo}</td>
@@ -219,6 +206,7 @@ const InquiryView = ()=> {
                     <td><i class="bi bi-eye"></i>{postViewData.views}</td>
                     <td>{postViewData.writeDate}</td>
                     </tr>
+                    </tbody>
                 </table>
                 <div className="detail" dangerouslySetInnerHTML={{__html: postViewData.contents}}></div>
                 </div>
