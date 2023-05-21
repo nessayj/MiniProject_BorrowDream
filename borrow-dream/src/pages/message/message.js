@@ -108,6 +108,13 @@ const WriteMessage = ({writerId}) => {
         }
     }
 
+       // 글자 입력시 엔터마다 줄바꿈 넣어주는 함수
+       const handleKeyPress = (e) => {
+        if(e.key === 'Enter') {
+            contents(contents+'\n');
+        }
+    }
+
 
     return(
         <MsgStyle>
@@ -135,6 +142,7 @@ const WriteMessage = ({writerId}) => {
             name="contents"
             value={contents}
             onChange={onChangeMessageData}
+            onKeyDown={handleKeyPress} 
             required
           />
         </div>

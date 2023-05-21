@@ -111,7 +111,7 @@ const ReceiveMsg = ({getNum}) => {
         </div>
         <div className="contents-container2">
           <div className="contents-contents">내용</div>
-          <div className="contents2">{receiveMsg.msgContents}</div>
+          <div className="contents2">{receiveMsg.msgContents.split('\n').map((line, index) => {return <p key={index}>{line}</p>})}</div>
         </div>
         <div className="button-container">
             <button className="reply" onClick={() => setSendMsg(!sendMsg)}>답장하기</button>

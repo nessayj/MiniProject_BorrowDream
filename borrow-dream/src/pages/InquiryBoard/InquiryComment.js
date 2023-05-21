@@ -85,17 +85,11 @@ const Comment = styled.div`
 
 const InquiryComment = ({getId, getNum, getDate, setCommentList, commentList}) => {
     const navigate = useNavigate();
+    const commentId = window.localStorage.getItem("Id");
 
     // 댓글내용입력
     const [contents, setContents] = useState('');
 
-    // commentId (댓글 작성사 입력받기위한 변수설정 로그인하면 getId로 가지고와야함)
-    const [commentId, setCommentId] = useState('');
-
-    // 댓글 작성자 아이디 입력
-    const onChangeCommentId = (e) => {
-        setCommentId(e.target.value);
-    }
 
     // 댓글 입력
     const onChangeContents = (e) => {
@@ -114,7 +108,7 @@ const InquiryComment = ({getId, getNum, getDate, setCommentList, commentList}) =
     // 글자 입력시 엔터마다 줄바꿈 넣어주는 함수
     const handleKeyPress = (e) => {
         if(e.key === 'Enter') {
-            setCommentId(contents+'\n');
+            setContents(contents+'\n');
         }
     }
 
@@ -133,7 +127,9 @@ const InquiryComment = ({getId, getNum, getDate, setCommentList, commentList}) =
                         <tr key={getNum}>
                             <td>{commentId}</td>
                             <td>{commentTime}</td>
+                            {commentId === "admin" && (
                             <td><div><button className="deleteBtn" onClick={() => onClickToDeleteComment(commentNo)}>댓글삭제</button></div></td>
+                            )}
                         </tr>
                         <tr>
                             <td><div>{contents.split('\n').map((line, index) => {return <p key={index}>{line}</p>})}</div></td>
@@ -142,11 +138,12 @@ const InquiryComment = ({getId, getNum, getDate, setCommentList, commentList}) =
                     )}
                 </table>
             </div>
+            {commentId === "admin" && (
             <div className="button-area2">
                 <textarea type="text" className="comment_text" placeholder="답변달기" value={contents} onChange={onChangeContents} onKeyDown={handleKeyPress} name="contents"/>
-                <input type="text" placeholder="댓글아이디" value={commentId} onChange={onChangeCommentId} />
                 <button className="comment_btn" onClick={onClickToSaveContents}>댓글저장</button>
             </div>
+            )}
         </Comment>
     );
 }

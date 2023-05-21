@@ -108,7 +108,7 @@ const SendMsg = ({getNum}) => {
         </div>
         <div className="contents-container2">
           <div className="contents-contents">내용</div>
-          <div className="contents2">{sendMsgData.msgContents}</div>
+          <div className="contents2">{sendMsgData.msgContents.split('\n').map((line, index) => {return <p key={index}>{line}</p>})}</div>
         </div>
         <div className="button-container">
             <button className="reply" >확인</button>
