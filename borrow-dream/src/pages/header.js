@@ -264,7 +264,7 @@ return (
         {IsLogin() ?
         <FiSmile className="login" size="30" color="#5ba8ea" onClick={onClickToMypage}/> :
         <FiSmile className="login" size="30" color="#5ba8ea" onClick={onClickToLogin}/> }
-        <FiShoppingCart className="cart" size="30" color="5ba8ea"/>
+        <Link to='/cart'><FiShoppingCart className="cart" size="30" color="5ba8ea"/></Link>
     </div>
     
 

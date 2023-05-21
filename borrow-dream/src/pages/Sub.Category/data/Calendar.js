@@ -1,10 +1,11 @@
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { DateRange } from 'react-date-range';
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import axios from 'axios';
 import ko from 'date-fns/locale/ko';
 import styled from 'styled-components';
+import { UserContext } from '../../../context/userInfo';
 
 const CalendarContainer = styled.div`
   display: flex;
@@ -37,7 +38,6 @@ class CalendarComponent extends Component {
     const endDate = ranges['selection'].endDate;
     const totalDays = parseInt(Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24))+1);
     const totalPrice = this.calculatePriceByDate(startDate, endDate);
-
     this.setState({
       startDate,
       endDate,
@@ -55,6 +55,7 @@ class CalendarComponent extends Component {
       });
       console.log('날짜 범위 저장 성공:', response.data);
       window.alert('날짜 범위 저장 성공');
+      
     } catch (error) {
       console.error('날짜 범위 저장 실패:', error);
       window.alert('날짜 범위 저장 실패');
@@ -67,9 +68,8 @@ class CalendarComponent extends Component {
     const totalPrice = productPrice * (days + 1); // 가격 계산에 1을 더해줌
     return totalPrice;
   };
-  
-
   render() {
+    const { startDate, endDate, totalDays, totalPrice} = this.state;
     return (
       <CalendarContainer>
         <DateRange
@@ -79,10 +79,10 @@ class CalendarComponent extends Component {
           ranges={[this.state]}
           locale={ko}
         />
-        <DateLabel>물건 대여: {this.state.startDate.toLocaleDateString()}</DateLabel>
-        <DateLabel>물건 반납: {this.state.endDate.toLocaleDateString()}</DateLabel>
-        <DateLabel>총 일 수: {this.state.totalDays}일</DateLabel>
-        <DateLabel>총 가격: {this.state.totalPrice}원</DateLabel>
+        <DateLabel>물건 대여: {startDate.toLocaleDateString()}</DateLabel>
+        <DateLabel>물건 반납: {endDate.toLocaleDateString()}</DateLabel>
+        <DateLabel>총 일 수: {totalDays}일</DateLabel>
+        <DateLabel>총 가격: {totalPrice}원</DateLabel>
       </CalendarContainer>
     );
   }

@@ -5,12 +5,12 @@ import { UserContext } from "../../context/userInfo";
 
 export const Cart = ({ cart, setCart, convertPrice, checkedAll, setCheckedAll, checkedItems, setCheckedItems }) => {
   const [total, setTotal] = useState(0);
-  const context = useContext(UserContext);
-  const { userId } = context;
-
+  // const context = useContext(UserContext);
+  // const { Id } = context;
+  const getId = window.localStorage.getItem("Id");
   const handleRemove = async (id) => {
     try {
-      await CartApi.deleteCartItem(userId, id);
+      await CartApi.deleteCartItem(getId, id);
       const newCart = cart.filter((item) => item.bk_pname !== id);
       setCart(newCart);
       console.log(cart);
@@ -27,8 +27,8 @@ export const Cart = ({ cart, setCart, convertPrice, checkedAll, setCheckedAll, c
       } else if (type === "plus") {
         newQuantity++;
       }
-      await CartApi.updateQuantity(userId, cartItem.bk_pname, newQuantity);
-      const updatedCart = await CartApi.cartListGet(userId);
+      await CartApi.updateQuantity(getId, cartItem.bk_pname, newQuantity);
+      const updatedCart = await CartApi.cartListGet(getId);
       setCart(updatedCart.data);
     } catch (error) {
       console.log(error);
@@ -37,9 +37,9 @@ export const Cart = ({ cart, setCart, convertPrice, checkedAll, setCheckedAll, c
   useEffect(() => {
     const cartList = async () => {
       try {
-        const response = await CartApi.cartListGet(userId);
+        const response = await CartApi.cartListGet(getId);
         setCart(response.data)
-        console.log(userId);
+        console.log(getId);
         console.log("장바구니 리스트");
         console.log(response.data);
       } catch (e) {
