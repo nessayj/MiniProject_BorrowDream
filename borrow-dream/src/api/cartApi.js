@@ -9,6 +9,18 @@ const CartApi = {
         return await axios.get(KH_DOMAIN + `/cart?id=${id}`);
     },
 
+    // 장바구니 추가
+    cartInsert : async(id, pname, start, end, quan) => {
+        const insert = {
+            id: id,
+            pname: pname,
+            start: start,
+            end: end,
+            quan: quan
+        }
+        return await axios.post(KH_DOMAIN + "/cart/insert", insert);
+    },
+    
     // 장바구니 선택 삭제
     deleteCartItem : async(userId, pname) => {
         const del = {
