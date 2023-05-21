@@ -30,7 +30,6 @@ const MainContainer = styled.div`
         /* padding: 50px 40px; */
         border-radius: 50px;
     }
-
 `;
 
 const Titlebox = styled.div`
@@ -44,10 +43,10 @@ const Titlebox = styled.div`
 const MypageEdTitle = styled.div`
     padding-top: 20px;
     margin-left: 3px;
-    font-size: 20px;
+    font-size: 2.3em;
     text-align: center;
     font-weight: 400px;
-    font-family: 'TAEBAEKmilkyway';
+    font-family: 'bitbit';
 `;
 
 const CustomInfo = styled.div`
@@ -136,81 +135,38 @@ const StyledButton = styled.button`
 
 const MypageInfo = () => {
 
+    // let params = useParams();
+    // let getId = params.no
+
+
     const navigate = useNavigate()
-
-    // 변경할 정보 입력 값
-
-    const [userTel, setUserTel] = useState(""); // 휴대폰 번호
-    const [userEmail, setUserEmail] = useState(""); // 이메일
-    const [userAddr, setUserAddr] = useState({address:""}); // 주소
-
-
-    // 주소찾기 영역
-    const [popup, setPopup] = useState(false);
-
-    // 팝업창 열기
-    const handleComplete = () => {
-        setPopup(!popup);
-    }
-
-    // 모달 열기 & 닫기
-    const [modalOpen, setModalOpen] = useState(false);
-    
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-   
-
-
-    // 본인 정보만 담을 변수
-    const [myInfo, setmyInfo] = useState("");
-    const isLogin = window.localStorage.getItem("isLogin"); // 로그인 들어오면 마이페이지 후 수정화면 접속
+    const isLogin = window.localStorage.getItem("isLogin");
+    const getId = window.localStorage.getItem("Id")
+    if(isLogin !== "TRUE") navigate("/");
     console.log(isLogin);
 
-    if(isLogin !== "TRUE") navigate("/MainBody");
-    console.log(isLogin);
+    // 내정보를 조회하기위한 변수설정
+    const [myInfo, setMyInfo] = useState("");
 
-
-    const context = useContext(UserContext);
-    const {Id} = context;
+    // const context = useContext(UserContext);
+    // const {Id} = context;
 
 
     // userEffect를 통해 회원정보만 가져옴
     useEffect(() => {
-        const myInfo = async () => {
+        const MyInfoLoading = async () => {
             try {
-            const rsp = await AxiosApi.customEdit(Id); // 아이디를 기준으로 조회
-                console.log(rsp.data);
-                setmyInfo(rsp.data);
-                } catch(e) {
-                console.log(e);
+            const rsp = await AxiosApi.customEdit(getId); // 아이디를 기준으로 조회
+                console.log(rsp.data); // axios data 값 확인 위해 출력
+                setMyInfo(rsp.data);  
+                } catch (e) {
+                console.log(e); // 에러 출력
                 }
             };
-            myInfo();
-        }, []);
-        
+            MyInfoLoading();
+        }, [getId]);
 
-    const [value, setValue] = useState('');
-    const onChange = (e)=> {
-        setValue(e.target.value)
-    }    
-
-
-
-
-
-
-    // 검색한 주소
-    const handleInput = (e) => {
-        setUserAddr({
-            // ... => enroll_company에 다 담겠다는 의미
-            ...userAddr,
-            [e.target.name]:e.target.value,
-        })
-        console.log(e.target.name);
-    }
-
-    
+ 
     
     return(
         <>
@@ -228,7 +184,6 @@ const MypageInfo = () => {
                     label="이름"  
                     variant="filled"
                     value={myInfo.name}
-                    onChange={onChange}
                     size= "small"
                     InputLabelProps={{ 
                         shrink: true,
@@ -243,7 +198,6 @@ const MypageInfo = () => {
                     label="아이디"  
                     variant="filled"
                     value={myInfo.id}
-                    onChange={onChange}
                     size= "small"
                     InputLabelProps={{ 
                         shrink: true,
@@ -296,8 +250,7 @@ const MypageInfo = () => {
                     style={{ width: '350px' }}
                     label="포인트" 
                     variant="filled"
-                    value = "5000point"
-                    onChange={onChange}
+                    value = "5000 point"
                     size= "small"
                     InputLabelProps={{ // 라벨 hover 적용하지 않고 고정시키기
                         shrink: true,
@@ -307,8 +260,7 @@ const MypageInfo = () => {
                 </div>
                 
                 <div className="area">
-                <Link to = "/MypageEdit"><button className="enable-btn" >수정하기</button></Link> 
-                </div>
+                <Link to = "/MypageEdit"><StyledButton className="enable-btn" >수정하기</StyledButton></Link> </div>
                 </CustomInfo>
                 </div>
                 </div>

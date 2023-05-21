@@ -22,7 +22,6 @@ const MainContainer = styled.div`
     height: 150px;// 중간 컨텐츠 전체 높이(회색부분)
     padding-bottom: 60px;
     
-
     .profileEdit {
         color: #404040;
         padding: 15px 0 15px 30px;
@@ -43,10 +42,10 @@ const MainContainer = styled.div`
 const MypageTitle = styled.div`
     padding-top: 20px;
     margin-left: 3px;
-    font-size: 20px;
+    font-size: 2.3em;
     text-align: center;
     font-weight: 400px;
-    font-family: 'TAEBAEKmilkyway';
+    font-family: 'bitbit';
 `;
 
 const Titlebox = styled.div`
@@ -54,16 +53,14 @@ const Titlebox = styled.div`
     background: linear-gradient( to bottom, #f2dfe4, #e3daf5);
     min-height: 250px;
     position: relative;
-
+    
     .mypagetitle {
         padding-top: 20px;
         margin-left: 3px;
-        font-size: 20px;
+        font-size: 40px;
         text-align: center;
-        font-weight: 400px;
-        font-family: 'TAEBAEKmilkyway'
+        font-family: 'bitbit';
     }
-
     .topinfo {
         font-size: 25px;
         font-weight: 600;
@@ -73,11 +70,9 @@ const Titlebox = styled.div`
         padding-left: 5px;
         /* background-color: wheat; */
     }
-
     .topinfo > span {
         color: violet;
     }
-
     .profile {
         position: relative;
         display: block;
@@ -88,46 +83,39 @@ const Titlebox = styled.div`
     }
     
     .setting {
-        background-color: white;
-        display: inline-block;
         width: 85px;
         height: 29px;
+        background-color: white;
+        display: flex;
+        align-items: center;
         font-size: 15px;
-        margin-left: 10px;
-        margin-right: 10px;
-        /* margin-top: 3px;   */
+        margin-right: 10px; 
         text-align : center;
         border-radius: 5px;
         text-decoration: none;
         box-shadow: 0 6px 20px 0 rgba(150, 150, 160, 0.45);
         border: 1px solid #dbdbdb;
-
     }
-
-    /* .infoedit {
-        float: right;
-        background-color: white;
-        padding: 4px 10px;
-        border-radius: 4px;
-        border: 1px solid #CDCDCC;
-        display: inline-block;
-        margin-top: 12px;
-    } */
-        
+    .linkarea {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+    
+    }
+   
 `;
     const ShippingStatusContainer = styled.div`
         padding: 40px 180px;
         background-color: white;
         margin-bottom: 10px;
         position: center;
-
         
     .title{
         font-size: 16px;
         font-weight: bold;
         margin-bottom: 15px;
     }
-
     /* 장바구니 결제완료 배송중 구매확정 [로우] */
     .status{
         display: flex;
@@ -138,25 +126,21 @@ const Titlebox = styled.div`
     .item{
         display: flex;
     }
-
     .number{
         font-size: 31px;
         font-weight: 500;
         text-align: center;
         
     }
-
     a {
         text-decoration: none;
     }
-
     .text{
         font-size: 12px;
         font-weight: normal;
         color: #c2c2c2;
         text-align: center;
     }
-
     .icon{
         display: flex;
         align-items: center;
@@ -166,11 +150,6 @@ const Titlebox = styled.div`
     }
     
 `;
-
-    const ProfileInput = styled.input`
-         display: none;
-     `;
-
     const Mymenu = styled.div`
         text-align: left;
         position: ralative;
@@ -211,7 +190,6 @@ const MypageItem = styled.dd`
     padding: 13px 0px 10px 3px;
     position: relative;
     outline: none;
-
     a {
         text-decoration: none;
     }
@@ -253,7 +231,6 @@ const onClickLogout = () =>{
     setModalOpen(true);
     setModalOption("로그아웃")
     setComment("로그아웃하시겠습니까?")
-   
 }
 
 
@@ -266,10 +243,11 @@ const onClickLogout = () =>{
                 <MypageTitle><h1>마이페이지</h1></MypageTitle>
                     <div className="topinfo">
                     <span>{id}님 환영합니다</span>
-                    {/* <p> 환영합니다</p> */}
                     <br /><br />
+                    <div className="linkarea">
                     <Link to="/MypageInfo" className="setting">정보조회<EditImg src={Edit} /></Link>
-                    <button className="setting" onClick={onClickLogout}>로그아웃<EditImg src={Edit} /></button>
+                        <button className="setting" onClick={onClickLogout}>로그아웃<EditImg src={Edit} /></button>
+                    </div>
                 </div>
             </Titlebox>   
             <ShippingStatusContainer>
@@ -316,9 +294,9 @@ const onClickLogout = () =>{
                 <Container>
                     <div class="item">
                         <Title><RiUserSettingsLine size="17" /> 정보관리</Title>
-                        <MypageItem><a href="!#">회원정보수정</a></MypageItem>
-                        <MypageItem><a href="!#">배송지관리</a></MypageItem>
-                        <MypageItem><a href="!#">회원탈퇴</a></MypageItem>
+                        <Link to = "/MypageInfo"><MypageItem>회원정보조회</MypageItem></Link>
+                        <Link to = "/MypageEdit"><MypageItem>회원정보수정</MypageItem></Link>
+                        <Link to = "/CustomDelete"><MypageItem>회원탈퇴</MypageItem></Link>
                     </div>
                 </Container> 
                 <Container>

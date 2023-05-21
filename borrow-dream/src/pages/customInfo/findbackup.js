@@ -6,30 +6,25 @@ import AxiosApi from "../../api/axiosapi";
 import Modal from "../../utils/Modal";
 
 
-const FindContainer = styled.div`
+const ContainerFind = styled.div`
+    position: absolute;
+    top: 60px;
+    bottom: 60px;
+    width : 100%;
+    padding: 0 20px;
+    max-width: 500px;
+    left: 50%;
+    height: 80vh;
+    transform: translate(-50%, 0);
+    background-color: #c4dbf9; // 아이디찾기 배경색
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8.5px);
+    -webkit-backdrop-filter: blur(8.5px);
+    color: black;
+    /* color: #EEEEEE; */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    position: relative;
-
-    .coverpaper {
-        display: flex;
-        position: relative;
-        align-items: center;
-        flex-direction: column;
-        margin-bottom: 60px;
-        margin-left: 18px;
-        position: relative;
-        height: 65vh;
-        width: 480px;
-        /*background: rgba(255, 255, 255, 0.15);*/
-        background-color: #c4dbf9;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        backdrop-filter: blur(8.5px);
-        -webkit-backdrop-filter: blur(8.5px);
-    }
 
     .inputWrap{
     display: flex;
@@ -117,7 +112,8 @@ h2{
 }
 div{
     margin-bottom: 20px;
-}`;
+}
+`;
 
     const Horizontal = styled.hr`
         width: 100%;
@@ -186,27 +182,25 @@ const Find = () =>{
 
 
     return (
-        <FindContainer>
-            <div className="coverpaper">
-                <div className="find-container">
-                <h2>아이디 찾기</h2>
-                <div className="inputWrap">
-                    <input className="input" placeholder="이름 입력" type="text" value={userName} onChange={onChangeName}/>
-                    </div>
-                <div className="inputWrap">
-                    <input className="input" placeholder="이메일 입력" type="email" value={userEmail} onChange={onChangeUserEmail}/>
+        <ContainerFind>
+            <div className="find-container">
+            <h2>아이디 찾기</h2>
+            <div className="inputWrap">
+                <input className="input" placeholder="이름 입력" type="text" value={userName} onChange={onChangeName}/>
                 </div>
-                <div className="item">
-                    <button type="submit" className="findBtn" onClick={onClickFind} disabled={submit}>아이디 찾기</button>
-                </div>
-                <Horizontal />
-                <div className="item">
-                    <button type="button" className="loginBtn" onClick={()=>{navigate('/Login')}}>로그인하러 가기</button>
-                </div>
-                <Modal open={modalOpen} close={closeModal} header={modalHeader}>{modalText}</Modal>
-                </div>
+            <div className="inputWrap">
+                <input className="input" placeholder="이메일 입력" type="email" value={userEmail} onChange={onChangeUserEmail}/>
             </div>
-        </FindContainer>
+            <div className="item">
+                <button type="submit" className="findBtn" onClick={onClickFind} disabled={submit}>아이디 찾기</button>
+            </div>
+            <Horizontal />
+            <div className="item">
+                <button type="button" className="loginBtn" onClick={()=>{navigate('/Login')}}>로그인하러 가기</button>
+            </div>
+            <Modal open={modalOpen} close={closeModal} header={modalHeader}>{modalText}</Modal>
+            </div>
+        </ContainerFind>
     );
 }
 

@@ -262,7 +262,6 @@ const Login = () => {
     }
 
     return(
-        <div class="loginpage">
         <LoginContatiner>
             <div className="coverpaper">
                 <div className="logintitle">
@@ -294,7 +293,6 @@ const Login = () => {
                 </div>
             </div>
         </LoginContatiner>
-        </div>
     );
 }; 
 

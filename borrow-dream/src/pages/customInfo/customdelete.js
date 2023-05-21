@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../context/userInfo";
 import AxiosApi from "../../api/axiosapi";
 import { useNavigate } from "react-router-dom";
-import Modal from "../../utils/Modal";
+import { id } from "date-fns/locale";
 
 
 const MainContainer = styled.div`
@@ -24,7 +24,26 @@ const MainContainer = styled.div`
         border-radius: 50px;
     }
 
-   
+    .mainbutton-container {
+        margin-top: 20px;
+        height: 55px;
+        text-align: right;
+        .btn {
+            margin-left: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            float: right;
+            font-size: 16px;
+            font-weight: lighter;
+            padding: 8px 35px;
+            border-radius: 25px;
+            background-color: #135CD2;
+            color: white;
+            border: none;
+            transition: all .1s ease-in;
+            &:hover {background-color:  #a1f7d9; color: #135CD2;}
+        }
+    }
 `;
 
 
@@ -54,14 +73,9 @@ const Titlebox = styled.div`
 const DeleteTitle = styled.div`
     padding-top: 20px;
     margin-left: 3px;
-    font-size: 50px;
+    font-size: 40px;
     text-align: center;
-    font-weight: 400px;
     font-family: 'bitbit';
-`;
-
-const Btn = styled.div`
-    display: flex;
 `;
 
 const Button = styled.button`
@@ -80,86 +94,100 @@ const Button = styled.button`
 const CustomDelete = () => {
 
 
-    const [myInfo, setmyInfo] = useState("");
     const navigate = useNavigate()
-    const isLogin = window.localStorage.getItem("isLogin");
 
+    // 탈퇴는 본인만 가능
+    const isLogin = window.localStorage.getItem("isLogin");
+    const userPwd = window.localStorage.getItem("password");
+    const userId = window.localStorage.getItem("Id"); 
+    
     if(isLogin !== "TRUE") navigate("/MainBody"); // 로그인 실패 시 메인 이동
     console.log(isLogin);
 
-    // 모달 열기 & 닫기
-    const [modalOpen, setModalOpen] = useState(false);
+    const [delmyInfo, setdelMyInfo] = useState("");
+    const [inputPwd, setInputPwd] = useState("");
 
-    
-    const closeModal = () => { // 아니오 눌렀을 때
-        setModalOpen(false);
+    // // 회원탈퇴 수정 모달
+    // const [modalOpen, setModalOpen] = useState(false);
+    // const [modalOption, setModalOption] = useState("");
+    // const [comment, setComment] = useState(""); // 모달창 안내 문구
+   
+
+    // const closeModal = () => { // 아니오 눌렀을 때
+    //     setModalOpen(false);
+    // };
+
+    const CustomDelLoading = async () => {
+        if (inputPwd === userPwd) {
+            await AxiosApi.customDel(userId); // 아이디를 기준으로 조회
+            alert("탈퇴가 처리되었습니다")
+            window.localStorage.setItem("userId", '');
+            window.localStorage.setItem("userPwd",'');
+            window.localStorage.setItem("isLogin", "false")
+            window.location.replace("/");
+        
+            navigate("/");
+
+        }
+        else {
+            alert("비밀번호를 확인해주세요")
+        }
     };
 
-    // 탈퇴 함수 
-    const onClickCustomDelete = () => { // 
-        setModalOpen(true);
-    };
-
-
-    // 탈퇴하기 모달창에서 확인을 눌렀을 때
-    const confirmModal = async() => { 
-        setModalOpen(false);
+    const onChangeUserPw = (e) => {
+        setInputPwd(e.target.value);
     }
 
-    const context = useContext(UserContext);
-    const {Id} = context;
 
-
-    // userEffect를 통해 회원정보만 가져옴
-    useEffect(() => {
-        const myInfo = async () => {
-            try {
-            const rsp = await AxiosApi.customDel(Id); // 아이디를 기준으로 조회
-                console.log(rsp.data);
-                setmyInfo(rsp.data);
-                } catch(e) {
-                console.log(e);
-                }
-            };
-            myInfo();
-        }, []);
+    // 탈퇴버튼 누를 시 
+    const onClickToDelete = () => { 
+        
+        if(userPwd === inputPwd){
+            CustomDelLoading();
+            alert("탈퇴되었습니다.");
+        } else {
+            alert('패스워드가 일치하지 않습니다.'); // 패스워드가 일치하지 않을 때 알림 창 표시
+          }
+        };
+    
+    
 
 
 
     // 취소하기 버튼 누를 시 현재 페이지 새로고침
     const cancleBtnClick = () => {
         window.location.reload();
+
+    if(isLogin !== "TRUE") navigate("/MainBody");
+
     };
 
 
     return(
         <>
         <MainContainer>
-        <Titlebox>
-            <DeleteTitle>회원탈퇴</DeleteTitle>
-            <br /><br />
-        </Titlebox>
+            <Titlebox>
+                <DeleteTitle>회원탈퇴</DeleteTitle>
+                <br /><br />
+            </Titlebox>
             <p>고객님의 소중한 정보 보호를 위해, 바로드림 계정의 현재 비밀번호를 입력해주세요</p>
             
             <div className="coverpage">
-            <label htmlFor="password" className="labelField">현재 비밀번호</label>
-            <Input type="password" placeholder="현재 비밀번호 입력 *"/>
-            <Btn>
-                <div onClick={onClickCustomDelete}>
-                  <Button>회원 탈퇴</Button>
-                </div>
-                    {modalOpen && <Modal open={modalOpen} confirm={confirmModal} 
-                    close={closeModal} type={true} header="확인">정말로 탈퇴하시겠습니까?</Modal>}
-                
-                <div onClick={cancleBtnClick}>
-                    <Button>취소하기</Button>
-                </div>
-
-            </Btn>
-                </div>
+                <label htmlFor="password" className="labelField" >현재 비밀번호</label>
+                <Input 
+                type="password" 
+                placeholder="현재 비밀번호 입력 *" 
+                value={inputPwd}
+                onChange={onChangeUserPw}
+                />
+            <div className="mainbutton-container">
+                <button className="btn" onClick={CustomDelLoading}>회원 탈퇴</button>
+                <Button  onClick={cancleBtnClick}>취소하기</Button>
+            </div>
+        </div>
         </MainContainer>
         </>
     );
 }
-
 export default CustomDelete;
+

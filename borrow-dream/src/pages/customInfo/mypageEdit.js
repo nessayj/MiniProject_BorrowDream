@@ -31,7 +31,6 @@ const MainContainer = styled.div`
         /* padding: 50px 40px; */
         border-radius: 50px;
     }
-
     .deletebtn {
         font-size: 15px;
         font-weight: bold;
@@ -44,7 +43,6 @@ const MainContainer = styled.div`
         margin-left: 580px;
         margin-top: -42px;
     }
-
 `;
 
 const Titlebox = styled.div`
@@ -71,7 +69,6 @@ const CustomInfo = styled.div`
     flex-direction: column;
     margin: 0 auto;
     
-
     .area {
         display: flex;
         padding-left: 100px;
@@ -86,12 +83,10 @@ const CustomInfo = styled.div`
         display: flex;
         
     }
-
     .addrBtn {
         margin-left: 480px;
         margin-top: -40px;
     }
-
     .enable-btn {
         /* font-family: 'Noto Sans KR', sans-serif; */
         font-size: 15px;
@@ -105,7 +100,6 @@ const CustomInfo = styled.div`
         margin-left: 480px;
         margin-top: -42px;
     }
-
     .addrUpdate {
         /* font-family: 'Noto Sans KR', sans-serif; */
         font-size: 15px;
@@ -143,7 +137,6 @@ const Button1 = styled.button`
     background-color: rgba(108, 169, 245);
     font-size: 20px;
     align-items: center;
-
     
     &:hover{
     background-color: rgba(108, 169, 245);
@@ -213,6 +206,7 @@ const MypageEdit = () => {
    
       // 본인 정보만 담을 변수
       const [myInfo, setmyInfo] = useState("");
+      const getId = window.localStorage.getItem("Id");
       const isLogin = window.localStorage.getItem("isLogin"); // 로그인 들어오면 마이페이지 후 수정화면 접속
       console.log(isLogin);
   
@@ -220,15 +214,11 @@ const MypageEdit = () => {
       console.log(isLogin);
   
   
-      const context = useContext(UserContext);
-      const {Id} = context;
-  
-  
       // userEffect를 통해 회원정보만 가져옴
       useEffect(() => {
-          const myInfo = async () => {
+          const MyEditLoading = async () => {
               try {
-              const rsp = await AxiosApi.customEdit(Id); // 아이디를 기준으로 조회
+              const rsp = await AxiosApi.customEdit(getId); // 아이디를 기준으로 조회
                   console.log(rsp.data);
                   setmyInfo(rsp.data);
                   setUserTel(rsp.data.tel); // myinfo에서 전송받은 값이 아닌 새로운 입력값에 지정한 변수에 axios 받음
@@ -236,8 +226,8 @@ const MypageEdit = () => {
                   console.log(e);
                   }
               };
-              myInfo();
-          }, []);
+              MyEditLoading();
+          }, [getId]);
     
 
         const [value, setValue] = useState('');
@@ -295,8 +285,6 @@ const MypageEdit = () => {
     }
 
 
-
-
     // 검색한 주소
     const handleInput = (e) => {
         setUserAddr({
@@ -311,10 +299,10 @@ const MypageEdit = () => {
     
 
 
-    // 취소하기 버튼 누를 시 현재 페이지 새로고침
-    const handleButtonClick = () => {
-        window.location.reload();
-      };
+    // // 취소하기 버튼 누를 시 현재 페이지 새로고침
+    // const handleButtonClick = () => {
+    //     window.location.reload();
+    //   };
 
 
     // 변경하기 함수
