@@ -60,7 +60,9 @@ import ViewMsgList from './pages/message/msessageView';
     const convertPrice = (price) => {
       if (price === undefined || isNaN(price)) return '';
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      
     };
+    
     
     return (
         <UserStore>

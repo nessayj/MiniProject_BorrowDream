@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
+
 
 const Main = styled.div`
   .container {
@@ -129,9 +131,11 @@ const onClickPd = (pno) => {
     return e.pno === pno;
   });
   navigate(`/product/${pno}`, {state: data[0]});
+
 }
-
-
+const scrollToSection = () => {
+  scroll.scrollTo(160);
+}
 
 
 
@@ -140,7 +144,7 @@ const onClickPd = (pno) => {
       {sortedProducts?.map(product => (
         <div className="col" key={product.pno} onClick={()=>onClickPd(product.pno)}>
           <div className="card shadow-sm">
-            <img  className="cardImg" src={product.pimg} alt={product.pname} />
+            <img  className="cardImg" onClick={scrollToSection} src={product.pimg} alt={product.pname} />
             <div className="card-body">
               <h5 className="card-title">{product.pname}</h5>
              
