@@ -108,7 +108,7 @@ const ProductDetail = () => {
 
      
             <CalendarContainer>
-          <CalendarComponent />
+            <CalendarComponent productPrice={product.pprice} />
         </CalendarContainer>
 
 

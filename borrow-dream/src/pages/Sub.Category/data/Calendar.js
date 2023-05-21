@@ -20,13 +20,6 @@ const DateLabel = styled.div`
   margin-left: 200px;
 `;
 
-const productPrice = 10000; // 예시: 상품 가격 정보
-
-const priceByDate = (startDate, endDate) => {
-  const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-  return productPrice * days;
-};
-
 class CalendarComponent extends Component {
   constructor(props) {
     super(props);
@@ -35,15 +28,15 @@ class CalendarComponent extends Component {
       endDate: new Date(),
       key: 'selection',
       totalDays: 1,
-      totalPrice: productPrice,
+      totalPrice: 0, // 초기값은 0으로 설정
     };
   }
 
   onRangeChange = async (ranges) => {
     const startDate = ranges['selection'].startDate;
     const endDate = ranges['selection'].endDate;
-    const totalDays = parseInt(Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)));
-    const totalPrice = priceByDate(startDate, endDate);
+    const totalDays = parseInt(Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24))+1);
+    const totalPrice = this.calculatePriceByDate(startDate, endDate);
 
     this.setState({
       startDate,
@@ -68,6 +61,12 @@ class CalendarComponent extends Component {
     }
   };
 
+  calculatePriceByDate = (startDate, endDate) => {
+    const { productPrice } = this.props; // props로 전달된 productPrice 값 가져오기
+    const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+    return productPrice * days;
+  };
+
   render() {
     return (
       <CalendarContainer>
@@ -87,4 +86,4 @@ class CalendarComponent extends Component {
   }
 }
 
-export default CalendarComponent;
+export default CalendarComponent; 
