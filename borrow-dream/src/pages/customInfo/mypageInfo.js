@@ -148,10 +148,6 @@ const MypageInfo = () => {
     // 내정보를 조회하기위한 변수설정
     const [myInfo, setMyInfo] = useState("");
 
-    // const context = useContext(UserContext);
-    // const {Id} = context;
-
-
     // userEffect를 통해 회원정보만 가져옴
     useEffect(() => {
         const MyInfoLoading = async () => {

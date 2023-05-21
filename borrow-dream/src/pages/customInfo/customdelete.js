@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../context/userInfo";
+import { useState } from "react";
 import AxiosApi from "../../api/axiosapi";
-import { useNavigate } from "react-router-dom";
-import { id } from "date-fns/locale";
+import { Link, useNavigate } from "react-router-dom";
+import Edit from '../../images/로그인이미지/setting.png';
 
 
 const MainContainer = styled.div`
@@ -14,24 +13,38 @@ const MainContainer = styled.div`
         align-items: center;
         position: relative;
 
+    p {
+        margin-bottom: 2em;
+    }
+    
+
     .coverpage {
         background-color: #f6f6f6;
         position: center;
         justify-content: center;
-        width: 700px;
-        height: 300px;
+        width: 50em;
+        height: 16em;
+        /* height: 20em */
         /* padding: 50px 40px; */
         border-radius: 50px;
+
+        .labelField {
+            padding-left: 6em;
+            margin-top: 4em;
+        }
     }
 
-    .mainbutton-container {
+    .delbutton-container {
         margin-top: 20px;
         height: 55px;
         text-align: right;
+        display: flex;
+        justify-content: center;
+
         .btn {
             margin-left: 10px;
             cursor: pointer;
-            font-weight: 600;
+            font-family: 'bitbit';
             float: right;
             font-size: 16px;
             font-weight: lighter;
@@ -41,10 +54,12 @@ const MainContainer = styled.div`
             color: white;
             border: none;
             transition: all .1s ease-in;
+
             &:hover {background-color:  #a1f7d9; color: #135CD2;}
         }
     }
 `;
+
 
 
 const Input = styled.input`
@@ -65,9 +80,33 @@ const Titlebox = styled.div`
     background: linear-gradient( to bottom, #f2dfe4, #e3daf5);
     margin-bottom: 50px;
     width: 100%;
-    height: 250px;
+    height: 200px;
     display: flex;
     flex-direction: column;
+
+    .setting {
+        width: 85px;
+        height: 29px;
+        background-color: #135CD2;
+        color: white;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin-right: 10px;
+        padding-left: 1.5em;
+        text-align : center;
+        border-radius: 5px;
+        text-decoration: none;
+        box-shadow: 0 6px 20px 0 rgba(150, 150, 160, 0.45);
+        border: 1px solid #dbdbdb;
+    }
+    .linkarea {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'bitbit';
+        margin-top: 3em;
+    }
 `;
 
 const DeleteTitle = styled.div`
@@ -76,17 +115,6 @@ const DeleteTitle = styled.div`
     font-size: 40px;
     text-align: center;
     font-family: 'bitbit';
-`;
-
-const Button = styled.button`
-    border: none;
-    margin-top: 30px;
-    margin-bottom: 50px;
-    width: 200px;
-    height: 50px;
-    border-radius: 5px;
-    font-size: 20px;
-    
 `;
 
 
@@ -106,16 +134,6 @@ const CustomDelete = () => {
 
     const [delmyInfo, setdelMyInfo] = useState("");
     const [inputPwd, setInputPwd] = useState("");
-
-    // // 회원탈퇴 수정 모달
-    // const [modalOpen, setModalOpen] = useState(false);
-    // const [modalOption, setModalOption] = useState("");
-    // const [comment, setComment] = useState(""); // 모달창 안내 문구
-   
-
-    // const closeModal = () => { // 아니오 눌렀을 때
-    //     setModalOpen(false);
-    // };
 
     const CustomDelLoading = async () => {
         if (inputPwd === userPwd) {
@@ -138,27 +156,11 @@ const CustomDelete = () => {
         setInputPwd(e.target.value);
     }
 
-
-    // 탈퇴버튼 누를 시 
-    const onClickToDelete = () => { 
-        
-        if(userPwd === inputPwd){
-            CustomDelLoading();
-            alert("탈퇴되었습니다.");
-        } else {
-            alert('패스워드가 일치하지 않습니다.'); // 패스워드가 일치하지 않을 때 알림 창 표시
-          }
-        };
-    
-    
-
-
-
     // 취소하기 버튼 누를 시 현재 페이지 새로고침
     const cancleBtnClick = () => {
         window.location.reload();
 
-    if(isLogin !== "TRUE") navigate("/MainBody");
+    if(isLogin !== "TRUE") navigate("/");
 
     };
 
@@ -168,6 +170,10 @@ const CustomDelete = () => {
         <MainContainer>
             <Titlebox>
                 <DeleteTitle>회원탈퇴</DeleteTitle>
+                <div className="linkarea">
+                    <Link to="/MypageEdit" className="setting">이전단계</Link>
+                    <Link to="/" className="setting">메인홈</Link>
+                        </div>
                 <br /><br />
             </Titlebox>
             <p>고객님의 소중한 정보 보호를 위해, 바로드림 계정의 현재 비밀번호를 입력해주세요</p>
@@ -180,9 +186,9 @@ const CustomDelete = () => {
                 value={inputPwd}
                 onChange={onChangeUserPw}
                 />
-            <div className="mainbutton-container">
+            <div className="delbutton-container">
                 <button className="btn" onClick={CustomDelLoading}>회원 탈퇴</button>
-                <Button  onClick={cancleBtnClick}>취소하기</Button>
+                <button className="btn" onClick={cancleBtnClick}>취소하기</button>
             </div>
         </div>
         </MainContainer>
@@ -190,4 +196,3 @@ const CustomDelete = () => {
     );
 }
 export default CustomDelete;
-

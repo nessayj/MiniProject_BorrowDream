@@ -12,7 +12,7 @@ import Modal from "../../utill/Modal";
 
 const Wrapper = styled.div`
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: nowrap; */
 `;
 
 const MainContainer = styled.div`
@@ -54,24 +54,15 @@ const Titlebox = styled.div`
     min-height: 250px;
     position: relative;
     
-    .mypagetitle {
-        padding-top: 20px;
-        margin-left: 3px;
-        font-size: 40px;
-        text-align: center;
-        font-family: 'bitbit';
-    }
     .topinfo {
         font-size: 25px;
-        font-weight: 600;
         padding: 30px 0;
         text-align: center;
-        /* font-family: 'TAEBAEKmilkyway'; */
         padding-left: 5px;
-        /* background-color: wheat; */
     }
-    .topinfo > span {
+    .topinfo > h2 {
         color: violet;
+        font-family: 'bitbit';
     }
     .profile {
         position: relative;
@@ -89,7 +80,8 @@ const Titlebox = styled.div`
         display: flex;
         align-items: center;
         font-size: 15px;
-        margin-right: 10px; 
+        margin-right: 10px;
+        padding : .5em;
         text-align : center;
         border-radius: 5px;
         text-decoration: none;
@@ -101,54 +93,9 @@ const Titlebox = styled.div`
         justify-content: center;
         align-items: center;
         margin-right: 10px;
-    
+        font-family: 'bitbit';
     }
    
-`;
-    const ShippingStatusContainer = styled.div`
-        padding: 40px 180px;
-        background-color: white;
-        margin-bottom: 10px;
-        position: center;
-        
-    .title{
-        font-size: 16px;
-        font-weight: bold;
-        margin-bottom: 15px;
-    }
-    /* 장바구니 결제완료 배송중 구매확정 [로우] */
-    .status{
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 25px;
-    }
-    /* 장바구니 결제완료 배송중 구매확정 [아이템]  */
-    .item{
-        display: flex;
-    }
-    .number{
-        font-size: 31px;
-        font-weight: 500;
-        text-align: center;
-        
-    }
-    a {
-        text-decoration: none;
-    }
-    .text{
-        font-size: 12px;
-        font-weight: normal;
-        color: #c2c2c2;
-        text-align: center;
-    }
-    .icon{
-        display: flex;
-        align-items: center;
-        padding: 20px;
-        width: 16px;
-        height: 16px;
-    }
-    
 `;
     const Mymenu = styled.div`
         text-align: left;
@@ -186,7 +133,7 @@ const Title = styled.dt`
     `;
 
 const MypageItem = styled.dd`
-    display: block;
+    display: flex;
     padding: 13px 0px 10px 3px;
     position: relative;
     outline: none;
@@ -242,59 +189,26 @@ const onClickLogout = () =>{
             <Titlebox>
                 <MypageTitle><h1>마이페이지</h1></MypageTitle>
                     <div className="topinfo">
-                    <span>{id}님 환영합니다</span>
-                    <br /><br />
-                    <div className="linkarea">
-                    <Link to="/MypageInfo" className="setting">정보조회<EditImg src={Edit} /></Link>
+                        <h2>{id}님 환영합니다</h2>
+                        <br /><br />
+
+                        <div className="linkarea">
+                        <Link to="/MypageInfo" className="setting">정보조회<EditImg src={Edit} /></Link>
                         <button className="setting" onClick={onClickLogout}>로그아웃<EditImg src={Edit} /></button>
+                        </div>
                     </div>
-                </div>
             </Titlebox>   
-            <ShippingStatusContainer>
-                    <div className="title">주문 및 배송조회</div>
-                    <div className="status">
-                        <div className="item">
-                    <div>
-                        <div className="number"><a href="!#">0</a></div>
-                        <div className="text">장바구니</div>
-                    </div>
-                        <div className="icon"> &gt; </div>
-                    </div>
-                        <div className="item">
-                    <div>
-                        <div className="number"><a href="!#">0</a></div>
-                        <div className="text">결제완료</div>
-                    </div>
-                        <div className="icon"> &gt; </div>
-                    </div>
-                        <div className="item">
-                    <div>
-                        <div className="number"><a href="!#">0</a></div>
-                        <div className="text">배송중</div>
-                    </div>
-                        <div className="icon"> &gt; </div>
-                    </div>
-                        <div className="item">
-                    <div>
-                        <div className="number"><a href="!#">0</a></div>
-                        <div className="text">거래완료</div>
-                    </div>  
-                </div>
-                    </div>
-            </ShippingStatusContainer>
                 <Mymenu>
                 <Container>
                     <div class="item">
                         <Title><RiTruckLine size="17" /> 주문관리</Title>
-                        <MypageItem><a href="!#">주문조회</a></MypageItem>
-                        <MypageItem><a href="!#">배송조회</a></MypageItem>
+                        <MypageItem><a href="!#">장바구니</a></MypageItem>
                         <MypageItem><a href="!#">빌린내역</a></MypageItem>
                     </div>
                 </Container> 
                 <Container>
                     <div class="item">
                         <Title><RiUserSettingsLine size="17" /> 정보관리</Title>
-                        <Link to = "/MypageInfo"><MypageItem>회원정보조회</MypageItem></Link>
                         <Link to = "/MypageEdit"><MypageItem>회원정보수정</MypageItem></Link>
                         <Link to = "/CustomDelete"><MypageItem>회원탈퇴</MypageItem></Link>
                     </div>
@@ -303,14 +217,13 @@ const onClickLogout = () =>{
                     <div class="item">
                         <Title><RiGift2Line size="17" /> 내빌드</Title>
                         <MypageItem><a href="!#">빌려준내역</a></MypageItem>
-                        <MypageItem><a href="!#">반납상태</a></MypageItem>
+                        <MypageItem><a href="!#">반납 상태</a></MypageItem>
                     </div>
                 </Container> 
                 <Container>
                     <div class="item">
                         <Title><RiMagicLine size="17" /> 활동관리</Title>
-                        <MypageItem><a href="!#">상품문의</a></MypageItem>
-                        <MypageItem><a href="!#">1:1문의</a></MypageItem>
+                        <MypageItem><a href="!#">1:1    문의</a></MypageItem>
                         <MypageItem><a href="!#">후기내역</a></MypageItem>
                         </div>
                 </Container> 
@@ -321,6 +234,3 @@ const onClickLogout = () =>{
     );
 }
 export default Mypage;
-
-
-
