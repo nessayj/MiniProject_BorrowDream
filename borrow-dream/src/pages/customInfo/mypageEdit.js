@@ -27,7 +27,7 @@ const MainContainer = styled.div`
         position: center;
         justify-content: center;
         width: 800px;
-        height: 900px;
+        height: 940px;
         /* padding: 50px 40px; */
         border-radius: 50px;
     }
@@ -50,16 +50,39 @@ const Titlebox = styled.div`
     width: 100%;
     height: 250px;
     position: relative;
+
+    .linkarea {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'bitbit';
+        margin-top: 3em;
+    }
+    .setting {
+        width: 87px;
+        height: 29px;
+        background-color: #135CD2;
+        color: white;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin-right: 10px;
+        padding-left: 1.2em;
+        text-align : center;
+        border-radius: 5px;
+        text-decoration: none;
+        box-shadow: 0 6px 20px 0 rgba(150, 150, 160, 0.45);
+        border: 1px solid #dbdbdb;
+    }
 `;
 
 
 const MypageEdTitle = styled.div`
     padding-top: 20px;
     margin-left: 3px;
-    font-size: 20px;
+    font-size: 38px;
     text-align: center;
-    font-weight: 400px;
-    font-family: 'TAEBAEKmilkyway';
+    font-family: 'bitbit';
 `;
 
 const CustomInfo = styled.div`
@@ -78,70 +101,66 @@ const CustomInfo = styled.div`
         width: 350px; /* 각 영역의 고정 너비 지정 */ 
         margin-top : 25px;
         flex-direction: column;
-    }
-    .chBtn {
-        display: flex;
+
+        label {
+            font-family: 'bitbit';
+        }
         
     }
-    .addrBtn {
-        margin-left: 480px;
-        margin-top: -40px;
-    }
-    .enable-btn {
-        /* font-family: 'Noto Sans KR', sans-serif; */
-        font-size: 15px;
-        font-weight: bold;
+  
+    .chbtn {
+        font-family: 'bitbit';
+        font-size: 1.2em;
         width: 120px; /* 원하는 너비 설정 */
         height: 36px;
+        background-color: #135CD2;
         color: white;
-        background-color: #5ba8ea; // 버튼 색깔 체크
-        border-radius: 10px;
         border: #5ba8ea; // 버튼 색깔 체크
+        border-radius: 0.8em;
         margin-left: 480px;
         margin-top: -42px;
+
+        &:hover {background-color:  #a1f7d9; color: #135CD2;}
+        
     }
-    .addrUpdate {
-        /* font-family: 'Noto Sans KR', sans-serif; */
-        font-size: 15px;
-        font-weight: bold;
+    
+    .addrBtn { // 주소찾기 버튼
+        margin-left: 480px;
+        margin-top: -42px;
+
+        &:hover {background-color:  #a1f7d9; color: #135CD2;}
+    }
+
+    .addrUpdate { // 주소변경하기 버튼
+
+        font-family: 'bitbit';
+        font-size: 1.2em;
         width: 120px; /* 원하는 너비 설정 */
         height: 36px;
+        background-color: #135CD2;
         color: white;
-        background-color: #5ba8ea; // 버튼 색깔 체크
-        border-radius: 10px;
         border: #5ba8ea; // 버튼 색깔 체크
+        border-radius: 0.8em;
         margin-left: 580px;
-        margin-top: -42px;
+        margin-top: -36px;
+
+        &:hover {background-color:  #a1f7d9; color: #135CD2;}
     } 
 `;
 
 
 const StyledButton = styled.button`
-     /* margin-top: 1px; */
-     width: 90px;
-     height: 38px;
-     background-color: rgba(108, 169, 245);
-     border-radius: 5px;
-     font-weight: bold;
-     color: white;
-     font-size: 14px;
-     border: none;
-     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-`;
-
-const Button1 = styled.button`
-    border: none;
-    width: 200px;
-    height: 50px;
+    width: 75px;
+    height: 35px;
+    margin-left: 2px;
+    margin-top: 8px;
+    background-color: #135CD2;
     border-radius: 5px;
-    background-color: rgba(108, 169, 245);
-    font-size: 20px;
-    align-items: center;
-    
-    &:hover{
-    background-color: rgba(108, 169, 245);
+    font-family: 'bitbit';
     color: white;
-    }
+    font-size: 1em;
+    border: none;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     
 `;
 
@@ -210,7 +229,7 @@ const MypageEdit = () => {
       const isLogin = window.localStorage.getItem("isLogin"); // 로그인 들어오면 마이페이지 후 수정화면 접속
       console.log(isLogin);
   
-      if(isLogin !== "TRUE") navigate("/MainBody");
+      if(isLogin !== "TRUE") navigate("/");
       console.log(isLogin);
   
   
@@ -330,14 +349,19 @@ const MypageEdit = () => {
             <MainContainer> 
                 <Titlebox>
                 <MypageEdTitle><h1>회원정보수정</h1></MypageEdTitle>
+                <div className="linkarea">
+                    <Link to="/MypageInfo" className="setting">이전단계</Link>
+                    <Link to="/CustomDelete" className="setting">회원탈퇴</Link>
+                        </div>
                 <br /><br />
                 </Titlebox>
             <div className="coverpage">
                 <CustomInfo>
+                
                 <div className="area">
                 <label htmlFor="name">이름</label>
                 <TextField 
-                    style={{ width: '350px' }}
+                    style={{ width: '350px', fontFamily: 'bitbit' }}
                     label="이름"  
                     variant="filled"
                     value={myInfo.name}
@@ -377,7 +401,7 @@ const MypageEdit = () => {
                     helperText={userPwd.length > 0 && !isPwd ? pwdError : "" }
                     size= "small"
                      />       
-                    <button className="enable-btn" onClick={customUpdate} >변경하기</button>
+                    <button className="chbtn" onClick={customUpdate} >변경하기</button>
                 </div>
 
                 <div className="area">
@@ -415,7 +439,7 @@ const MypageEdit = () => {
                     onChange={onChangeUserTel}
                     disabled={false}
                     />
-                    <button className="enable-btn" onClick={customUpdate} disabled={false}>변경하기</button>
+                    <button className="chbtn" onClick={customUpdate} disabled={false}>변경하기</button>
                 </div> 
                 
 
@@ -433,7 +457,7 @@ const MypageEdit = () => {
                     disabled={true}
                     />
 
-                    <button className="enable-btn" onClick={customUpdate}>변경하기</button>
+                    <button className="chbtn" onClick={customUpdate}>변경하기</button>
                     </div>
 
                 <div className="area">
@@ -458,9 +482,6 @@ const MypageEdit = () => {
                 
                <Modal open={modalOpen} close={closeModal} header="고객정보수정">수정이 완료되었습니다</Modal>
              </CustomInfo>
-             <div className="btnarea">
-                <Link to = "/CustomDelete"><Button1 className="deletebtn">탈퇴하기</Button1></Link> 
-            </div>
             </div>
             </MainContainer>
         </>
