@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
-import KakaoBtn from "../../images/로그인이미지/kakaotalkIcon.png";
-import GoogleBtn from "../../images/로그인이미지/googleIcon.png";
 import AxiosApi from "../../api/axiosapi";
 import { UserContext } from "../../context/userInfo";
 import Modal from "../../utils/Modal";
+import {SiStarship} from "react-icons/si"
 
 
 
@@ -19,43 +18,36 @@ const LoginContatiner = styled.div`
     position: relative;
   
     .coverpaper {
-    display: flex;
-    position: relative;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 60px;
-    /*margin-left: 40px;*/
-    position: relative;
-    height: 80vh;
-    width: 480px;
-    /*background: rgba(255, 255, 255, 0.15);*/
-    background-color: #c4dbf9;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(8.5px);
-    -webkit-backdrop-filter: blur(8.5px);
+        display: flex;
+        position: relative;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 60px;
+        margin-left: 18px;
+        position: relative;
+        height: 65vh;
+        width: 480px;
+        /*background: rgba(255, 255, 255, 0.15);*/
+        background-color: #c4dbf9;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(8.5px);
+        -webkit-backdrop-filter: blur(8.5px);
     }
 
     .logintitle {
-        font-size: 20px;
-        margin-top: 20px;
+        font-size: 2.5em;
+        margin-top: 65px;
+        margin-right: .3em;
         position: relative;
-        font-weight: bold;
         text-align: center;
-        font-family: 'TAEBAEKmilkyway'
-    }
- 
-    .comment { // 입력 시 코멘트
+        font-family: 'bitbit';
+        color: #135CD2;
         display: flex;
-        margin-top: 2px;
-        margin-bottom: 10px;
-        justify-content: center;
-        align-items:center;
-        font-size: 11px;
-        color: #999;
+        h2 {margin-left: 18px; font-size: 35px; margin-top: 8px; font-weight: 500; color: #135CD2; }
     }
 
     .idpwdarea {
-        margin: 5px;
+        margin: 1em;
         display: flex;
         align-items: center;
         flex-direction: column; 
@@ -70,47 +62,43 @@ const LoginContatiner = styled.div`
     }
     
     .enable-btn{
-        margin-top: 10px; 
-        margin-left: 30px;
-        margin-right: 30px;
-        /* font-family: 'Noto Sans KR', sans-serif; */
-        font-size: 15px;
-        font-weight: bold;
         width: 120px; /* 원하는 너비 설정 */
         height: 36px;
+        margin-left: 30px;
+        margin-right: 30px;
+        font-family: 'bitbit';
         color: white;
-        background-color: #5ba8ea; // 버튼 색깔 체크
+        font-size: 1.1em;
+        /* font-weight: bold; */
+        background-color: #135CD2; // 로그인 버튼 색상
         border-radius: 13px;
         border: #5ba8ea; // 버튼 색깔 체크
     }
 
     .enable-btn:active {
-        margin-top: 10px; 
+        width: 120x; 
+        height: 36px;
         margin-left: 30px;
         margin-right: 30px;
-        width: 120x; /* 원하는 너비 설정 */
-        height: 36px;
-        font-weight: bold;
-        font-size: 15px;
-        border-radius: 13px;
+        font-family: 'bitbit';
         color: white;
-        background-color: #999; // 버튼 색깔 체크
+        font-size: 1.1em;
+        background-color: #999; // 로그인 버튼 색상
+        border-radius: 13px;
         border: #5ba8ea; 
     }
 
     .disable-btn {
-        margin-top: 10px; 
+        width: 120px;
+        height: 36px;
         margin-left: 30px;
         margin-right: 30px;
-        /* font-family: 'Noto Sans KR', sans-serif; */
-        font-size: 15px;
-        font-weight: bold;
-        width: 120px; /* 원하는 너비 설정 */
-        height: 36px;
+        font-family: 'bitbit';
         color: white;
-        background-color: #999; // 버튼 색깔 체크
+        font-size: 1.1em;
+        background-color: #999; // disabled 상태의 버튼 색상
         border-radius: 13px;
-        border: #5ba8ea; // 버튼 색깔 체크
+        border: #5ba8ea;
     }
 
     .btnarea {
@@ -130,13 +118,16 @@ const LoginContatiner = styled.div`
         margin-top: 16px;
     }
     .logininfo {
+        margin-top: .5em;
         text-align: center;
-        font-size: 13px;
+        font-size: 1.2em;
+        font-family: 'bitbit';
    
     }
     .infoarea {
         display: inline-block;
         text-decoration: none;
+        margin-top: 0.5em;
     }
 
     .infoarea +.infoarea :before {
@@ -174,13 +165,13 @@ const LoginContatiner = styled.div`
 
 const LoginInput = styled.input`
     width: 280px;
-    height: 25px; 
+    height: 40px; 
     background-color: white;
     margin-top: 20px;
     margin-left: 30px;
     margin-right: 30px; 
     padding: .7em 2em;
-    border-radius: 20px;
+    border-radius: 1em;
     outline-style: none;
     border: none;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -200,47 +191,7 @@ const LoginInput = styled.input`
     font-size: 1rem;
   }
 `;
-
-
-
-    const Horizontal = styled.hr`
-        width: 70%;
-        height: 2px;
-        border: none;
-        background: #5ba8ea;
-        margin: 2px;
-        /*backdrop-filter: blur(25px);*/
-        position: relative;
-    `;
-
-    const IconsContainer = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    /*align-items: center;*/
-    width: 50px;
-    height: 50px;
-    box-sizing: border-box;
-    border-radius: 50%;
-    position: relative;
-`;
-
-
-const SnsImage = styled.img`
-    width: 65px;
-    height: 50px;
-    padding : 20px;
-
     
-    /*.firstimg {
-        width: 100px;
-        height: 100px;
-    }
-    .secondimg {
-        width: 50px;
-        height: 50px;
-    }*/
-`;
-
 
 const Login = () => {
     const navigate = useNavigate()
@@ -253,9 +204,6 @@ const Login = () => {
     // 키보드 입력 받기
     const [userId, setUserId] = useState(""); // 아이디
     const [userPwd, setUserPwd] = useState(""); // 비밀번호
-
-    // 오류 메시지
-    const [pwdError, setPwdError] = useState(""); // 비밀번호만 오류 메시지 생성
 
     // 유효성 검사
     const [isId, setIsId] = useState(false);
@@ -272,7 +220,7 @@ const Login = () => {
     }
     
     const onChangeUserId = (e) => {
-        const idRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,10}$/ // 아이디 정규표현식
+        const idRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,10}$/ // 아이디 정규표현식(8자리이상 10자리이내)
         const idNow = e.target.value; 
         setUserId(idNow);
 
@@ -284,15 +232,13 @@ const Login = () => {
     }
 
     const onChangeUserPw = (e) => {
-        const pwdRegex =  /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/; // 비밀번호 정규표현식
+        const pwdRegex =  /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/; // 비밀번호 정규표현식(숫자+영문자 및 특수문자 조합으로 8자리 이상)
         const pwdNow = e.target.value ;
         setUserPwd(pwdNow);
 
         if (!pwdRegex.test(pwdNow)) {
-            setPwdError('숫자+영문자 및 특수문자 조합으로 8자리 이상 입력해주세요!')
             setIsPwd(false)
         } else {
-            setPwdError('안전한 비밀번호에요 : )')
             setIsPwd(true);
         }        
     }
@@ -320,44 +266,32 @@ const Login = () => {
         <LoginContatiner>
             <div className="coverpaper">
                 <div className="logintitle">
-                    <h2>환영합니다 : D</h2>
+                <SiStarship size="50" color="7F8EEF" /><h2>환영합니다 : D</h2>
                 </div>
                 <div className="idpwdarea">
                     <LoginInput type="text" placeholder="아이디" value={userId} onChange={onChangeUserId}/>
                     <LoginInput type="password" placeholder="패스워드" value={userPwd} onChange={onChangeUserPw}/>
                 </div>
-                <div className="comment">
-                {userPwd.length > 0 && (
-                    <span className={`message ${isPwd ? 'success' : 'error'}`}>{pwdError}</span>)}      
-                </div>
                 <div className="idpwdarea">
                     {(isId && isPwd) ?
                     <button className="enable-btn" onClick={onClickLogin}>로그인</button>  :
                     <button className="disable-btn">로그인</button>} 
-                    {/*<StyledButton >로그인</StyledButton>*/}
                 </div>
                 <Modal open={modalOpen} type={true} confirm={confirmBtn} close={closeModal} header="오류">아이디 및 패스워드를 재확인 해주세요</Modal> 
+                
                 <div className="logininfo">
                     <div className="infoarea">
                         <Link to = "/Find" className="findIdPwd">아이디찾기</Link>
-                        {/* <a href="!#">아이디찾기</a> */}
+                   
                     </div>
                     <div className="infoarea">
                     <Link to = "/FindPwd" className="findIdPwd">비밀번호찾기</Link>
-                    {/* <a href="!#">비밀번호찾기</a> */}
+
                     </div>
                     <div className="infoarea">
                     <Link to = "/Join" className="linkstyle">회원가입</Link>
                     </div>
                 </div>
-                <div className="loginwith">
-                <h5>다른 방법으로 로그인</h5>
-                </div>
-                <Horizontal />
-                <IconsContainer>
-                <SnsImage src={KakaoBtn} />
-                <SnsImage src={GoogleBtn} />
-                </IconsContainer>  
             </div>
         </LoginContatiner>
         </div>
