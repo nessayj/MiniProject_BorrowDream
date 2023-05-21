@@ -1,6 +1,4 @@
 import  OrderInfo  from "./orderList";
-import Head from "../header";
-import Footer from "../footer";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../context/userInfo";
 import OrderApi from "../../api/orderApi";
@@ -22,9 +20,7 @@ export const Pay = ({ orderList, setOrderList, convertPrice }) => {
   }, [userId])
   return (
     <>
-      <Head />
       <OrderInfo orderList={orderList} convertPrice={convertPrice} />
-      <Footer />
     </>
   );
 };
