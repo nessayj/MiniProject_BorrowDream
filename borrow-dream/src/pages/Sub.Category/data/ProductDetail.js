@@ -7,7 +7,7 @@ import CalendarComponent from './Calendar';
 const Image2 = styled.img`
   width: 900px;
   margin: auto;
-  margin-top: 10px;
+  margin-top: 100px;
 `
 
 const Main = styled.div`
@@ -39,7 +39,6 @@ const ContentContainer = styled.div`
 
 const Title = styled.h1`
   font-size: 30px;
-  margin-bottom: 1rem;
   text-align: center;
 `;
 
@@ -49,6 +48,9 @@ const Price = styled.p`
   align-items: center;
    font-weight: 900;
    font-size: 20px;
+   position: relative;
+   bottom: 460px;
+   left: 80px;
 `;
 
 const PriceLabel = styled.span`
@@ -102,7 +104,7 @@ const ProductDetail = () => {
         <ProductContainer>
           <ImageContainer>
             <Image src={product.pimg} alt={product.pname} />
-          </ImageContainer>
+          </ImageContainer>   
           <ContentContainer>
             <Title>{product.pname}</Title>
 
