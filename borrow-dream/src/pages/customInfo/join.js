@@ -20,9 +20,9 @@ const Container = styled.div` // 전체 회원가입 컨테이너 스타일
     position: relative;
 
     
-    .joincoverpaper { // 배경화면 위 흰바탕
+    .joincoverpaper { 
         display: flex;
-        position: absolute;
+        position: relative;
         align-items: center;
         flex-direction: column;
         margin-bottom: 60px;
@@ -38,10 +38,13 @@ const Container = styled.div` // 전체 회원가입 컨테이너 스타일
     }
 
     .jointitle { // 제목 스타일
+        font-size: 2.3em;
         width: 500px;
         margin: 30px 0px 0px;
         text-align: center;
-        font-family: 'TAEBAEKmilkyway'
+        font-family: 'bitbit';
+        color: #135CD2; 
+        margin-top: 1em;
     }
 
     .comment { // 입력 시 코멘드
@@ -69,59 +72,43 @@ const Container = styled.div` // 전체 회원가입 컨테이너 스타일
     }
 
     .enable-btn{
+        width: 120px;
+        height: 36px;
         margin-top: 10px; 
         margin-left: 30px;
         margin-right: 30px;
-        /* font-family: 'Noto Sans KR', sans-serif; */
-        font-size: 15px;
-        font-weight: bold;
-        width: 120px; /* 원하는 너비 설정 */
-        height: 36px;
+        font-family: 'bitbit';
         color: white;
-        background-color: #5ba8ea; // 버튼 색깔 체크
+        font-size: 1em;
+        background-color: #135CD2;  // 가입완료 버튼 색상
         border-radius: 13px;
-        border: #5ba8ea; // 버튼 색깔 체크
+        border: #5ba8ea;
     }
     .enable-btn:active {
+        width: 120x; 
+        height: 36px;
         margin-top: 10px; 
         margin-left: 30px;
         margin-right: 30px;
-        width: 120x; /* 원하는 너비 설정 */
-        height: 36px;
-        font-weight: bold;
-        font-size: 15px;
-        border-radius: 13px;
+        font-family: 'bitbit';
         color: white;
-        background-color: #999; // 버튼 색깔 체크
+        font-size: 1.1em;
+        background-color: #999;
+        border-radius: 13px;
         border: #5ba8ea; 
-    }
-
-    .disable-btn {
-        margin-top: 10px; 
-        margin-left: 30px;
-        margin-right: 30px;
-        /* font-family: 'Noto Sans KR', sans-serif; */
-        font-size: 15px;
-        font-weight: bold;
-        width: 120px; /* 원하는 너비 설정 */
-        height: 36px;
-        color: white;
-        background-color: #999; // 버튼 색깔 체크
-        border-radius: 13px;
-        border: #5ba8ea; // 버튼 색깔 체크
     }
    
 `;
 
 const DataInput = styled.input`
-    display: flex;
+    width: 280px;
+    height: 40px;
+    background-color: white;
     margin-top: 10px;
     margin-left: 30px;
-    margin-right: 30px; 
-    width: 280px;
-    height: 25px; 
-    background-color: white;
+    margin-right: 30px;
     padding: .7em 2em;
+    display: flex;
     border-radius: 10px;
     outline-style: none;
     border: none;
@@ -144,14 +131,14 @@ const DataInput = styled.input`
 `;
 
 const PostInput = styled.input`
+    width: 280px;
+    height: 40px;
     display: flex;
-    position: inherit;
+    /* position: inherit; */
+    position: center;
     margin-top: 10px;
-    margin-left: 30px;
-    padding-right: 15px;
-    margin-right: 23px;
-    width: 210px;
-    height: 25px; 
+    margin-left: 85px;
+    margin-right: 14px;
     background-color: white;
     padding: .7em 2em;
     border-radius: 10px;
@@ -176,18 +163,17 @@ const PostInput = styled.input`
 `;
 
 const StyledButton = styled.button`
-     margin-left: 2px;
-     margin-top: 5px;
-     width: 75px;
-     height: 35px;
-     background-color: rgba(108, 169, 245);
-     border-radius: 5px;
-     color: white;
-     font-size: 12px;
-     border: none;
-     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-     /*backdrop-filter: blur(8.5px);
-     -webkit-backdrop-filter: blur(8.5px);*/
+    width: 75px;
+    height: 35px;
+    margin-left: 2px;
+    margin-top: 6px;
+    background-color: #135CD2;
+    border-radius: 5px;
+    font-family: 'bitbit';
+    color: white;
+    font-size: 1em;
+    border: none;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 `;
 
 
@@ -352,12 +338,14 @@ const Join = () => {
     // 검색한 주소
     const handleInput = (e) => {
         setUserAddr({
-            // ... => enroll_company에 다 담겠다는 의미
+            // ... => userAddr에 다 담겠다는 의미
             ...userAddr,
             [e.target.name]:e.target.value,
         })
         console.log(e.target.name);
     }
+
+
 
 
     return(
@@ -412,9 +400,7 @@ const Join = () => {
                     {/* </div> */}
                 </div>
                 <div className="area">
-                    {(isId && isPwd && isRePwd && isTel && isEmail) ? 
-                    <button className="enable-btn" onClick={onClickJoin}>가입완료</button> :
-                    <button className="disable-btn">가입완료</button>}
+                    <button className="enable-btn" onClick={onClickJoin}>가입완료</button> 
                     <Modal open={modalOpen} close={closeModal} header="오류">{modalText}</Modal>
             </div>
             </div>
