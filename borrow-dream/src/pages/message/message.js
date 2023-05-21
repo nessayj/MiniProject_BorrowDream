@@ -1,11 +1,74 @@
 import React, { useState } from "react";
 import BaroApi from "../../api/BaRoApi";
-import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import Modal from "../../utill/Modal";
+
+const MsgStyle = styled.div`
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .receiver-container {
+        font-size: 1.2rem;
+        width: 13rem;
+        color: #135CD2;
+    }
+
+    .title-container {
+        color: #7F8EEF;
+        padding: 0;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        font-size: 1.2rem;
+        width: 24rem;
+        > input {
+            width: 20rem;
+          border: 1px solid black ;
+          border-radius: .3rem;
+        }
+    }
+
+    .contents-container {
+        color: #7F8EEF;
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        > textarea {
+            width: 23rem;
+            height: 20rem;
+            border: 1px solid black;
+        }
+    }
+
+    .modalBtnDiv{
+        color: #135CD2;
+        cursor: pointer;
+        font-size: 1.5rem;
+        &:hover{background-color:  #a1f7d9; color: white;}
+    }
+
+
+
+`;
+
+
 
 const WriteMessage = ({writerId}) => {
+    const isLogin = window.localStorage.getItem("isLogin");
    const getId = window.localStorage.getItem("Id");
-    const navigate = useNavigate();
- 
+
+    // 모달
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalOption, setModalOption] = useState("");
+    const [comment, setComment] = useState("");
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
     const [inputs, setInputs] = useState ({
         title: "",
@@ -23,6 +86,7 @@ const WriteMessage = ({writerId}) => {
             [name]: value,
         });
     }
+
     
  
 
@@ -33,21 +97,25 @@ const WriteMessage = ({writerId}) => {
         console.log(success);
         if(success) {
             alert("쪽지가 성공적으로 보내졌습니다.");
+        } else {
+            setModalOpen(true);
+            setModalOption('쪽지로그인');
+            setComment("문의는 로그인 후 보내실 수 있습니다.")
         }
     }
 
 
     return(
-        <>
-         
+        <MsgStyle>
+        <Modal open={modalOpen} close={closeModal} option={modalOption}>{comment}</Modal>
         <form onSubmit={onClickToMessage}>
-        <div className="modalFormDiv">
-          <label htmlFor="displayName">보내는사람: {getId} </label>
+        {/* <div className="sender-container">
+          <div className="Sender">보내는사람: {getId} </div>
+        </div> */}
+        <div className="receiver-container">
+          <label htmlFor="receiver">TO. {writerId}</label>
         </div>
-        <div className="modalFormDiv">
-          <label htmlFor="email">받는사람: {writerId}</label>
-        </div>
-        <div className="modalFormDiv">
+        <div className="title-container">
           <label htmlFor="email">제목</label>
           <input
             type="text" 
@@ -58,9 +126,9 @@ const WriteMessage = ({writerId}) => {
             required
           />
         </div>
-        <div className="modalFormDiv">
-          <label htmlFor="password">내용</label>
-          <input
+        <div className="contents-container">
+          <div className="contents">내용</div>
+          <textarea
             type="contents"
             id="contents"
             name="contents"
@@ -79,7 +147,7 @@ const WriteMessage = ({writerId}) => {
 
         </div>
       </form>
-  </>
+  </MsgStyle>
     );
 }
 
