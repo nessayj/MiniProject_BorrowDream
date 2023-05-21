@@ -27,7 +27,7 @@ class CalendarComponent extends Component {
       startDate: new Date(),
       endDate: new Date(),
       key: 'selection',
-      totalDays: 1,
+      totalDays: 0,
       totalPrice: 0, // 초기값은 0으로 설정
     };
   }
@@ -63,9 +63,11 @@ class CalendarComponent extends Component {
 
   calculatePriceByDate = (startDate, endDate) => {
     const { productPrice } = this.props; // props로 전달된 productPrice 값 가져오기
-    const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-    return productPrice * days;
+    const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)); // 1을 더하지 않음
+    const totalPrice = productPrice * (days + 1); // 가격 계산에 1을 더해줌
+    return totalPrice;
   };
+  
 
   render() {
     return (
