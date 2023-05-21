@@ -32,15 +32,20 @@ const MsgStyle = styled.div`
     }
 
     .contents-container {
+        height: 20rem;
         color: #7F8EEF;
         font-size: 1.2rem;
         margin-top: 1rem;
         display: flex;
         align-items: center;
         flex-direction: column;
+        .contents {
+          color: #7F8EEF;
+          height: 2rem;
+        }
         > textarea {
             width: 23rem;
-            height: 20rem;
+            height: 18rem;
             border: 1px solid black;
         }
     }
@@ -108,9 +113,6 @@ const WriteMessage = ({writerId}) => {
         <MsgStyle>
         <Modal open={modalOpen} close={closeModal} option={modalOption}>{comment}</Modal>
         <form onSubmit={onClickToMessage}>
-        {/* <div className="sender-container">
-          <div className="Sender">보내는사람: {getId} </div>
-        </div> */}
         <div className="receiver-container">
           <label htmlFor="receiver">TO. {writerId}</label>
         </div>

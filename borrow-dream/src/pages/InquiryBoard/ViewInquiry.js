@@ -119,11 +119,6 @@ const InquiryView = ()=> {
     // url에서 boardNo를 가져오기위해 params사용
     let params = useParams();
     let getNum = params.no;
-
-    // 수정, 삭제는 본인만가능
-    const isLogin = window.localStorage.getItem("isLogin");
-    const getId = window.localStorage.getItem("Id");
-   
  
     //해당 게시물 번호의 내용을로드하기위해 변수설정
     const [postViewData, setPostViewData] = useState("");

@@ -174,6 +174,22 @@ const BaroApi = {
     // 받은사람 기준으로 쪽지리스트
     receiverList: async(receiver) => {
         return await axios.get(Baro_DOMAIN + `/receiverList?receiver=${receiver}`);
+    },
+
+    // 받은메세지상세보기
+    viewReceiveMsg: async(getNum) => {
+        console.log(getNum);
+        return await axios.get(Baro_DOMAIN + `/receiver?msgNo=${getNum}`);
+    },
+
+    // 보낸메세지 리스트
+    senderMsgList: async(sender) => {
+        return await axios.get(Baro_DOMAIN + `/senderList?sender=${sender}`);
+    },
+
+    // 보낸메세지 상세보기
+    viewSendMsg: async(getNum) => {
+        return await axios.get(Baro_DOMAIN + `/sender?msgNo=${getNum}`);
     }
 
     

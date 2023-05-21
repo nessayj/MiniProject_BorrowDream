@@ -48,7 +48,8 @@
   import Camping_other from './pages/Sub.Category/Camping_other';
   import Ct_pages from './pages/Sub.Category/data/Ct_pages';
   import MainBody from './pages/main_body';
-import ViewMsgList from './pages/message/msessageView';
+  import ViewMsgList from './pages/message/ReceiveMsgView';
+import SendMsgList from './pages/message/SendmsgView';
 // 주소추가
 
 
@@ -104,7 +105,7 @@ import ViewMsgList from './pages/message/msessageView';
             <Route path="/myLentItem/:no" element={<ViewLentItem/>}/>
 
             {/* 쪽지 */}
-
+            <Route path="/sendList/:no" element={<SendMsgList/>}/>           
             <Route path="/receiverList/:no" element={<ViewMsgList/>}/>
 
 
