@@ -4,11 +4,18 @@ import styled from 'styled-components';
 import CalendarComponent from './Calendar';
 
 
+const Image2 = styled.img`
+  width: 900px;
+  margin: auto;
+  margin-top: 10px;
+`
+
 const Main = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  font-family:'bitbit';
 `;
 
 const ProductContainer = styled.div`
@@ -36,13 +43,6 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-const Description = styled.p`
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: #555;
-  text-align: justify;
-  text-align: left;
-`;
 
 const Price = styled.p`
   display: flex;
@@ -61,20 +61,24 @@ const ButtonContainer = styled.div`
 `;
 
 const Button = styled.button`
+
   margin-top: 2em;
   padding: 0.5rem 1rem;
+  border-radius: 0.7rem;
+  height: 3rem;
   border: none;
-  color: #fff;
-  width: 230px;
+  color: white;
+  background-color: #135CD2;
+  width: 15rem;
+  margin-right: 12px;
+  transition: all .1s ease-in;
+  &:hover{background-color:  #a1f7d9; color: #135CD2;}
+        font-size: 1.2rem;
   cursor: pointer;
-  &.buy {
-    background-color: #fca311;
-    margin-right: 1rem;
-  }
-  &.cart {
-    background-color: #14213d;
-  }
+ 
+
 `;
+
 
 const CalendarContainer = styled.div`
   margin-left: 2rem;
@@ -101,9 +105,7 @@ const ProductDetail = () => {
           </ImageContainer>
           <ContentContainer>
             <Title>{product.pname}</Title>
-            <fieldset>
-              <Description>{product.pdescription}</Description>
-            </fieldset>
+
      
             <CalendarContainer>
           <CalendarComponent />
@@ -124,6 +126,8 @@ const ProductDetail = () => {
         </ProductContainer>
 
       </Main>
+          <Image2 src={product.pdescription} />
+
     </>
   );
 };

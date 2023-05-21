@@ -6,26 +6,28 @@ import { useNavigate } from "react-router-dom";
 const Main = styled.div`
   .container {
     max-width: 1200px;
-    
+    font-family:'bitbit';
     margin: 0 auto;
   }
   
   button{
-  background-color: #fca311;
-  color: #fff;
+    width: 6rem;
+  background-color: #135CD2;
+  color: white;
   font-size: 1rem;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
-  transition: all 0.1s ease-in-out;
+  transition: all .1s ease-in;
   position: relative;
   left: 170px;
   margin: 5px;
+  font-family:'bitbit';
 
-  &:hover {
-    background-color: #f8a84b;
-  }
+  &:hover{background-color:  #a1f7d9; color: #135CD2;}
+        font-size: 1.2rem;
+  
   }
 
   .card {
