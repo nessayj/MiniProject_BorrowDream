@@ -259,6 +259,20 @@ const ViewLentItem = (props) =>{
         return isLogin === "TRUE" && lentItem.borrowId === getId;
     }
 
+    // 로그인이 안되어있을 시 쪽지 못보냄
+        const isLoginCheck = () => {
+          return isLogin === "TRUE"; 
+      }
+    
+    // 로그인 안되어있을 시 모달창 띄워지고 로그인창으로 이동
+    const moveToLogin = () => {
+      setModalOpen(true);
+      setModalOption("쪽지로그인");
+      setComment("내빌드 문의는 로그인 후 이용가능합니다");
+    }
+  
+  
+
     return(
         <Wrap>
         <Modal open={modalOpen} close={closeModal} reviewNo={getNum} option={modalOption}>{comment}</Modal>
@@ -287,7 +301,12 @@ const ViewLentItem = (props) =>{
                 <div className="borrowedStatus">
                     <div className="status">
                         {lentItem.isBorrowed === 0 ? "빌릴 수 있어요😘" : "빌려갔어요😥"}</div>
-                    <button className="borrowBtn" onClick={() => setSendMsg(!sendMsg)}>연락해보기</button>
+                    <button className="borrowBtn" onClick={() => {
+                      if(isLoginCheck()) {
+                        setSendMsg(!sendMsg);
+                      } else {
+                        moveToLogin();
+                      }}}>연락해보기</button>
                     {sendMsg && (
                       <MessageModal closeModal={() => setSendMsg(!sendMsg)}>
 

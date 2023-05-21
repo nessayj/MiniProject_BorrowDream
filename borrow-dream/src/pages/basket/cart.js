@@ -1,5 +1,3 @@
-import Head from "../header";
-import Footer from "../footer";
 import CartInfo from "./cartList";
 import { useState, useEffect, useContext } from "react";
 import CartApi from "../../api/cartApi";
@@ -52,7 +50,6 @@ export const Cart = ({ cart, setCart, convertPrice, checkedAll, setCheckedAll, c
   }, [])
   return (
     <>
-      <Head />
       <CartInfo 
       cart={cart}
       setCart={setCart}
@@ -66,7 +63,6 @@ export const Cart = ({ cart, setCart, convertPrice, checkedAll, setCheckedAll, c
       checkedItems={checkedItems} 
       setCheckedItems={setCheckedItems}
       />
-      <Footer />
       </>
   );
 };
