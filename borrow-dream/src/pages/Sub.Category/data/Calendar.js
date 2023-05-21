@@ -11,21 +11,26 @@ const CalendarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  top: 37px;
+  top: 97px;
+  
+  .day{
+    position: relative;
+    right: 200px;
+    top: 25px;
+    
+  }
+  .total{
+    position: relative;
+    bottom: 49px;
+    color: orangered;
+  }
 `;
 
 const DateLabel = styled.div`
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
-  margin-left: 200px;
+  margin-left: 200px; 
 `;
-
-const productPrice = 10000; // 예시: 상품 가격 정보
-
-const priceByDate = (startDate, endDate) => {
-  const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-  return productPrice * days;
-};
 
 class CalendarComponent extends Component {
   constructor(props) {
@@ -34,16 +39,16 @@ class CalendarComponent extends Component {
       startDate: new Date(),
       endDate: new Date(),
       key: 'selection',
-      totalDays: 1,
-      totalPrice: productPrice,
+      totalDays: 0,
+      totalPrice: 0, // 초기값은 0으로 설정
     };
   }
 
   onRangeChange = async (ranges) => {
     const startDate = ranges['selection'].startDate;
     const endDate = ranges['selection'].endDate;
-    const totalDays = parseInt(Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)));
-    const totalPrice = priceByDate(startDate, endDate);
+    const totalDays = parseInt(Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24))+1);
+    const totalPrice = this.calculatePriceByDate(startDate, endDate);
 
     this.setState({
       startDate,
@@ -68,6 +73,14 @@ class CalendarComponent extends Component {
     }
   };
 
+  calculatePriceByDate = (startDate, endDate) => {
+    const { productPrice } = this.props; // props로 전달된 productPrice 값 가져오기
+    const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)); // 1을 더하지 않음
+    const totalPrice = productPrice * (days + 1); // 가격 계산에 1을 더해줌
+    return totalPrice;
+  };
+  
+
   render() {
     return (
       <CalendarContainer>
@@ -78,13 +91,17 @@ class CalendarComponent extends Component {
           ranges={[this.state]}
           locale={ko}
         />
+        <div className=' day'>
         <DateLabel>물건 대여: {this.state.startDate.toLocaleDateString()}</DateLabel>
         <DateLabel>물건 반납: {this.state.endDate.toLocaleDateString()}</DateLabel>
+        </div>
+        <div className='total'>
         <DateLabel>총 일 수: {this.state.totalDays}일</DateLabel>
         <DateLabel>총 가격: {this.state.totalPrice}원</DateLabel>
+        </div>
       </CalendarContainer>
     );
   }
 }
 
-export default CalendarComponent;
+export default CalendarComponent; 

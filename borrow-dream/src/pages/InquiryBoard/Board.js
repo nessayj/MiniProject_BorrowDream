@@ -208,7 +208,6 @@ const Board = () => {
     // 비밀번호체크 모달
     const [modalOpen, setModalOpen] = useState(false);
     const [modalOption, setModalOption] = useState("");
-    const [comment, setComment]= useState("");
     const closeModal = () => {
         setModalOpen(false);
     };

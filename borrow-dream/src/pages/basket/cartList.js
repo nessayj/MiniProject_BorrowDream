@@ -15,10 +15,9 @@ const Table = styled.table`
 
 
 const CartInfo = ({ cart, setCart, handleQuantity, handleRemove, convertPrice, checkedAll, setCheckedAll, checkedItems, setCheckedItems}) => {
-  const context = useContext(UserContext);
-  const { userId } = context;
-  
-  
+  // const context = useContext(UserContext);
+  // const { Id } = context;
+  const getId = window.localStorage.getItem("Id");
   
   const handleCheckAll = (e) => {
     const { checked } = e.target;
@@ -50,7 +49,7 @@ const CartInfo = ({ cart, setCart, handleQuantity, handleRemove, convertPrice, c
     const selectedItems = cart.filter(item => checkedItems.includes(item));
     // 선택된 상품들을 장바구니에서 삭제
     for (const item of selectedItems) {
-      await CartApi.deleteCartItem(userId, item.bk_pname);
+      await CartApi.deleteCartItem(getId, item.bk_pname);
     }
     // 선택 해제 및 삭제된 항목 제외한 장바구니 업데이트
     setCheckedAll(false);
@@ -92,7 +91,7 @@ const CartInfo = ({ cart, setCart, handleQuantity, handleRemove, convertPrice, c
                 checked={checkedItems.includes(list)}
                 onChange={(e) => handleCheckItem(e, list)}
               /></td>
-            <td ><div><div></div><div><strong>{list.bk_pname}</strong></div><div>{list.borrow1} ~ {list.borrow2} / {list.dayCnt}일</div></div></td>
+            <td ><div><div><img src={list.img} alt={list.bk_pname} /></div><div><strong>{list.bk_pname}</strong></div><div>{list.borrow1} ~ {list.borrow2} / {list.dayCnt}일</div></div></td>
             <td >{convertPrice(list.bk_price)}원</td>
             <td ><button className="minus_btn" onClick={()=> handleQuantity("minus", list.bk_pname)}>-</button><input type="text" value={list.quantity}/><button className="plus_btn" onClick={() => handleQuantity("plus", list.bk_pname)}>+</button></td>
             <td>{convertPrice(list.tprice)}원</td>

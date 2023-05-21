@@ -169,6 +169,11 @@ const BaroApi = {
             msgContents: contents
         }
         return await axios.post(Baro_DOMAIN + "/writeMsg", object);
+    },
+
+    // 받은사람 기준으로 쪽지리스트
+    receiverList: async(receiver) => {
+        return await axios.get(Baro_DOMAIN + `/receiverList?receiver=${receiver}`);
     }
 
     

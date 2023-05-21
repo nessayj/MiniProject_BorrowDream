@@ -77,8 +77,8 @@ const Card = ({ categoryNo }) => {
     
     <Main>
             <div>
-            <button onClick={() => setSortBy('pprice')}>가격순</button>
-            <button onClick={() => setSortBy('pno')}>최신순</button>             
+              <button onClick={() => setSortBy('pno')}>최신순</button>
+              <button onClick={() => setSortBy('pprice')}>가격순</button>
             </div>
       <main>
         <div className="container">
@@ -111,25 +111,25 @@ const Products = ({ categoryNo, sortBy }) => {
 
 
 
-  // 가격순, 상품번호순 정렬 기능
-    const sortedProducts = products.sort((a, b) => {
-      if (sortBy === 'pPrice') {
-        return a.pPrice - b.pPrice;
-      } else if (sortBy === 'pno') {
-        return a.pno - b.pno;
-      } else {
-        return 0;
-      }
-    });
+  // 가격순, 상품번호순 정렬 기능 구현
+  const sortedProducts = products.sort((a, b) => {
+    if (sortBy === 'pprice') {
+      return a.pprice - b.pprice;
+    } else if (sortBy === 'pno') {
+      return a.pno - b.pno;
+    } else {
+      return 0;
+    }
+  });
 
-  if (!sortedProducts) return null;
+if (!sortedProducts) return null;
 
-  const onClickPd = (pno) => {
-    const data = sortedProducts.filter(function(e){
-      return e.pno === pno;
-    });
-    navigate(`/product/${pno}`, {state: data[0]});
-  }
+const onClickPd = (pno) => {
+  const data = sortedProducts.filter(function(e){
+    return e.pno === pno;
+  });
+  navigate(`/product/${pno}`, {state: data[0]});
+}
 
 
 

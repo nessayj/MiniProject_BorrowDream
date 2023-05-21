@@ -18,8 +18,8 @@ const ModalStyle = styled.div`
 /* modal창 */
 .modalBody {
   position: absolute;
-  width: 300px;
-  height: 500px;
+  width: 30rem;
+  height: 35rem;
   padding: 40px;
   text-align: center;
   background-color: rgb(255, 255, 255);
