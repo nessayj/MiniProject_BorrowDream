@@ -5,6 +5,7 @@ import MessageModal from "./messageModal";
 import ReceiveMsg from "./ReceiveMsg";
 import BaroApi from "../../api/BaRoApi";
 import { Link, useParams } from "react-router-dom";
+import { SiStarship } from "react-icons/si";
 
 const Wrap = styled.div`
     width: 1000px;
@@ -13,6 +14,15 @@ const Wrap = styled.div`
     margin: 0 auto;
     border-radius: 10px;
     font-family:'bitbit';
+
+    .title {
+        display: flex;
+        align-items: center;
+        font-size: 30px;
+        font-weight: 600;
+        color: #1a5d98;
+        h2 {margin-left: 10px; font-size: 35px; margin-top: 35px; font-weight: 500; color: #135CD2; }
+    }   
 `;
 
 const Section = styled.div`
@@ -83,6 +93,9 @@ const ViewMsgList = (props) => {
         <Wrap>
             <Section className="section">
                 <div className="board_list">
+                <div className="title">
+                    <SiStarship size="50" color="7F8EEF" /><h2>받은쪽지함</h2>
+                    </div>
                     <table className="postInfo">
                         <tr>
                             <th>제목</th>
