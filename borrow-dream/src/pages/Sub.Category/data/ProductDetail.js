@@ -137,7 +137,7 @@ const ProductDetail = ( { cart, setCart, convertPrice }) => {
 
             <Price>
               <PriceLabel>가격:</PriceLabel>
-              {convertPrice(product.pprice)}원
+              {convertPrice(product.pprice)}원/하루
             </Price>
 
             
