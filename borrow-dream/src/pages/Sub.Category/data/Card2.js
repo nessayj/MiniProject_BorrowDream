@@ -8,9 +8,9 @@ const Main = styled.div`
   .card {
     border: none;
     height: 80%;
-    width: 270px;
+    width: 250px;
     margin-top: 80px;
-    
+    font-family:'bitbit';
   }
 
   .cardImg {
@@ -32,6 +32,7 @@ const Main = styled.div`
   .card-title {
     margin-bottom: 0.75rem;
     font-weight: bold;
+    font-size: 1.3rem;
   }
 
   .price-text {

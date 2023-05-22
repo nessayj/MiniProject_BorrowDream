@@ -12,6 +12,7 @@ import MainModal2 from "./mainModal/MainModal2";
 import { animateScroll as scroll } from "react-scroll";
 import Card2 from "./Sub.Category/data/Card2";
 import B1 from "../images/배너/Borrow Dream 05220701 전 품목10.png";
+import B2 from "../images/배너/Borrow Dream 05220701 전 품목10 (1).png"
 
 
 const Text = styled.p`
@@ -26,7 +27,7 @@ const Image = styled.img`
     width: 50%;
     height: 300px;
     width: 650px;
-    margin: 20px;
+  
     border-radius: 20px;
 `;
 
@@ -47,19 +48,26 @@ const Category = styled.div`
 const SmallBanner = styled.div`
   font-family: 'TAEBAEKmilkyway';
   margin: 30px auto;
+  margin-left: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
+  .Bimg{
+    height: 300px;
+    margin-left: 34px;
+  }
+  
 
   .naebild {
     width: 50%;
     height: 300px;
-    background-color: #8abeeb;
+    background-color: white;
     margin: 20px ;
-  }
-  .company {
 
+    border-radius: 20px;
+    
   }
+
 `;
 
 const PopularItems = styled.div`
@@ -172,7 +180,7 @@ const MainBody = () => {
         <Image src={B1} />
         </div>
         <div className="naebild">
-          <Text>여기는 내빌드</Text>
+        <Image className="Bimg" src={B2} />
         </div>
       </SmallBanner>
 
