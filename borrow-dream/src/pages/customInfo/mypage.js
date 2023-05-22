@@ -7,6 +7,7 @@ import { RiGift2Line } from 'react-icons/ri';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../../utill/Modal";
+import BoardById from "../InquiryBoard/BoardById";
 
 
 const MainContainer = styled.div`
@@ -157,6 +158,13 @@ const onClickLogout = () =>{
     setComment("로그아웃하시겠습니까?")
 }
 
+// 1:1 문의 토글처럼 열리게
+const [isBoardOpen, setIsBoardOpen] = useState(false);
+
+const toggleBoard = () => {
+  setIsBoardOpen(!isBoardOpen);
+};
+
 
     return(
         <div className="mypage">
@@ -199,7 +207,9 @@ const onClickLogout = () =>{
                 <Container>
                     <div class="item">
                         <Title><RiMagicLine size="17" /> 활동관리</Title>
-                        <MypageItem><a href="!#">1:1    문의</a></MypageItem>
+                        <MypageItem onClick={toggleBoard}>1:1 문의
+                             {isBoardOpen && <BoardById />}  
+                        </MypageItem>
                         <MypageItem><a href="!#">후기내역</a></MypageItem>
                         </div>
                 </Container> 

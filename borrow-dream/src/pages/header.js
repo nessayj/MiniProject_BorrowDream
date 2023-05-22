@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
 import log from ".././images/로고/새로운로고(배경제거).png";
 import {FiMenu, FiSmile,FiShoppingCart,FiSearch} from "react-icons/fi";
@@ -9,6 +9,7 @@ import {TbBeach} from "react-icons/tb"
 import {FaCampground} from "react-icons/fa"
 import {BiFoodMenu} from "react-icons/bi"
 import {RiSpaceShipLine} from "react-icons/ri"
+import Modal from "../utill/Modal";
 
 
 
@@ -53,6 +54,11 @@ input[id="menuicon"]:checked + label{
   
 }
 
+.logOut {
+  cursor: pointer;
+  color: #71EBF2;
+font-size: 20px;
+}
 
 /*사이드바*/
 div[class="sidebar"] {
@@ -162,7 +168,14 @@ const Head = () => {
   const navigate = useNavigate();
   // 스마일아이콘 로그인 시 마이페이지로 이동
   const isLogin = window.localStorage.getItem("isLogin");
-
+  //모달
+      // 모달
+      const [comment, setComment] = useState("");
+      const [modalOpen, setModalOpen] = useState(false);
+      const [modalOption, setModalOption] = useState("");
+      const closeModal = () => {
+          setModalOpen(false);
+      };
 
   // 로그인 전 스마일누르면 로그인페이지
   const onClickToLogin = () =>{
@@ -179,8 +192,16 @@ const Head = () => {
     navigate("/MyPage");
   }
 
+   // 로그아웃모달
+const onClickLogout = () =>{
+  setModalOpen(true);
+  setModalOption("로그아웃")
+  setComment("로그아웃하시겠습니까?")
+}
+
 return (
     <Header>
+      <Modal open={modalOpen} close={closeModal} option={modalOption}>{comment}</Modal>
        <div className="toggle">
        {/* 왼쪽 네비바 */}
        
@@ -191,13 +212,13 @@ return (
        </label>
 
     <div className="sidebar">
+    <div className="login">
+      {IsLogin () ?
+       <p className="logOut" onClick={onClickLogout}>로그아웃</p> :
+       <p><a href="/Login">로그인</a></p>
+       }</div>
       <ul className="navi">
-      
-
-      <div className="myLent">
-       <a href="/myLentItem"><h4 className="logo2"><RiSpaceShipLine size="30"/>내가 빌려 DREAM</h4></a> 
-
-      </div>
+     
       
       <div className="abraod">
      <h4 className="logo2"><TbPlaneDeparture size="30"/>해외여행</h4>
@@ -229,6 +250,11 @@ return (
       <li><a href="">수면 용품</a></li>
       <li><a href="">취사 도구</a></li>
       <li><a href="">기타 캠핌 용품</a></li>
+      </div>
+
+      <div className="myLent">
+       <a href="/myLentItem"><h4 className="logo2"><RiSpaceShipLine size="30"/>내가 빌려 DREAM</h4></a> 
+
       </div>
 
     

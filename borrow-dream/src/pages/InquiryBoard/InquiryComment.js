@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import BaroApi from "../../api/BaRoApi";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const Comment = styled.div`
