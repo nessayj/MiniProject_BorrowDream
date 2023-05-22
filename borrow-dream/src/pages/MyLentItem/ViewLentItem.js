@@ -236,7 +236,7 @@ const ViewLentItem = (props) =>{
 
      // 후기 목록으로 이동
      const onClickToList = () => {
-        navigate("/myLentItem");
+        navigate(-1);
      }
 
 
@@ -321,7 +321,7 @@ const ViewLentItem = (props) =>{
             </div>
         </div>
         <div className="edit-delete-button">
-                <button className="delete-button" onClick={onClickToList}>목록가기</button> 
+                <button className="delete-button" onClick={onClickToList}>돌아가기</button> 
                </div>
         </div>
         </Wrap>
