@@ -145,24 +145,6 @@ const LoginContatiner = styled.div`
 
 `;
 
-// const StyledButton = styled.button`
-//     width: 300px;
-//     height: 40px; 
-//     color: white;
-//     background-color: #5ba8ea;
-//     margin-top: 20px;
-//     margin-left: 30px;
-//     margin-right: 30px; 
-//     padding: .7em 2em;
-//     border-radius: 20px;
-//     outline-style: none;
-//     border: none;
-//     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-//     backdrop-filter: blur(8.5px);
-//     -webkit-backdrop-filter: blur(8.5px);
-//   `;
-
-
 const LoginInput = styled.input`
     width: 280px;
     height: 40px; 
@@ -216,6 +198,7 @@ const Login = () => {
     }
 
     const confirmBtn = () => {
+        setModalOpen(false);
         console.log("확인 버튼이 눌러졌습니다.")
     }
     

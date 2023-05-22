@@ -218,7 +218,7 @@ const MypageEdit = () => {
 
     // 모달 열기 & 닫기
     const [modalOpen, setModalOpen] = useState(false);
-    
+    const [modalText, setModelText] = useState("수정이 완료되었습니다");
     const closeModal = () => {
         setModalOpen(false);
     };
@@ -248,11 +248,6 @@ const MypageEdit = () => {
               MyEditLoading();
           }, [getId]);
     
-
-        const [value, setValue] = useState('');
-        const onChange = (e)=> {
-            setValue(e.target.value)
-        }    
 
     /* 비밀번호 정규식 체크 모음 */
 
@@ -336,6 +331,9 @@ const MypageEdit = () => {
                 myInfo.addr
             );
                 console.log(rsp.data);
+                    setModelText("수정이 완료되었습니다");
+                    setModalOpen(true); 
+                // }
              } catch(e) {
                 console.log(e);
                 }
@@ -406,6 +404,7 @@ const MypageEdit = () => {
 
                 <div className="area">
                     <label htmlFor="password">새 비밀번호 확인</label>
+
                     <TextField 
                     style={{ width: '350px' }}
                     label="새 비밀번호 확인" 
@@ -445,6 +444,7 @@ const MypageEdit = () => {
 
                     <div className="area">
                     <label htmlFor="password">이메일주소</label>
+
                     <TextField 
                     style={{ width: '350px' }}
                     label="이메일주소"
@@ -478,9 +478,8 @@ const MypageEdit = () => {
                         <StyledButton className="addrBtn" onClick={handleComplete}>주소찾기</StyledButton>
                         {/* {popup && <PostCode addr={userAddr} setAddr={myInfo.setAddr} />}   */}
                         {popup && <PostCode addr={myInfo.addr} setAddr={myInfo.setUserAddr} />}  
-                        <button className="addrUpdate" onClick={customUpdate} >변경하기</button>
-                
-               <Modal open={modalOpen} close={closeModal} header="고객정보수정">수정이 완료되었습니다</Modal>
+                        <button className="addrUpdate" onClick={customUpdate}>변경하기</button>
+                    <Modal open={modalOpen} close={closeModal} header="회원정보수정">{modalText}</Modal>
              </CustomInfo>
             </div>
             </MainContainer>

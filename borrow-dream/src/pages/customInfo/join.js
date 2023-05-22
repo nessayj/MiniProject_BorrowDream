@@ -217,7 +217,7 @@ const Join = () => {
 
 
      const [modalOpen, setModalOpen] = useState(false);
-     const [modalText, setModelText] = useState("중복된 아이디 입니다.");
+     const [modalText, setModalText] = useState("중복된 아이디 입니다.");
 
     const closeModal = () => {
         setModalOpen(false);
@@ -322,16 +322,18 @@ const Join = () => {
             const memberReg = await AxiosApi.customReg(userName, userId, userPwd, userTel, userEmail, userAddr.address);
             console.log(memberReg.data);
             if(memberReg.data === true) {
-                navigate('/');
+                setModalOpen(true);
+                setModalText("회원가입에 성공했습니다");
+                navigate("/Mypage");
             } else {
                 setModalOpen(true);
-                setModelText("회원 가입에 실패 했습니다.");
+                setModalText("회원 가입에 실패 했습니다.");
             }
 
         } else {
             console.log("이미 가입된 회원 입니다.")
             setModalOpen(true);
-            setModelText("이미 가입된 회원 입니다.");
+            setModalText("이미 가입된 회원 입니다.");
         } 
     }
 

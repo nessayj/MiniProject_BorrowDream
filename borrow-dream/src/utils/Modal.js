@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const ModalStyle = styled.div` 
+    font-family: 'bitbit';
     .modal {
         display: none; // 숨겨진 상태로 시작
         position: fixed;
