@@ -108,7 +108,7 @@ const Image = styled.img`
   border-radius: 25px;
 `;
 const scrollToSection = () => {
-  scroll.scrollTo(30); // 원하는 위치로 스크롤 이동 (여기서는 800px 위치)
+  scroll.scrollTo(30); 
 }
 
 const Ct_pages = () => {

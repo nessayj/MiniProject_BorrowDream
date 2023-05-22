@@ -101,16 +101,16 @@ const MainBody = () => {
   }
 
   const scrollToSection = () => {
-    scroll.scrollTo(150); // 원하는 위치로 스크롤 이동 (여기서는 800px 위치)
+    scroll.scrollTo(150); 
   }
   const scrollToSection2 = () => {
-    scroll.scrollTo(900); // 원하는 위치로 스크롤 이동 (여기서는 800px 위치)
+    scroll.scrollTo(900); 
   }
   const scrollToSection3 = () => {
-    scroll.scrollTo(1500); // 원하는 위치로 스크롤 이동 (여기서는 800px 위치)
+    scroll.scrollTo(1500); 
   }
   const scrollToSection4 = () => {
-    scroll.scrollTo(2200); // 원하는 위치로 스크롤 이동 (여기서는 800px 위치)
+    scroll.scrollTo(2200); 
   }
 
   return (
