@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import CalendarComponent from './Calendar';
@@ -97,25 +97,24 @@ const ProductDetail = ( { cart, setCart, convertPrice }) => {
   const [pdEndDate, setPdEndDate] = useState('');
   const [dayCnt, setDayCnt] = useState('');
   const wlId = window.localStorage.getItem("Id");
+  const navigate = useNavigate();
   console.log(location);
   console.log(pdStartDate);
   console.log(pdEndDate);
   console.log(dayCnt);
+  console.log(wlId);
 
   const detailInfo = async(id) => {
     try {
       // 장바구니 저장 요청
       console.log("detailInfo 진입");
-      console.log(id);
-      console.log(product.pname);
-      console.log(pdStartDate);
-      console.log(pdEndDate);
-      const basketInsert = await CartApi.cartInsert(id, product.pname, pdStartDate, pdEndDate, dayCnt)
-      setCart(basketInsert.data);
-      console.log(basketInsert.data);
+      await CartApi.cartInsert(id, product.pname, pdStartDate, pdEndDate, dayCnt)
     } catch (e) {
       console.log(e);
     }
+  }
+  const onClickToCart = () => {
+    navigate("/cart/"+ wlId)
   }
 
   if (!product) return null;
@@ -144,7 +143,7 @@ const ProductDetail = ( { cart, setCart, convertPrice }) => {
             
             <ButtonContainer>
               <Button className='buy' onClick={calender.onRangeChange}>구매하기</Button>
-              <Button className='cart'onClick={() => detailInfo(wlId)}>장바구니</Button>
+              <Button className='cart'onClick={() => {detailInfo(wlId); onClickToCart();}}>장바구니</Button>
             </ButtonContainer>
           </ContentContainer>
         </ProductContainer>

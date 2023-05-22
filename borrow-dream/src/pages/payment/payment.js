@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from "react";
-import { UserContext } from "../../context/userInfo";
 import AxiosApi from "../../api/axiosapi";
 import PaymentModal from "./paymentModal";
 import OrderApi from "../../api/orderApi";
@@ -47,8 +46,6 @@ export const Payment = ( { cart, setCart, orderList, setOrderList, checkedItems,
             }
             // 주문 내역 저장 요청
             const info = await OrderApi.orderInsert(Id);
-            setOrderList(info.data);
-            console.log(info.data);
             console.log(orderList); // 업데이트된 주문 내역 확인
 
             // 모달 열기
@@ -67,6 +64,7 @@ export const Payment = ( { cart, setCart, orderList, setOrderList, checkedItems,
             setCart(newCart);
         }
     }
+    
 
     if(loading) {
         return <h2>조회중..</h2>

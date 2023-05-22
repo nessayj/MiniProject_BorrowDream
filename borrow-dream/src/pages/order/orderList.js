@@ -3,7 +3,7 @@ import OrderApi from '../../api/orderApi';
 import { UserContext } from '../../context/userInfo';
 
 const OrderInfo = ({orderList, convertPrice}) => {
-  const Id = window.localStorage.getItem("Id");
+  console.log(orderList);
   return (
       <table>
         <colgroup>
@@ -25,7 +25,7 @@ const OrderInfo = ({orderList, convertPrice}) => {
         <tbody>
         {orderList && orderList.map((list) => (
           <tr key={list.od_num}>
-            <td><strong>[제조사]</strong><br/>{list.od_pname}<br/>{list.borrow1} - {list.borrow2}</td>
+            <td><img src={list.img} alt={list.od_pname} /><br/>{list.od_pname}<br/>{list.borrow1} - {list.borrow2}</td>
             <td>{list.od_date}</td>
             <td>{list.od_num}</td>
             <td>{convertPrice(list.od_tPrice)}원<br/>수량{list.od_quantity}개</td>
