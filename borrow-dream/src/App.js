@@ -133,7 +133,7 @@ import SendMsgList from './pages/message/SendmsgView';
             <Route path='/camping_other' element={<Camping_other/>}/>
 
             {/* 장바구니 */}
-            <Route path='/cart/:Id' element= {<Basket cart={cart} setCart={setCart} checkedAll={checkedAll} setCheckedAll={setCheckedAll} checkedItems={checkedItems} setCheckedItems={setCheckedItems} convertPrice={convertPrice}/>} />
+            <Route path='/cart/:no' element= {<Basket cart={cart} setCart={setCart} checkedAll={checkedAll} setCheckedAll={setCheckedAll} checkedItems={checkedItems} setCheckedItems={setCheckedItems} convertPrice={convertPrice}/>} />
             {/* 주문내역 */}
             <Route path='/order/:id' element={<Order orderList={orderList} setOrderList={setOrderList} convertPrice={convertPrice}/>} />
             {/* 결제정보 */}

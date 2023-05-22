@@ -116,6 +116,13 @@ const BaroApi = {
         }
         return await axios.post(Baro_DOMAIN + "/review-write", object);
     }, 
+
+    // 리뷰 아이디별 리스트 가지고오기
+    reivewById: async(rId) => {
+        return await axios.get(Baro_DOMAIN + `/reviewById?rId=${rId}`);
+
+    },
+    
     //리뷰 상세보기
     viewReview: async(reviewNo) => {
         console.log("리뷰넘버" + reviewNo);
@@ -145,6 +152,11 @@ const BaroApi = {
     // 내빌드 목록
     myLendList: async() => {
         return await axios.get(Baro_DOMAIN + "/myLend");
+    },
+    
+    // 내빌드 목록 아이디 별
+    myLendListById: async(getId) => {
+        return await axios.get(Baro_DOMAIN + `/myLendById?borrowId=${getId}`);
     },
 
     // 내빌드 작성

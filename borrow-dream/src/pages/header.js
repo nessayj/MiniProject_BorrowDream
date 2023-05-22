@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import styled from "styled-components";
 import log from ".././images/로고/새로운로고(배경제거).png";
-import {FiMenu, FiSmile,FiShoppingCart,FiSearch} from "react-icons/fi";
+import {FiMenu, FiSmile,FiShoppingCart} from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import {TbPlaneDeparture} from "react-icons/tb"
 import {GiMountains} from "react-icons/gi"
@@ -226,33 +226,33 @@ return (
       <div className="abraod">
      <h4 className="logo2"><TbPlaneDeparture size="30"/>해외여행</h4>
       <li><a href="/Carrier">캐리어</a></li>
-      <li><a href="">카메라</a></li>
-      <li><a href="">전자기기</a></li>
-      <li><a href="">기타 해외여행 용품</a></li>
+      <li><a href="/camera">카메라</a></li>
+      <li><a href="/devices">전자기기</a></li>
+      <li><a href="/Travel">기타 해외여행 용품</a></li>
       </div>
 
       <div className="hiking">
       <h4 className="logo2"><GiMountains size="30"/>산(트래킹)</h4>
-      <li><a href="">등산 가방</a></li>
-      <li><a href="">등산 신발</a></li>
-      <li><a href="">등산 옷</a></li>
-      <li><a href="">기타 등산 용품</a></li>
+      <li><a href="/hiking_bag">등산 가방</a></li>
+      <li><a href="/hiking_boots">등산 신발</a></li>
+      <li><a href="/hiking_clothes">등산 옷</a></li>
+      <li><a href="/hiking_other">기타 등산 용품</a></li>
       </div>
       
       <div className="swim">
       <h4 className="logo2"><TbBeach size="30"/>물놀이</h4>
-      <li><a href="">수영복</a></li>
-      <li><a href="">스노쿨</a></li>
-      <li><a href="">오리발</a></li>
-      <li><a href="">기타 물놀이 용품</a></li>
+      <li><a href="/swimsuit">수영복</a></li>
+      <li><a href="/snorkel">스노쿨</a></li>
+      <li><a href="/fillper">오리발</a></li>
+      <li><a href="/water_other">기타 물놀이 용품</a></li>
       </div>
      
      <div className="camp">
       <h4 className="logo2"><FaCampground size="30"/>캠핑</h4>
-      <li><a href="">텐트</a></li>
-      <li><a href="">수면 용품</a></li>
-      <li><a href="">취사 도구</a></li>
-      <li><a href="">기타 캠핌 용품</a></li>
+      <li><a href="/Tent">텐트</a></li>
+      <li><a href="/Sleep">수면 용품</a></li>
+      <li><a href="/Cooking">취사 도구</a></li>
+      <li><a href="/camping_other">기타 캠핌 용품</a></li>
       </div>
 
       <div className="myLent">
@@ -289,7 +289,7 @@ return (
 
     <div className="right">
       
-        <FiSearch className="login" size="30" color="#5ba8ea"/>
+       
         {IsLogin() ?
         <FiSmile className="login" size="30" color="#5ba8ea" onClick={onClickToMypage}/> :
         <FiSmile className="login" size="30" color="#5ba8ea" onClick={onClickToLogin}/> }

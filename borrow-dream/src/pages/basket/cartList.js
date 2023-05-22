@@ -166,9 +166,9 @@ const CartInfo = ({ cart, setCart, handleQuantity, handleRemove, convertPrice, c
           </tr>
         ))}
         </tbody>
-        </Table>
-        <div className='mainbutton-container'>
-        <button className="btn" onClick={handleDeleteSelected}>선택 삭제</button>
+      </Table>
+      <div className='mainbutton-container'>
+          <button className="btn" onClick={handleDeleteSelected}>선택 삭제</button>
           <Link to='/payment' ><button className='btn'>결제하기</button></Link>
         </div>
       </Wrap>
