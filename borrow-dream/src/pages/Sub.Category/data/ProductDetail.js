@@ -1,7 +1,8 @@
 import { useLocation } from 'react-router-dom';
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import CalendarComponent from './Calendar';
+import CartApi from '../../../api/cartApi';
 
 
 const Image2 = styled.img`
@@ -86,15 +87,36 @@ const CalendarContainer = styled.div`
   margin-top: 10px;
 `;
 
-const ProductDetail = () => {
+const ProductDetail = ( { cart, setCart, convertPrice }) => {
   const calender = new CalendarComponent();
   const location = useLocation();
   const product = location.state;
+  const [pdStartDate, setPdStartDate] = useState('');
+  const [pdEndDate, setPdEndDate] = useState('');
+  const [dayCnt, setDayCnt] = useState('');
+  const wlId = window.localStorage.getItem("Id");
   console.log(location);
+  console.log(pdStartDate);
+  console.log(pdEndDate);
+  console.log(dayCnt);
+
+  const detailInfo = async(id) => {
+    try {
+      // 장바구니 저장 요청
+      console.log("detailInfo 진입");
+      console.log(id);
+      console.log(product.pname);
+      console.log(pdStartDate);
+      console.log(pdEndDate);
+      const basketInsert = await CartApi.cartInsert(id, product.pname, pdStartDate, pdEndDate, dayCnt)
+      setCart(basketInsert.data);
+      console.log(basketInsert.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   if (!product) return null;
-
-
 
   return (
     <>
@@ -108,19 +130,19 @@ const ProductDetail = () => {
 
      
             <CalendarContainer>
-            <CalendarComponent productPrice={product.pprice} />
-        </CalendarContainer>
+            <CalendarComponent productPrice={convertPrice(product.pprice)}  pdStartDate={pdStartDate} setPdStartDate={setPdStartDate} pdEndDate={pdEndDate} setPdEndDate={setPdEndDate} dayCnt={dayCnt} setDayCnt={setDayCnt}/>
+            </CalendarContainer>
 
 
             <Price>
               <PriceLabel>가격:</PriceLabel>
-              {product.pprice}원
+              {convertPrice(product.pprice)}원
             </Price>
 
             
             <ButtonContainer>
               <Button className='buy' onClick={calender.onRangeChange}>구매하기</Button>
-              <Button className='cart'>장바구니</Button>
+              <Button className='cart'onClick={() => detailInfo(wlId)}>장바구니</Button>
             </ButtonContainer>
           </ContentContainer>
         </ProductContainer>

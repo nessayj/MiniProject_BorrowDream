@@ -108,7 +108,7 @@ import ViewMsgList from './pages/message/msessageView';
 
             {/* 상품페이지 */}
             <Route path='/Ct_pages' element={<Ct_pages/>} />
-            <Route path='/product/:pno' element={<ProductDetail />} />
+            <Route path='/product/:pno' element={<ProductDetail cart={cart} setCart={setCart} convertPrice={convertPrice}/>} />
               <Route path='/carrier' element={<Carrier/>}/>
             <Route path='/camera' element={<Camera/>}/>
             <Route path='/devices' element={<Devices/>}/>

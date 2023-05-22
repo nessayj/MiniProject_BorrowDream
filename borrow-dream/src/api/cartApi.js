@@ -10,15 +10,15 @@ const CartApi = {
     },
 
     // 장바구니 추가
-    cartInsert : async(id, pname, start, end, quan) => {
+    cartInsert : async(id, pname, startDate, endDate, dayCnt) => {
         const insert = {
             id: id,
             pname: pname,
-            start: start,
-            end: end,
-            quan: quan
+            startDate: startDate,
+            endDate: endDate,
+            dayCnt: dayCnt
         }
-        return await axios.post(KH_DOMAIN + "/cart/insert", insert);
+        return await axios.post(KH_DOMAIN + "/cartItem/insert", insert);
     },
     
     // 장바구니 선택 삭제

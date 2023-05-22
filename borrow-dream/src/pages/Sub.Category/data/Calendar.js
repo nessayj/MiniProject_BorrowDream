@@ -45,27 +45,16 @@ class CalendarComponent extends Component {
       totalDays,
       totalPrice,
     });
-
-    try {
-      const response = await axios.post('http://localhost:8111/api/save-date-range', {
-        startDate: startDate.toISOString(),
-        endDate: endDate.toISOString(),
-        totalDays,
-        totalPrice,
-      });
-      console.log('날짜 범위 저장 성공:', response.data);
-      window.alert('날짜 범위 저장 성공');
-      
-    } catch (error) {
-      console.error('날짜 범위 저장 실패:', error);
-      window.alert('날짜 범위 저장 실패');
-    }
+    this.props.setPdStartDate(startDate.toLocaleDateString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-'));
+    this.props.setPdEndDate(endDate.toLocaleDateString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-'));
   };
+
 
   calculatePriceByDate = (startDate, endDate) => {
     const { productPrice } = this.props; // props로 전달된 productPrice 값 가져오기
     const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)); // 1을 더하지 않음
     const totalPrice = productPrice * (days + 1); // 가격 계산에 1을 더해줌
+    this.props.setDayCnt(days+1);
     return totalPrice;
   };
   render() {

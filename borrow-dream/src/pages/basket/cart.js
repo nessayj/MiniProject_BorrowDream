@@ -8,6 +8,7 @@ export const Cart = ({ cart, setCart, convertPrice, checkedAll, setCheckedAll, c
   // const context = useContext(UserContext);
   // const { Id } = context;
   const getId = window.localStorage.getItem("Id");
+  console.log(cart);
   const handleRemove = async (id) => {
     try {
       await CartApi.deleteCartItem(getId, id);
