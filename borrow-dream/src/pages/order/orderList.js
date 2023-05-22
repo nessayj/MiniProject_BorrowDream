@@ -3,7 +3,7 @@ import OrderApi from '../../api/orderApi';
 import { UserContext } from '../../context/userInfo';
 
 const OrderInfo = ({orderList, convertPrice}) => {
-  const context = useContext(UserContext);
+  const Id = window.localStorage.getItem("Id");
   return (
       <table>
         <colgroup>

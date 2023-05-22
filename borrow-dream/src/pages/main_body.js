@@ -10,6 +10,9 @@ import M_img from "./M_img";
 import MainModal from "./mainModal/MainModal";
 import MainModal2 from "./mainModal/MainModal2";
 import { animateScroll as scroll } from "react-scroll";
+import Card2 from "./Sub.Category/data/Card2";
+import B1 from "../images/배너/Borrow Dream 05220701 전 품목10.png";
+
 
 const Text = styled.p`
   font-family: 'TAEBAEKmilkyway';
@@ -18,6 +21,13 @@ const Text = styled.p`
   font-weight: bold;
   color: #1a5d98;
   text-decoration-line: none;
+`;
+const Image = styled.img`
+    width: 50%;
+    height: 300px;
+    width: 650px;
+    margin: 20px;
+    border-radius: 20px;
 `;
 
 const Category = styled.div`
@@ -48,10 +58,7 @@ const SmallBanner = styled.div`
     margin: 20px ;
   }
   .company {
-    width: 50%;
-    height: 300px;
-    background-color: #8abeeb;
-    margin: 20px;
+
   }
 `;
 
@@ -162,7 +169,7 @@ const MainBody = () => {
 
       <SmallBanner>
         <div className="company">
-          <Text>여기는 회사 배너</Text>
+        <Image src={B1} />
         </div>
         <div className="naebild">
           <Text>여기는 내빌드</Text>
@@ -170,25 +177,8 @@ const MainBody = () => {
       </SmallBanner>
 
       <PopularItems>
-        <span><BsStars size="50" color="pink"/>일주일 인기품목</span>
-        <div className="imgContainer">
-          <div className="img">사진1</div>
-          <div className="img">사진2</div>
-          <div className="img">사진3</div>
-          <div className="img">사진4</div>
-          <div className="img">사진5</div>
-          <div className="img">사진6</div>
-          <div className="img">사진7</div>
-          <div className="img">사진8</div>
-          <div className="img">사진9</div>
-          <div className="img">사진10</div>
-          <div className="img">사진11</div>
-          <div className="img">사진12</div>
-          <div className="img">사진13</div>
-          <div className="img">사진14</div>
-          <div className="img">사진15</div>
-          <div className="img">사진16</div>
-        </div>
+        <span><BsStars size="50" color="pink"/>인기품목</span>
+        <Card2 categoryNo={5000} />
       </PopularItems>
     </>
   );

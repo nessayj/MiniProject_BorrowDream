@@ -8,12 +8,14 @@ import CartApi from "../../api/cartApi";
 
 
 export const Payment = ( { cart, setCart, orderList, setOrderList, checkedItems, setCheckedItems, convertPrice, movedItemCnt, setMovedItemCount }) => {
-    const context = useContext(UserContext);
-    const { userId } = context;
-    const [userInfo, setuserInfo] = useState([]);
+    // const context = useContext(UserContext);
+    // const { Id } = context;
+    const Id = window.localStorage.getItem("Id");
+    const [userInfo, setuserInfo] = useState('');
     const [loading, setLoading] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
 
+    console.log(userInfo);
     const openModal = () => {
         setModalOpen(true);
     }
@@ -25,15 +27,16 @@ export const Payment = ( { cart, setCart, orderList, setOrderList, checkedItems,
         const cusData = async () => {
             setLoading(true);
             try {
-                const response = await AxiosApi.memberGet(userId);
+                const response = await AxiosApi.customEdit(Id);
                 setuserInfo(response.data);
+                console.log(userInfo);
             } catch (e) {
                 console.log(e);
             }
             setLoading(false);
         };
         cusData();
-    }, [userId]);
+    }, [Id]);
     const payInfo = async (id) => {
         try {
             // 주문 내역으로 저장할 장바구니 아이템 가져오기
@@ -43,7 +46,7 @@ export const Payment = ( { cart, setCart, orderList, setOrderList, checkedItems,
               return;
             }
             // 주문 내역 저장 요청
-            const info = await OrderApi.orderInsert(userId);
+            const info = await OrderApi.orderInsert(Id);
             setOrderList(info.data);
             console.log(info.data);
             console.log(orderList); // 업데이트된 주문 내역 확인
@@ -59,7 +62,7 @@ export const Payment = ( { cart, setCart, orderList, setOrderList, checkedItems,
     // 결제한 상품 장바구니에서 삭제
     const selectListDelete = async (id) => {
         for (const item of checkedItems) {
-            await CartApi.deleteCartItem(userId, item.bk_pname);
+            await CartApi.deleteCartItem(Id, item.bk_pname);
             const newCart = cart.filter((item) => item.bk_pname !== id);
             setCart(newCart);
         }
@@ -81,20 +84,16 @@ export const Payment = ( { cart, setCart, orderList, setOrderList, checkedItems,
                 <ul>
                     <li><span>이름 / 연락처</span>
                     <div>
-                        {userInfo && userInfo.map((info) => (
-                        <ul key={info.id}>
-                            <li key={info.name}>{info.name}</li>
-                            <li key={info.phone}>{info.phone}</li>
+                        <ul>
+                            <li>{userInfo.name}</li>
+                            <li>{userInfo.tel}</li>
                         </ul>
-                        ))}
                     </div>
                     </li>
                     <li><span>주소</span>
-                    {userInfo && userInfo.map((info) => (
-                    <div key={info.id}>
-                       {info.addr} 
+                    <div key={userInfo.id}>
+                       {userInfo.addr} 
                     </div>
-                    ))}
                     </li>
                 </ul>
             </div>
@@ -138,7 +137,7 @@ export const Payment = ( { cart, setCart, orderList, setOrderList, checkedItems,
         </tbody>
                 </table>
                 <div>
-                <button onClick={() => payInfo(userId)}>{convertPrice(sumPrice)}원 결제하기</button>
+                <button onClick={() => payInfo(Id)}>{convertPrice(sumPrice)}원 결제하기</button>
                     <PaymentModal
                       open={openModal}
                       close={closeModal} 
