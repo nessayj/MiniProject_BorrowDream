@@ -11,7 +11,7 @@ import MainModal from "./mainModal/MainModal";
 import MainModal2 from "./mainModal/MainModal2";
 import { animateScroll as scroll } from "react-scroll";
 import Card2 from "./Sub.Category/data/Card2";
-import B1 from "../images/배너/Designer.png";
+import B1 from "../images/배너/Borrow Dream 05220701 전 품목10.png";
 
 
 const Text = styled.p`

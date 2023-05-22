@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import CalendarComponent from './Calendar';
+import CartApi from '../../../api/cartApi';
 
 
 const Image2 = styled.img`
