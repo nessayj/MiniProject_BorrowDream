@@ -1,9 +1,7 @@
-
 import Card from "./data/Card";
 import React from "react";
 import styled from "styled-components";
 import { SiStarship } from "react-icons/si";
-
 
 const Button = styled.button`
 font-family:'bitbit';
@@ -33,11 +31,6 @@ const Heading1 = styled.h1`
   align-items: center;
 `;
 
-
-
-
-
- 
  
   const Camping_other = () => {
   
@@ -48,9 +41,9 @@ const Heading1 = styled.h1`
     return (
       <>
         <Heading1><SiStarship size="30" color="7F8EEF" />기타 캠핑 용품</Heading1>
-        <Card categoryNo={1002} />
+        <Card categoryNo={4004} />
         <div className="goTop">
-          <Button onClick={goToTop}>맨위로</Button>
+        
         </div>
       </>
     );

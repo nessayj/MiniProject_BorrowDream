@@ -11,7 +11,8 @@ import MainModal from "./mainModal/MainModal";
 import MainModal2 from "./mainModal/MainModal2";
 import { animateScroll as scroll } from "react-scroll";
 import Card2 from "./Sub.Category/data/Card2";
-// import b1 from "../images/배너/Designer.png"
+import B1 from "../images/배너/Designer.png";
+
 
 const Text = styled.p`
   font-family: 'TAEBAEKmilkyway';
@@ -20,6 +21,13 @@ const Text = styled.p`
   font-weight: bold;
   color: #1a5d98;
   text-decoration-line: none;
+`;
+const Image = styled.img`
+    width: 50%;
+    height: 300px;
+    width: 650px;
+    margin: 20px;
+    border-radius: 20px;
 `;
 
 const Category = styled.div`
@@ -50,10 +58,7 @@ const SmallBanner = styled.div`
     margin: 20px ;
   }
   .company {
-    width: 50%;
-    height: 300px;
-    background-color: #8abeeb;
-    margin: 20px;
+
   }
 `;
 
@@ -163,8 +168,8 @@ const MainBody = () => {
       </Category>
 
       <SmallBanner>
-          <div className="company">
-          <b1></b1>
+        <div className="company">
+        <Image src={B1} />
         </div>
         <div className="naebild">
           <Text>여기는 내빌드</Text>

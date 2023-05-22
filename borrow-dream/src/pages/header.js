@@ -246,10 +246,10 @@ return (
      
      <div className="camp">
       <h4 className="logo2"><FaCampground size="30"/>캠핑</h4>
-      <li><a href="">텐트</a></li>
-      <li><a href="">수면 용품</a></li>
-      <li><a href="">취사 도구</a></li>
-      <li><a href="">기타 캠핌 용품</a></li>
+      <li><a href="/Tent">텐트</a></li>
+      <li><a href="/Sleep">수면 용품</a></li>
+      <li><a href="/Cooking">취사 도구</a></li>
+      <li><a href="/camping_other">기타 캠핌 용품</a></li>
       </div>
 
       <div className="myLent">
