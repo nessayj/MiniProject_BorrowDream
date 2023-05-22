@@ -3,24 +3,24 @@ import styled from "styled-components";
 
 
 const Foot = styled.div`
-    margin-top: 1000px;
+    background-color: #EEEEEE;
     margin-bottom: 0;
-    height:200px; 
+    height: 100vh; 
     width: 100%;
     border-top:2px solid #1a5d98;
     color: #1a5d98;
   
   
   p{
-    font-family: 'TAEBAEKmilkyway';
+    font-family: 'bitbit';
   }  
   
   a {
-    font-family: 'TAEBAEKmilkyway';
+    font-family: 'bitbit';
   }
   
   li {
-    font-family: 'TAEBAEKmilkyway';
+    font-family: 'bitbit';
   }
 
 
