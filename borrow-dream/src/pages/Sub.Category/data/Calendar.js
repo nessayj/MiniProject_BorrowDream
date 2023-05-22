@@ -64,11 +64,7 @@ class CalendarComponent extends Component {
 
   calculatePriceByDate = (startDate, endDate) => {
     const { productPrice } = this.props; // props로 전달된 productPrice 값 가져오기
-    console.log("start : " + typeof startDate);
-    console.log("end : " + typeof endDate);
-    console.log("product : " + typeof productPrice);
     const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)); // 1을 더하지 않음
-    console.log("days : " + typeof days)
     const preTotalPrice = parseInt(productPrice.replace(/,/g, ""), 10) * (days + 1); // 가격 계산에 1을 더해줌
     const totalPrice = preTotalPrice.toLocaleString();
     this.props.setDayCnt(days+1);
