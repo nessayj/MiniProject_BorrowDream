@@ -10,6 +10,8 @@ import M_img from "./M_img";
 import MainModal from "./mainModal/MainModal";
 import MainModal2 from "./mainModal/MainModal2";
 import { animateScroll as scroll } from "react-scroll";
+import Card2 from "./Sub.Category/data/Card2";
+// import b1 from "../images/배너/Designer.png"
 
 const Text = styled.p`
   font-family: 'TAEBAEKmilkyway';
@@ -161,8 +163,8 @@ const MainBody = () => {
       </Category>
 
       <SmallBanner>
-        <div className="company">
-          <Text>여기는 회사 배너</Text>
+          <div className="company">
+          <b1></b1>
         </div>
         <div className="naebild">
           <Text>여기는 내빌드</Text>
@@ -170,25 +172,8 @@ const MainBody = () => {
       </SmallBanner>
 
       <PopularItems>
-        <span><BsStars size="50" color="pink"/>일주일 인기품목</span>
-        <div className="imgContainer">
-          <div className="img">사진1</div>
-          <div className="img">사진2</div>
-          <div className="img">사진3</div>
-          <div className="img">사진4</div>
-          <div className="img">사진5</div>
-          <div className="img">사진6</div>
-          <div className="img">사진7</div>
-          <div className="img">사진8</div>
-          <div className="img">사진9</div>
-          <div className="img">사진10</div>
-          <div className="img">사진11</div>
-          <div className="img">사진12</div>
-          <div className="img">사진13</div>
-          <div className="img">사진14</div>
-          <div className="img">사진15</div>
-          <div className="img">사진16</div>
-        </div>
+        <span><BsStars size="50" color="pink"/>인기품목</span>
+        <Card2 categoryNo={5000} />
       </PopularItems>
     </>
   );
