@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Foot = styled.div`
     background-color: #EEEEEE;
-    margin-bottom: 0;
+    margin-top: 5rem;
     height: 100vh; 
     width: 100%;
     border-top:2px solid #1a5d98;
