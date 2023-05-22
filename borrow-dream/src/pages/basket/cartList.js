@@ -131,13 +131,6 @@ const CartInfo = ({ cart, setCart, handleQuantity, handleRemove, convertPrice, c
     </div>
     <hr />
     <Table>
-        {/* <colgroup>
-        <col width="5%" />
-        <col width="25%" />
-        <col width="9%" />
-        <col width="9%" />
-        <col width="15%" />
-        </colgroup> */}
         <thead> 
         <tr>
           <th scope='col'>

@@ -138,8 +138,7 @@ import SendMsgList from './pages/message/SendmsgView';
             <Route path='/order/:id' element={<Order orderList={orderList} setOrderList={setOrderList} convertPrice={convertPrice}/>} />
             {/* 결제정보 */}
             <Route path='/payment' element={<Payment cart={cart} setCart={setCart} orderList={orderList} setOrderList={setOrderList} checkedItems={checkedItems} setCheckedItems={setCheckedItems} convertPrice={convertPrice} />} />
-            {/* 배송조회 */}
-            <Route path='/deliver' element={<Deliver orderList={orderList}/>} />
+          
           </Routes>
           <Footer/>
         </Router>

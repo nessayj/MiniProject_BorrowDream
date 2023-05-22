@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import BaroApi from "../../api/BaRoApi";
-import Modal from "../../utill/Modal";
-import { useNavigate } from "react-router-dom";
+
 
 
 const Wrap = styled.div`
@@ -44,62 +44,37 @@ const Section = styled.div`
             cursor: pointer;
         }
     }
+
 `;
 
-const BoardById = () => {
+
+
+const ReviewById = () => {
     const navigate = useNavigate();
     const getId = window.localStorage.getItem("Id");
     // 게시물 목록불러오기
-    const [byIdList, setByIdList] = useState([]);
-    const [boardNo, setBoardNo] = useState();
+    const[reviewById, setReviewById] = useState([]);
+    
 
-
-    // 아이디별 리스트 불러오기
+    // 아이디 별 리스트 불러오기
     useEffect(() => {
-        const boardById = async() => {
+        const reviewByIdLoad = async() => {
             try {
-                const boardByIdData = await BaroApi.byIdList(getId);
-                setByIdList(boardByIdData.data);
+                const reviewByIdData = await BaroApi.reviewById(getId);
+                setReviewById(reviewByIdData.data);
             } catch(e) {
                 console.log(e);
             }
         };
-        boardById();
+        reviewByIdLoad();
     }, []);
-     // 비밀번호체크 모달
-     const [modalOpen, setModalOpen] = useState(false);
-     const [modalOption, setModalOption] = useState("");
-     const closeModal = () => {
-         setModalOpen(false);
-     };
-     // 타이틀 클릭시 모달열기 및 비밀 번호가 맞다면 조회수증가
-     const viewsUp = (boardNo) => {
-         setBoardNo(boardNo);
-         setModalOpen(true);
-         setModalOption('비밀번호체크');
-     }
-       // 비밀번호체크
-
-    const handleConfirm = async (boardPwd) => {
-        console.log("비밀번호넘어와랏" + boardPwd);
-            const isOk = await BaroApi.checkPwd(boardNo, boardPwd);
-            console.log(isOk);
-            if(isOk) {
-                // 비밀번호 확인되면 조회수 올리기
-                await BaroApi.inquiryViewsUp(boardNo);
-                console.log("열리는거에도 넘어오나요" + boardNo);
-                const link = "/board-list/inquiry-view/" + boardNo;
-                navigate(link);
-            } 
+    const onClikckToReview =(e) => {
+        navigate(`/review-list/review/${e}`);
     }
-        
 
 
-
-
-    return (
+    return(
         <Wrap>
-        <Modal open={modalOpen} close={closeModal} onConfirm={handleConfirm} option={modalOption}></Modal>
         <Section id="board" className="section">
             <div className="board_list sub_box">
                 <table>
@@ -107,11 +82,11 @@ const BoardById = () => {
                         <th>제목</th>
                         <th>작성일</th>
                     </tr>
-                    {byIdList.map((e) => {
+                    {reviewById.map((e) => {
                             return(
-                                <tr key={e.boardNo}>
-                                    <td onChange={setBoardNo} onClick={() => viewsUp(e.boardNo)}>{e.title}</td>
-                                    <td>{e.writeDate}</td>
+                                <tr key={e.reviewNo}>
+                                    <td onClick={() => onClikckToReview (e.reviewNo)}>{e.rtitle}</td>
+                                    <td>{e.rdate}</td>
                                 </tr>
                             )
                     })}
@@ -119,7 +94,9 @@ const BoardById = () => {
             </div>
         </Section>
     </Wrap>
+
+
     );
 }
 
-export default BoardById;
+export default ReviewById;

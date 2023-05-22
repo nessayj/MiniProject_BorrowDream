@@ -9,6 +9,10 @@ import { Link } from "react-router-dom";
 import Modal from "../../utill/Modal";
 import BoardById from "../InquiryBoard/BoardById";
 import MyLendById from "../MyLentItem/MyLendById";
+import ReviewById from "../reviewBoard/ReviewById";
+import {BsEnvelopeHeartFill} from "react-icons/bs";
+import {BsEnvelopePaperHeartFill} from "react-icons/bs";
+
 
 
 const MainContainer = styled.div`
@@ -19,6 +23,7 @@ const MainContainer = styled.div`
     padding-bottom: 10px;
     display: flex;
     flex-direction: column;
+    font-family: 'bitbit';
 
     .custominfo {
         display: block;
@@ -44,12 +49,30 @@ const Titlebox = styled.div`
     position: relative;
     
     .topinfo {
-        font-size: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         padding: 8px 0;
         text-align: center;
         padding-left: 5px;
+        .message{
+            width: 15rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            color: #7F8EEF;
+           > span > p {
+                cursor: pointer;
+                font-size: 1rem;
+            }
+
+        }
+
     }
     .topinfo > h2 {
+        font-size: 25px;
         color: violet;
         font-family: 'bitbit';
     }
@@ -173,6 +196,13 @@ const [boardStates, setBoardStates] = useState({
     }));
   };
 
+  // 쪽지함이동
+  const onClickTosend = () => {
+    navigate("/sendList/" + id);
+  }
+  const onClikcToreceive =() => {
+    navigate("/receiverList/" + id);
+  }
 
 
 
@@ -185,6 +215,10 @@ const [boardStates, setBoardStates] = useState({
                     <div className="topinfo">
                         <h2>{id}님 환영합니다</h2>
                         <br/>
+                        <div className="message">
+                        <span><BsEnvelopeHeartFill size="20"/><p onClick={onClickTosend}>받은쪽지함</p></span>
+                        <span><BsEnvelopePaperHeartFill size="20"/><p onClick={onClikcToreceive}>보낸쪽지함</p></span>
+                        </div>
                         <div className="linkarea">
                         <Link to="/MypageInfo" className="setting">정보조회</Link>
                         <button className="setting" onClick={onClickLogout}>로그아웃</button>
@@ -221,7 +255,9 @@ const [boardStates, setBoardStates] = useState({
                         <MypageItem onClick={() => toggleBoard("inquiryOpen")}>1:1 문의
                              {boardStates.inquiryOpen && <BoardById />}  
                         </MypageItem>
-                        <MypageItem><a href="!#">후기내역</a></MypageItem>
+                        <MypageItem onClick={() => toggleBoard("returnStatusOpen") }>후기내역
+                            {boardStates.returnStatusOpen && <ReviewById/>}
+                        </MypageItem>
                         </div>
                 </Container> 
                 </Mymenu>
