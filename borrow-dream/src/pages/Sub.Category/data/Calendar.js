@@ -2,6 +2,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { DateRange } from 'react-date-range';
 import React, { Component } from 'react';
+import axios from 'axios';
 import ko from 'date-fns/locale/ko';
 import styled from 'styled-components';
 
