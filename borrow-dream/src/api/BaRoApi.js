@@ -11,6 +11,11 @@ const BaroApi = {
         return await axios.get(Baro_DOMAIN + "/board-list", list);
     },
 
+    // 아이디별 문의하기리스트 조회
+    byIdList: async(writerId) => {
+        return await axios.get(Baro_DOMAIN + `/myBoardList?writerId=${writerId}`);
+    },
+
     // 문의하기 작성
     writeInquiry: async function(getId, category, title, contents, boardPwd, isUnknown) {
         console.log("아이디 " + getId );

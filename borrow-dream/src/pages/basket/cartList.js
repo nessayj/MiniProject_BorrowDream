@@ -3,14 +3,55 @@ import { Link } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { UserContext } from '../../context/userInfo';
 import CartApi from '../../api/cartApi';
+import {SiStarship } from "react-icons/si";
+
+const Wrap = styled.div`
+    width: 1000px;
+    height: 100vh;
+    background-color: white;
+    margin: 0 auto;
+    border-radius: 10px;
+    font-family:'bitbit';
+
+    .title {
+        display: flex;
+        align-items: center;
+        font-size: 30px;
+        font-weight: 600;
+        color: #1a5d98;
+        h2 {margin-left: 10px; font-size: 35px; margin-top: 35px; font-weight: 500; color: #135CD2; }
+    }   
+
+`;
+
 
 const Table = styled.table`
-    font-family: 'TAEBAEKmilkyway';
+    font-family: 'bitbit';
     clear: both;
     min-width: 920px;
     width: 100%;
     text-align: center;
     background: #fff;
+    border-collapse: collapse; 
+        width:100%;
+        background-color: #4555AE;
+        border-bottom: solid 1px #bbb;
+        text-align: center;
+        tr:first-child td {color: white; border-top: solid 1px #4555AE; border-bottom: 1px solid #bbb; background-color: #7F8EEF;}
+        tr:nth-child(2) td {border-bottom: 1px solie #bbb; padding: 5px; color: white; background-color:#7F8EEF;   }
+        tr:nth-child(3) td {color: #135CD2;}
+        th {padding: 10px; color: white;}
+        td {padding: 10px; background-color: white; border-left: solid 1px #bbb;  color: #135CD2; }
+        td:first-child {border-left: none; width: 70px;}
+        td:nth-child(2) {width: 85px;}  
+        td:nth-child(3) {
+            width: 135px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }  
+        td:nth-child(4) {width: 100px;} 
+        td:last-child {width: 100px;}   
 `;
 
 
@@ -60,8 +101,10 @@ const CartInfo = ({ cart, setCart, handleQuantity, handleRemove, convertPrice, c
   console.log("체크 항목 리스트");
   console.log(checkedItems);
   return (
-    <>
-    <div><h2>장바구니</h2></div>
+    <Wrap>
+    <div className="title">
+      <SiStarship size="50" color="7F8EEF" /><h2>장바구니</h2>
+    </div>
     <hr />
     <Table>
         <colgroup>
@@ -104,7 +147,7 @@ const CartInfo = ({ cart, setCart, handleQuantity, handleRemove, convertPrice, c
           <Link to='/payment' ><button>결제하기</button></Link>
         </div>
       </Table>
-      </>
+      </Wrap>
   );
 };
 export default CartInfo;

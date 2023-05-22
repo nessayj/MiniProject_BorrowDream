@@ -4,33 +4,21 @@ import { RiTruckLine } from 'react-icons/ri';
 import { RiUserSettingsLine } from 'react-icons/ri';
 import { RiMagicLine } from 'react-icons/ri';
 import { RiGift2Line } from 'react-icons/ri'; 
-import Edit from '../../images/로그인이미지/setting.png';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../../utill/Modal";
+import BoardById from "../InquiryBoard/BoardById";
 
-
-const Wrapper = styled.div`
-    display: flex;
-    /* flex-wrap: nowrap; */
-`;
 
 const MainContainer = styled.div`
-    min-height: 1200px; // 
+    /* min-height: 100vh; //  */
     background-color: #f6f6f6;
     width: 100%;
-    height: 150px;// 중간 컨텐츠 전체 높이(회색부분)
-    padding-bottom: 60px;
-    
-    .profileEdit {
-        color: #404040;
-        padding: 15px 0 15px 30px;
-        position: relative;
-        font-size: 20px;
-        font-weight: 400;
-        border-bottom: 1px solid #dbdbdb;
-        margin-bottom: 5px;
-    }
+    height: 100%;// 중간 컨텐츠 전체 높이(회색부분)
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+
     .custominfo {
         display: block;
     }
@@ -51,12 +39,12 @@ const MypageTitle = styled.div`
 const Titlebox = styled.div`
     width: 100%;
     background: linear-gradient( to bottom, #f2dfe4, #e3daf5);
-    min-height: 250px;
+    min-height: 230px;
     position: relative;
     
     .topinfo {
         font-size: 25px;
-        padding: 30px 0;
+        padding: 8px 0;
         text-align: center;
         padding-left: 5px;
     }
@@ -64,43 +52,36 @@ const Titlebox = styled.div`
         color: violet;
         font-family: 'bitbit';
     }
-    .profile {
-        position: relative;
-        display: block;
-        top: 48%;
-        left: 55%;
-        transform: translate(-50%, -50%);
-        width: 70%;
+    .linkarea {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'bitbit';
     }
     
     .setting {
         width: 85px;
         height: 29px;
-        background-color: white;
+        background-color: #135CD2;
+        color: white;
         display: flex;
         align-items: center;
-        font-size: 15px;
+        font-size: 14px;
         margin-right: 10px;
-        padding : .5em;
+        padding-left: 1.3em;
         text-align : center;
         border-radius: 5px;
         text-decoration: none;
         box-shadow: 0 6px 20px 0 rgba(150, 150, 160, 0.45);
         border: 1px solid #dbdbdb;
     }
-    .linkarea {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: 10px;
-        font-family: 'bitbit';
-    }
    
 `;
     const Mymenu = styled.div`
-        text-align: left;
-        position: ralative;
-        width: auto;
+        /* position: ralative; */
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
         margin-top: 20px;
         border: 0;
         border-radius: 5px;
@@ -108,47 +89,44 @@ const Titlebox = styled.div`
     `;
 
     const Container = styled.dl`
-        display: inline-block;
+        display: inline-block; 
+        align-items: center;
+       /* display: flex;  */
         border: 1px solid #333;
         min-height: 200px;
-        vertical-align: top;
         width: calc(30% - 16px);
-        margin: 10px 100px;
+        /* margin: 10px 100px; */
+        margin: 15px;
         padding: 40px;
-        justify-content: space-between; 
+        justify-content: space-between;  
         background-color: #f2f2f2;
         border: 1px solid #e9e9e9;
         
     `;
 
 const Title = styled.dt`
+    display: flex;
+    flex-direction: column;
     color: #404040;
-    padding: 2px 0px 13px 18px;
-    position: relative;
-    font-size: 20px;
-    font-weight: 400;
+    padding: 3px 0px 13px 18px;
+    /* position: relative; */
+    font-family: 'bitbit';
+    font-size: 23px;
+    font-weight: lighter;
     border-bottom: 1px solid #dbdbdb;
-    margin-bottom: 5px;
     outline: none;
     `;
 
 const MypageItem = styled.dd`
-    display: flex;
-    padding: 13px 0px 10px 3px;
-    position: relative;
+    font-family: 'bitbit';
+    /* display: flex; */
+    padding: 13px 0px 13px 15px;
+    /* position: relative; */
     outline: none;
+    
     a {
         text-decoration: none;
     }
-`;
-
-
-const EditImg = styled.img`
-    box-sizing: border-box;
-    width: 16px;
-    height: 16px; 
-    margin-left: 4px;
-    margin-top: 1px;   
 `;
 
 
@@ -180,21 +158,26 @@ const onClickLogout = () =>{
     setComment("로그아웃하시겠습니까?")
 }
 
+// 1:1 문의 토글처럼 열리게
+const [isBoardOpen, setIsBoardOpen] = useState(false);
+
+const toggleBoard = () => {
+  setIsBoardOpen(!isBoardOpen);
+};
+
 
     return(
         <div className="mypage">
         <Modal open={modalOpen} close={closeModal} option={modalOption}>{comment}</Modal>
-        <Wrapper>
         <MainContainer>
             <Titlebox>
                 <MypageTitle><h1>마이페이지</h1></MypageTitle>
                     <div className="topinfo">
                         <h2>{id}님 환영합니다</h2>
-                        <br /><br />
-
+                        <br/>
                         <div className="linkarea">
-                        <Link to="/MypageInfo" className="setting">정보조회<EditImg src={Edit} /></Link>
-                        <button className="setting" onClick={onClickLogout}>로그아웃<EditImg src={Edit} /></button>
+                        <Link to="/MypageInfo" className="setting">정보조회</Link>
+                        <button className="setting" onClick={onClickLogout}>로그아웃</button>
                         </div>
                     </div>
             </Titlebox>   
@@ -212,7 +195,8 @@ const onClickLogout = () =>{
                         <Link to = "/MypageEdit"><MypageItem>회원정보수정</MypageItem></Link>
                         <Link to = "/CustomDelete"><MypageItem>회원탈퇴</MypageItem></Link>
                     </div>
-                </Container> 
+                </Container>
+                <br /> 
                 <Container>
                     <div class="item">
                         <Title><RiGift2Line size="17" /> 내빌드</Title>
@@ -223,13 +207,14 @@ const onClickLogout = () =>{
                 <Container>
                     <div class="item">
                         <Title><RiMagicLine size="17" /> 활동관리</Title>
-                        <MypageItem><a href="!#">1:1    문의</a></MypageItem>
+                        <MypageItem onClick={toggleBoard}>1:1 문의
+                             {isBoardOpen && <BoardById />}  
+                        </MypageItem>
                         <MypageItem><a href="!#">후기내역</a></MypageItem>
                         </div>
                 </Container> 
                 </Mymenu>
         </MainContainer>
-        </Wrapper>
         </div>
     );
 }

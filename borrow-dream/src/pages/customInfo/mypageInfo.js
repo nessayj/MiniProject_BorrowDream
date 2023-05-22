@@ -5,6 +5,7 @@ import { UserContext } from "../../context/userInfo";
 import AxiosApi from "../../api/axiosapi";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { IoSettingsOutline } from 'react-icons/io5';
 
 
 const MainContainer = styled.div`
@@ -25,8 +26,8 @@ const MainContainer = styled.div`
         background-color: white;
         position: center;
         justify-content: center;
-        width: 700px;
-        height: 700px;
+        width: 600px;
+        height: 680px;
         /* padding: 50px 40px; */
         border-radius: 50px;
     }
@@ -35,8 +36,32 @@ const MainContainer = styled.div`
 const Titlebox = styled.div`
     background: linear-gradient( to bottom, #f2dfe4, #e3daf5);
     width: 100%;
-    height: 250px;
+    height: 240px;
     position: relative;
+
+    .linkarea {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'bitbit';
+        margin-top: 3em;
+    }
+    .setting {
+        width: 87px;
+        height: 29px;
+        background-color: #135CD2;
+        color: white;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin-right: 10px;
+        padding-left: 1.3em;
+        text-align : center;
+        border-radius: 5px;
+        text-decoration: none;
+        box-shadow: 0 6px 20px 0 rgba(150, 150, 160, 0.45);
+        border: 1px solid #dbdbdb;
+    }
 `;
 
 
@@ -54,17 +79,27 @@ const CustomInfo = styled.div`
     justify-content: center;
     position: center;
     flex-direction: column;
+    text-align: center;
+     
+    h2 {
+            font-family: 'bitbit';
+            font-size: 1.9em;
+            margin-top: 2em;
+    }
     
 
     .area {
         display: flex;
-        margin-left: 120px;
-        padding-left: 100px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* padding-left: 100px; */
         margin-top: 20px;
-        margin-bottom: 1px;
-        justify-content: space-evenly;
-        width: 350px; /* 각 영역의 고정 너비 지정 */ 
         margin-top : 25px;
+    
+        label {
+            font-family: 'bitbit';
+        }
     }
 
     .addrBtn {
@@ -72,19 +107,18 @@ const CustomInfo = styled.div`
         margin-top: -40px;
     }
 
-    .enable-btn{
-        margin-top: 10px; 
-        margin-left: 30px;
-        margin-right: 30px;
-        /* font-family: 'Noto Sans KR', sans-serif; */
-        font-size: 15px;
-        font-weight: bold;
-        width: 100px; /* 원하는 너비 설정 */
+    .chbtn {
+        font-family: 'bitbit';
+        font-size: 1.2em;
+        width: 120px; /* 원하는 너비 설정 */
         height: 36px;
+        background-color: #135CD2;
         color: white;
-        background-color: #5ba8ea; // 버튼 색깔 체크
-        border-radius: 10px;
         border: #5ba8ea; // 버튼 색깔 체크
+        border-radius: 0.8em;
+        align-items: center;
+        justify-content: center;
+        display: flex;
     }
 
     .enable-btn:active {
@@ -117,19 +151,6 @@ const CustomInfo = styled.div`
     }
     
     
-`;
-
-const StyledButton = styled.button`
-     /* margin-top: 1px; */
-     width: 90px;
-     height: 38px;
-     background-color: rgba(108, 169, 245);
-     border-radius: 5px;
-     font-weight: bold;
-     color: white;
-     font-size: 14px;
-     border: none;
-     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 `;
 
 
@@ -169,11 +190,17 @@ const MypageInfo = () => {
             <MainContainer> 
                 <Titlebox>
                 <MypageEdTitle><h1>회원정보조회</h1></MypageEdTitle>
+                <div className="linkarea">
+                    <Link to="/Mypage" className="setting">이전단계</Link>
+                    <Link to="/MypageEdit" className="setting" >정보수정</Link>
+                </div>
+                <br /><br />    
                 </Titlebox>
                 <div className="mypageditInfo">
                 <div className="coverpage">
-                    <CustomInfo>
-        
+                <CustomInfo>
+                    <h2>나의프로필</h2>
+
                 <div className="area">
                     <TextField 
                     style={{ backgroundColor: 'lightgray', width: '350px' }}
@@ -256,7 +283,7 @@ const MypageInfo = () => {
                 </div>
                 
                 <div className="area">
-                <Link to = "/MypageEdit"><StyledButton className="enable-btn" >수정하기</StyledButton></Link> </div>
+                <Link to = "/MypageEdit"><button className="chbtn" >수정하기</button></Link> </div>
                 </CustomInfo>
                 </div>
                 </div>
