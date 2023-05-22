@@ -12,15 +12,16 @@ import MainModal2 from "./mainModal/MainModal2";
 import { animateScroll as scroll } from "react-scroll";
 import Card2 from "./Sub.Category/data/Card2";
 import B1 from "../images/배너/Borrow Dream 05220701 전 품목10.png";
-import B2 from "../images/배너/Borrow Dream 05220701 전 품목10 (1).png"
+import B2 from "../images/배너/Borrow Dream 05220701 전 품목10 (1).png";
+import { SiStarship } from "react-icons/si";
 
 
 const Text = styled.p`
-  font-family: 'TAEBAEKmilkyway';
+   font-family: 'bitbit';
   font-size: 20px;
   text-align: center;
   font-weight: bold;
-  color: #1a5d98;
+  color: white;
   text-decoration-line: none;
 `;
 const Image = styled.img`
@@ -38,6 +39,53 @@ const Category = styled.div`
   align-items: center;
 
   .abroad {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100px;
+    background-color: #7F8EEF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .mountain {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100px;
+    background-color: #7F8EEF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swimming {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100px;
+    background-color: #7F8EEF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .camping {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100px;
+    background-color: #7F8EEF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .my{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100px;
+    background-color: #7F8EEF;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,7 +94,7 @@ const Category = styled.div`
 `;
 
 const SmallBanner = styled.div`
-  font-family: 'TAEBAEKmilkyway';
+font-family: 'bitbit';
   margin: 30px auto;
   margin-left: 60px;
   display: flex;
@@ -71,9 +119,10 @@ const SmallBanner = styled.div`
 `;
 
 const PopularItems = styled.div`
-  font-family: 'TAEBAEKmilkyway';
+font-family: 'bitbit';
   font-size: 30px;
   font-weight: bolder;
+  color: #135CD2;
 
   .imgContainer {
     display: grid;
@@ -96,7 +145,7 @@ const PopularItems = styled.div`
     background-color: #a1f7d9;
   }
   span {
-    color: #1a5d98;
+    color: #135CD2;
     margin: 20px;
     display: flex;
     align-items: center;
@@ -141,37 +190,37 @@ const MainBody = () => {
       <Category>
         <div className="abroad">
           <Link to="/Ct_pages" onClick={scrollToSection}>
-            <RiSuitcase2Fill size="100" color="#1a5d98" />
+            <RiSuitcase2Fill size="100" color="white" />
           </Link>
           <Text>해외여행</Text>
         </div>
 
         <div className="mountain">
           <Link to="/Ct_pages" onClick={scrollToSection2}>
-            <FaMountain size="100" color="#1a5d98" />
+            <FaMountain size="100" color="white" />
           </Link>
           <Text>산(트래킹)</Text>
         </div>
 
         <div className="swimming">
           <Link to="/Ct_pages"onClick={scrollToSection3}>
-            <MdPool size="100" color="#1a5d98" />
+            <MdPool size="100" color="white" />
           </Link>
           <Text>물놀이</Text>
         </div>
 
         <div className="camping">
           <Link to="/Ct_pages"onClick={scrollToSection4}>
-            <GiCampingTent size="100" color="#1a5d98" />
+            <GiCampingTent size="100" color="white" />
           </Link>
           <Text>캠핑</Text>
         </div>
 
         <div className="my">
           <Link to="/Borrow_Dream">
-            <GiCampingTent size="100" color="#1a5d98" />
+            <SiStarship size="100" color="white" />
           </Link>
-          <Text>Borrow Dream</Text>
+          <Text>Borrow <br /> Dream</Text>
         </div>
       </Category>
 
@@ -185,7 +234,7 @@ const MainBody = () => {
       </SmallBanner>
 
       <PopularItems>
-        <span><BsStars size="50" color="pink"/>인기품목</span>
+        <span><BsStars size="50" color="#7F8EEF"/>인기품목</span>
         <Card2 categoryNo={5000} />
       </PopularItems>
     </>

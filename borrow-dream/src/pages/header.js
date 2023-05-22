@@ -64,11 +64,15 @@ font-size: 20px;
 div[class="sidebar"] {
 width: 20rem;
 height: 100rem;
-background-color: #7FC2EF;
-text-align: center;
+background-color: white;
 position:fixed;
 left:-500px;
 transition:all .35s;
+
+ .login {
+   text-align: center;
+  
+ }
 }
 
 input[id="menuicon"]:checked + label + div {
@@ -76,17 +80,17 @@ left:-50px;
 }
 
 ul{
+text-align: center;
 margin-left: 0;
 font-weight: 400;
 list-style:none;
-font-size: 35px;
-color: white;
+font-size: 1rem;
 
 }
 .logo2{
   display: flex;
   text-decoration: underline;
-  color: white;
+  color: #5ba8ea;
   font-size: 35px;
 
 }
@@ -102,7 +106,7 @@ a{
 margin-left: 0;
 margin-bottom: 1rem;
 text-decoration: none;
-color: #135CD2;
+color: black;
 font-size: 20px;
 font-weight: 400;
 text-decoration: none;
@@ -214,12 +218,15 @@ return (
       <FiMenu size="30" color="#5ba8ea" />
        </label>
 
+      
+
     <div className="sidebar">
     <div className="login">
       {IsLogin () ?
-       <p className="logOut" onClick={onClickLogout}>로그아웃</p> :
-       <p><a href="/Login">로그인</a></p>
+       <p className="logOut" onClick={onClickLogout}>🤗로그아웃</p> :
+       <span><a href="/Login">🫥로그인</a></span>
        }</div>
+   
       <ul className="navi">
      
       
@@ -255,10 +262,6 @@ return (
       <li><a href="/camping_other">기타 캠핌 용품</a></li>
       </div>
 
-      <div className="myLent">
-       <a href="/myLentItem"><h4 className="logo2"><RiSpaceShipLine size="30"/>내가 빌려 DREAM</h4></a> 
-
-      </div>
 
     
 
@@ -270,6 +273,11 @@ return (
         <li><a href="/qna-list">Qna</a></li>
         <li><a href="/board-list">문의하기</a></li>
         
+      </div>
+
+      <div className="myLent">
+       <a href="/myLentItem"><h4 className="logo2"><RiSpaceShipLine size="30"/>내가 빌려 DREAM</h4></a> 
+
       </div>
       
       </ul>
