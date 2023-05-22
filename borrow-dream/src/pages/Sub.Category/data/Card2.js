@@ -37,7 +37,7 @@ const Main = styled.div`
 
   .price-text {
     font-size: 1.25rem;
-    color: #f57224;
+    color:#135CD2;
     font-weight: bold;
     margin-top: 1rem;
   }
@@ -45,7 +45,7 @@ const Main = styled.div`
 `;
 
 const Card2 = ({ categoryNo }) => {
-  const [sortBy, setSortBy] = useState('pno');
+  const [sortBy] = useState('pno');
 
   
   return (

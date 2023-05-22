@@ -65,7 +65,7 @@ const Main = styled.div`
 
   .price-text {
     font-size: 1.1rem;
-    color: #f57224;
+    color: #135CD2;
     font-weight: bold;
     margin-top: 1rem;
   }
