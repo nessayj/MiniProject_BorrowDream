@@ -206,8 +206,7 @@ export const Payment = ( { cart, setCart, orderList, setOrderList, checkedItems,
     {checkedItems && checkedItems.map((list) => (
         <tr key={list.bk_num}>
             <td>
-                <div>이미지</div>
-                <div><strong>[제조사]</strong> a태그 + {list.bk_pname}</div>
+                <div><img src={list.img} alt={list.bk_pname} /> {list.bk_pname}</div>
             </td>
             <td>
                 <div>{list.quantity}개</div>
