@@ -30,6 +30,7 @@ const Main = styled.div`
   }
 
   .card-title {
+    color: #000;
     margin-bottom: 0.75rem;
     font-weight: bold;
     font-size: 1.3rem;
