@@ -168,6 +168,7 @@ const Head = () => {
   const navigate = useNavigate();
   // 스마일아이콘 로그인 시 마이페이지로 이동
   const isLogin = window.localStorage.getItem("isLogin");
+  const Id = window.localStorage.getItem("Id");
   //모달
       // 모달
       const [comment, setComment] = useState("");
@@ -191,7 +192,9 @@ const Head = () => {
   const onClickToMypage = () => {
     navigate("/MyPage");
   }
-
+  const onClickToCart = () => {
+    navigate("/cart/" + Id);
+  }
    // 로그아웃모달
 const onClickLogout = () =>{
   setModalOpen(true);
@@ -290,7 +293,7 @@ return (
         {IsLogin() ?
         <FiSmile className="login" size="30" color="#5ba8ea" onClick={onClickToMypage}/> :
         <FiSmile className="login" size="30" color="#5ba8ea" onClick={onClickToLogin}/> }
-        <Link to='/cart'><FiShoppingCart className="cart" size="30" color="5ba8ea"/></Link>
+        <FiShoppingCart className="cart" size="30" color="5ba8ea" onClick={onClickToCart}/>
     </div>
     
 

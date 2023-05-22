@@ -1,6 +1,7 @@
 import CartInfo from "./cartList";
 import { useState, useEffect, useContext } from "react";
 import CartApi from "../../api/cartApi";
+import { useParams } from "react-router-dom";
 import { UserContext } from "../../context/userInfo";
 
 export const Cart = ({ cart, setCart, convertPrice, checkedAll, setCheckedAll, checkedItems, setCheckedItems }) => {
@@ -8,6 +9,8 @@ export const Cart = ({ cart, setCart, convertPrice, checkedAll, setCheckedAll, c
   // const context = useContext(UserContext);
   // const { Id } = context;
   const getId = window.localStorage.getItem("Id");
+  let params = useParams();
+  let cartId = params.id;
   console.log(cart);
   const handleRemove = async (id) => {
     try {

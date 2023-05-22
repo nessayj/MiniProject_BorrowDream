@@ -5,8 +5,8 @@ const KH_DOMAIN = "http://localhost:8111";
 const CartApi = {
     
     // 장바구니 조회
-    cartListGet : async(id) => {
-        return await axios.get(KH_DOMAIN + `/cart?id=${id}`);
+    cartListGet : async(getId) => {
+        return await axios.get(KH_DOMAIN + `/cart?id=${getId}`);
     },
 
     // 장바구니 추가

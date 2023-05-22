@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 
 const ModalStyle = styled.div`
@@ -98,7 +98,12 @@ const ModalStyle = styled.div`
 `;
 const PaymentModal = (props) => {
     const { open, confirm, close, type, children, modalOpen } = props;
+    const getId = window.localStorage.getItem("Id");
     console.log("Modal Component: " + type);
+    const navigate = useNavigate();
+    const onClickToOrder = () => {
+      navigate("/order/"+ getId)
+    }
     return (
       <ModalStyle>
         <div className={modalOpen ? 'openModal modal' : 'modal'}>
@@ -107,9 +112,7 @@ const PaymentModal = (props) => {
               <main>{children}</main>
               <footer>
                 {type && (
-                  <Link to="/order">
-                    <button onClick={open}>주문내역으로 이동</button>
-                  </Link>
+                    <button onClick={onClickToOrder}>주문내역으로 이동</button>
                 )}
                 <Link to="/">
                   <button onClick={close}>메인 페이지로 이동</button>
