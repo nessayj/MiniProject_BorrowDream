@@ -10,15 +10,9 @@ const GlobalStyle = createGlobalStyle`
     background-color: #B8E9FF; /* 원하는 배경색으로 변경 */
   }
 `;
-// const Wrap = styled.body`
-//     margin: 0 auto;
-//     font-family: 'bitbit';
-//     background-color: #B8E9FF;
-//     height: 100%;
- 
-// `;
 
 const Section = styled.div`
+    font-family: 'bitbit';
     margin: 0 auto; 
     display: flex;
     align-items: center;

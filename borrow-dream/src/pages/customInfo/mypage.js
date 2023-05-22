@@ -216,8 +216,8 @@ const [boardStates, setBoardStates] = useState({
                         <h2>{id}님 환영합니다</h2>
                         <br/>
                         <div className="message">
-                        <span><BsEnvelopeHeartFill size="20"/><p onClick={onClickTosend}>받은쪽지함</p></span>
-                        <span><BsEnvelopePaperHeartFill size="20"/><p onClick={onClikcToreceive}>보낸쪽지함</p></span>
+                        <span><BsEnvelopeHeartFill size="20"/><p onClick={onClikcToreceive}>받은쪽지함</p></span>
+                        <span><BsEnvelopePaperHeartFill size="20"/><p onClick={onClickTosend}>보낸쪽지함</p></span>
                         </div>
                         <div className="linkarea">
                         <Link to="/MypageInfo" className="setting">정보조회</Link>

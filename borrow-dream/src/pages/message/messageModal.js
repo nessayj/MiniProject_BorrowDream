@@ -19,7 +19,7 @@ const ModalStyle = styled.div`
 .modalBody {
   position: absolute;
   width: 30rem;
-  height: 40rem;
+  height: 35rem;
   padding: 40px;
   text-align: center;
   background-color: rgb(255, 255, 255);

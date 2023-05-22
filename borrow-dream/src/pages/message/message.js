@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Modal from "../../utill/Modal";
 
 const MsgStyle = styled.div`
+  
     margin: 0;
     display: flex;
     align-items: center;

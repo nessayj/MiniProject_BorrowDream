@@ -12,7 +12,7 @@ const MsgStyle = styled.div`
     .receiver-container2 {
         font-size: 1.2rem;
         width: 13rem;
-        color: #135CD2;
+        color: #7F8EEF;
     }
 
     .title-container2 {
@@ -24,8 +24,10 @@ const MsgStyle = styled.div`
         font-size: 1.2rem;
         width: 24rem;
         .title-title {
-            color: #7F8EEF;
-            width: 20rem;
+        border: 1px solid black;
+        background-color: #7F8EEF;
+        color: white;
+        width: 20rem;
         }
         .title2 {
             color: black;
@@ -33,13 +35,17 @@ const MsgStyle = styled.div`
     }
 
     .contents-container2 {
-        color: #7F8EEF;
+
+        border: 1px solid black;
+        color: white;
         font-size: 1.2rem;
         margin-top: 1rem;
         display: flex;
         align-items: center;
         flex-direction: column;
         .contents-contents {
+            background-color: #7F8EEF;;
+            border: 1px solid black;
             width: 23rem;
         }
         .contents2{
