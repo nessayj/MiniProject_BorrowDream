@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../../utill/Modal";
 import BoardById from "../InquiryBoard/BoardById";
+import MyLendById from "../MyLentItem/MyLendById";
 
 
 const MainContainer = styled.div`
@@ -159,11 +160,20 @@ const onClickLogout = () =>{
 }
 
 // 1:1 문의 토글처럼 열리게
-const [isBoardOpen, setIsBoardOpen] = useState(false);
+const [boardStates, setBoardStates] = useState({
+    lendHistoryOpen: false,
+    returnStatusOpen: false,
+    inquiryOpen: false,
+  });
 
-const toggleBoard = () => {
-  setIsBoardOpen(!isBoardOpen);
-};
+  const toggleBoard = (boardKey) => {
+    setBoardStates((prevState) => ({
+      ...prevState,
+      [boardKey]: !prevState[boardKey],
+    }));
+  };
+
+
 
 
     return(
@@ -200,15 +210,16 @@ const toggleBoard = () => {
                 <Container>
                     <div class="item">
                         <Title><RiGift2Line size="17" /> 내빌드</Title>
-                        <MypageItem><a href="!#">빌려준내역</a></MypageItem>
-                        <MypageItem><a href="!#">반납 상태</a></MypageItem>
+                        <MypageItem onClick={() => toggleBoard("lendHistoryOpen")}>빌려준내역
+                        {boardStates.lendHistoryOpen && <MyLendById/>}</MypageItem>
+                        <MypageItem><a href="/myLentItem">내빌드</a></MypageItem>
                     </div>
                 </Container> 
                 <Container>
                     <div class="item">
                         <Title><RiMagicLine size="17" /> 활동관리</Title>
-                        <MypageItem onClick={toggleBoard}>1:1 문의
-                             {isBoardOpen && <BoardById />}  
+                        <MypageItem onClick={() => toggleBoard("inquiryOpen")}>1:1 문의
+                             {boardStates.inquiryOpen && <BoardById />}  
                         </MypageItem>
                         <MypageItem><a href="!#">후기내역</a></MypageItem>
                         </div>

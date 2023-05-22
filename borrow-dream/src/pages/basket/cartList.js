@@ -22,6 +22,27 @@ const Wrap = styled.div`
         h2 {margin-left: 10px; font-size: 35px; margin-top: 35px; font-weight: 500; color: #135CD2; }
     }   
 
+    .mainbutton-container {
+        margin-top: 20px;
+        height: 55px;
+        text-align: right;
+        .btn {
+            margin-left: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            float: right;
+            font-size: 16px;
+            font-weight: lighter;
+            padding: 8px 35px;
+            border-radius: 25px;
+            background-color: #135CD2;
+            color: white;
+            border: none;
+            transition: all .1s ease-in;
+            &:hover {background-color:  #a1f7d9; color: #135CD2;}
+        }
+    }
+
 `;
 
 
@@ -37,21 +58,21 @@ const Table = styled.table`
         background-color: #4555AE;
         border-bottom: solid 1px #bbb;
         text-align: center;
-        tr:first-child td {color: white; border-top: solid 1px #4555AE; border-bottom: 1px solid #bbb; background-color: #7F8EEF;}
-        tr:nth-child(2) td {border-bottom: 1px solie #bbb; padding: 5px; color: white; background-color:#7F8EEF;   }
-        tr:nth-child(3) td {color: #135CD2;}
-        th {padding: 10px; color: white;}
-        td {padding: 10px; background-color: white; border-left: solid 1px #bbb;  color: #135CD2; }
+        th {color: white; border-top: solid 1px #4555AE; border-bottom: 1px solid #bbb; background-color: #7F8EEF;}
+      
+        td {padding: 10px; background-color: white; border-left: solid 1px #bbb;  color: #135CD2;}
         td:first-child {border-left: none; width: 70px;}
-        td:nth-child(2) {width: 85px;}  
-        td:nth-child(3) {
-            width: 135px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }  
-        td:nth-child(4) {width: 100px;} 
-        td:last-child {width: 100px;}   
+        td:nth-child(2) {width: 15rem;}  
+        td:nth-child(3) {width: 10rem;}  
+        td:nth-child(4) {width: 5rem;
+          
+          align-items: center;
+          input {
+            text-align: center;
+            width: 3rem;
+          }
+        }
+        
 `;
 
 
@@ -107,13 +128,13 @@ const CartInfo = ({ cart, setCart, handleQuantity, handleRemove, convertPrice, c
     </div>
     <hr />
     <Table>
-        <colgroup>
+        {/* <colgroup>
         <col width="5%" />
         <col width="25%" />
         <col width="9%" />
         <col width="9%" />
         <col width="15%" />
-        </colgroup>
+        </colgroup> */}
         <thead> 
         <tr>
           <th scope='col'>
@@ -136,17 +157,17 @@ const CartInfo = ({ cart, setCart, handleQuantity, handleRemove, convertPrice, c
               /></td>
             <td ><div><div><img src={list.img} alt={list.bk_pname} /></div><div><strong>{list.bk_pname}</strong></div><div>{list.borrow1} ~ {list.borrow2} / {list.dayCnt}일</div></div></td>
             <td >{convertPrice(list.bk_price)}원</td>
-            <td ><button className="minus_btn" onClick={()=> handleQuantity("minus", list.bk_pname)}>-</button><input type="text" value={list.quantity}/><button className="plus_btn" onClick={() => handleQuantity("plus", list.bk_pname)}>+</button></td>
+            <td ><span style={{ display: 'flex', alignItems: 'center' }}><button className="minus_btn" onClick={()=> handleQuantity("minus", list.bk_pname)}>-</button><input type="text" value={list.quantity}/><button className="plus_btn" onClick={() => handleQuantity("plus", list.bk_pname)}>+</button></span></td>
             <td>{convertPrice(list.tprice)}원</td>
             <td> <button onClick={() => handleRemove(list.bk_pname)}>삭제하기</button> </td>
           </tr>
         ))}
         </tbody>
-        <div>
-          <button onClick={handleDeleteSelected}>선택 삭제</button>
-          <Link to='/payment' ><button>결제하기</button></Link>
-        </div>
       </Table>
+      <div className='mainbutton-container'>
+          <button className="btn" onClick={handleDeleteSelected}>선택 삭제</button>
+          <Link to='/payment' ><button className='btn'>결제하기</button></Link>
+        </div>
       </Wrap>
   );
 };

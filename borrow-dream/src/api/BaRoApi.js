@@ -146,6 +146,11 @@ const BaroApi = {
     myLendList: async() => {
         return await axios.get(Baro_DOMAIN + "/myLend");
     },
+    
+    // 내빌드 목록 아이디 별
+    myLendListById: async(getId) => {
+        return await axios.get(Baro_DOMAIN + `/myLendById?borrowId=${getId}`);
+    },
 
     // 내빌드 작성
     writeLentItem: async(getId, url, title, content, howMany, howMuch) => {
