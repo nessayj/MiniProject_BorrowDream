@@ -295,18 +295,20 @@ const ViewLentItem = (props) =>{
             <div className="board-title-content">
                 <div className="board-title">{lentItem.myItem}</div>
                 <div className="price-container">
-                    <div className="quantity">가능한 수량 : {lentItem.itemQuantity}</div>
+                    <div className="quantity">가능한 수량 : {lentItem.isBorrowed === 1 ? 0 : lentItem.itemQuantity}</div>
                     <div className="price">가격 : {lentItem.itemPrice}원/하루</div>
                 </div>
                 <div className="borrowedStatus">
                     <div className="status">
                         {lentItem.isBorrowed === 0 ? "빌릴 수 있어요😘" : "빌려갔어요😥"}</div>
+                   {showButtons() ? null :
                     <button className="borrowBtn" onClick={() => {
                       if(isLoginCheck()) {
                         setSendMsg(!sendMsg);
                       } else {
                         moveToLogin();
-                      }}}>연락해보기</button>
+                      }}}
+                      >연락해보기</button>}
                     {sendMsg && (
                       <MessageModal closeModal={() => setSendMsg(!sendMsg)}>
 

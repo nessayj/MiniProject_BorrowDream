@@ -68,11 +68,11 @@ const AxiosApi = { // 객체 선언
     },
 
     // 마이페이지 정보 조회
-    customEdit : async(Id) => {
+    customEdit : async(getId) => {
         const mypage = {
-            id : Id
+            id : getId
         };
-        return await axios.get(KH_DOMAIN + `/mypage?id=${Id}`, mypage);
+        return await axios.get(KH_DOMAIN + `/mypage?id=${getId}`, mypage);
     },
     
     // 마이페이지 정보수정 
@@ -101,9 +101,9 @@ const AxiosApi = { // 객체 선언
     },
 
     // 회원탈퇴
-    customDel : async(id) => {
+    customDel : async(userId) => {
         const del = {
-            id: id
+            id: userId
         };
         return await axios.post(KH_DOMAIN + "/del", del);
     }

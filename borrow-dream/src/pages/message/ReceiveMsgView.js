@@ -1,8 +1,10 @@
+// 받은메세지보기
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MessageModal from "./messageModal";
+import ReceiveMsg from "./ReceiveMsg";
 import BaroApi from "../../api/BaRoApi";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Wrap = styled.div`
     width: 1000px;
@@ -45,16 +47,13 @@ const Section = styled.div`
 `;
 
 
-const ViewMsgList = () => {
-    const navigate = useNavigate();
+const ViewMsgList = (props) => {
     let params = useParams();
     let getId = params.no;
 
     // 내용로드
     const [msgData, setMsgData] = useState([]);
 
-    //메세지 보기위해 메세지넘버값 가지고오기
-    const [msgNo, setMsgNo] = useState("");
 
     useEffect(() => {
         const MsgLoad = async () => {
@@ -62,6 +61,7 @@ const ViewMsgList = () => {
                 const MsgView = await BaroApi.receiverList(getId);
                 setMsgData(MsgView.data);
                 console.log(MsgView.data);
+                console.log(MsgView.data.msgNo);
 
             } catch(e) {
                 console.log(e);
@@ -70,10 +70,15 @@ const ViewMsgList = () => {
         MsgLoad();
     }, [getId]);
 
-    const onClicktToView = (msgNo) =>{
-        navigate("/receiver/" + msgNo);
-    }
+    // 모달로 쪽지확인
+   const [sendMsg, setSendMsg] = useState(false);
+   const [selectedMsgNo, setSelectedMsgNo] = useState(null);
 
+   const onClickToView = (getNum) => {
+    setSelectedMsgNo(getNum);
+    setSendMsg(true);
+   }
+   
     return (
         <Wrap>
             <Section className="section">
@@ -82,13 +87,14 @@ const ViewMsgList = () => {
                         <tr>
                             <th>제목</th>
                             <th>보낸사람</th>
-                            <th>보낸날짜</th>
+                            <th>받은날짜</th>
                         </tr>
                     <tbody>
                         {msgData.map((e) =>{
                             return (
                                 <tr key={e.receiver}>
-                                <td onChange={setMsgNo} onClick={() => onClicktToView(e.msgNo)}>{e.msgTitle}</td>
+                                <td onClick={() => onClickToView(e.msgNo)}>{e.msgTitle}</td>
+                                
                                 <td>{e.sender}</td>
                                 <td>{e.msgDate}</td>
                                 </tr>
@@ -97,6 +103,20 @@ const ViewMsgList = () => {
                     
                     </tbody>
                     </table>
+                    {sendMsg && (
+                                    <MessageModal closeModal={() => setSendMsg(!sendMsg)}>
+                                        {msgData.map((e) => {
+                                            if (e.msgNo === selectedMsgNo) {
+                                               return <ReceiveMsg key={e.msgNo} getNum={e.msgNo}/>
+                                            }
+                                            return null;
+                                        })}
+                                       
+                                    </MessageModal>
+                                )}
+                    <div className="mainbutton-container">
+                        <Link to="/Mypage"><button className="btn">돌아가기</button></Link>
+                    </div>
                 </div>
             </Section>
         </Wrap>

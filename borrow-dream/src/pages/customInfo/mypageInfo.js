@@ -5,6 +5,7 @@ import { UserContext } from "../../context/userInfo";
 import AxiosApi from "../../api/axiosapi";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { IoSettingsOutline } from 'react-icons/io5';
 
 
 const MainContainer = styled.div`
@@ -25,29 +26,52 @@ const MainContainer = styled.div`
         background-color: white;
         position: center;
         justify-content: center;
-        width: 700px;
-        height: 700px;
+        width: 600px;
+        height: 680px;
         /* padding: 50px 40px; */
         border-radius: 50px;
     }
-
 `;
 
 const Titlebox = styled.div`
     background: linear-gradient( to bottom, #f2dfe4, #e3daf5);
     width: 100%;
-    height: 250px;
+    height: 240px;
     position: relative;
+
+    .linkarea {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'bitbit';
+        margin-top: 3em;
+    }
+    .setting {
+        width: 87px;
+        height: 29px;
+        background-color: #135CD2;
+        color: white;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin-right: 10px;
+        padding-left: 1.3em;
+        text-align : center;
+        border-radius: 5px;
+        text-decoration: none;
+        box-shadow: 0 6px 20px 0 rgba(150, 150, 160, 0.45);
+        border: 1px solid #dbdbdb;
+    }
 `;
 
 
 const MypageEdTitle = styled.div`
     padding-top: 20px;
     margin-left: 3px;
-    font-size: 20px;
+    font-size: 2.3em;
     text-align: center;
     font-weight: 400px;
-    font-family: 'TAEBAEKmilkyway';
+    font-family: 'bitbit';
 `;
 
 const CustomInfo = styled.div`
@@ -55,17 +79,27 @@ const CustomInfo = styled.div`
     justify-content: center;
     position: center;
     flex-direction: column;
+    text-align: center;
+     
+    h2 {
+            font-family: 'bitbit';
+            font-size: 1.9em;
+            margin-top: 2em;
+    }
     
 
     .area {
         display: flex;
-        margin-left: 120px;
-        padding-left: 100px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* padding-left: 100px; */
         margin-top: 20px;
-        margin-bottom: 1px;
-        justify-content: space-evenly;
-        width: 350px; /* 각 영역의 고정 너비 지정 */ 
         margin-top : 25px;
+    
+        label {
+            font-family: 'bitbit';
+        }
     }
 
     .addrBtn {
@@ -73,19 +107,18 @@ const CustomInfo = styled.div`
         margin-top: -40px;
     }
 
-    .enable-btn{
-        margin-top: 10px; 
-        margin-left: 30px;
-        margin-right: 30px;
-        /* font-family: 'Noto Sans KR', sans-serif; */
-        font-size: 15px;
-        font-weight: bold;
-        width: 100px; /* 원하는 너비 설정 */
+    .chbtn {
+        font-family: 'bitbit';
+        font-size: 1.2em;
+        width: 120px; /* 원하는 너비 설정 */
         height: 36px;
+        background-color: #135CD2;
         color: white;
-        background-color: #5ba8ea; // 버튼 색깔 체크
-        border-radius: 10px;
         border: #5ba8ea; // 버튼 색깔 체크
+        border-radius: 0.8em;
+        align-items: center;
+        justify-content: center;
+        display: flex;
     }
 
     .enable-btn:active {
@@ -120,115 +153,60 @@ const CustomInfo = styled.div`
     
 `;
 
-const StyledButton = styled.button`
-     /* margin-top: 1px; */
-     width: 90px;
-     height: 38px;
-     background-color: rgba(108, 169, 245);
-     border-radius: 5px;
-     font-weight: bold;
-     color: white;
-     font-size: 14px;
-     border: none;
-     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-`;
-
 
 const MypageInfo = () => {
 
+    // let params = useParams();
+    // let getId = params.no
+
+
     const navigate = useNavigate()
-
-    // 변경할 정보 입력 값
-
-    const [userTel, setUserTel] = useState(""); // 휴대폰 번호
-    const [userEmail, setUserEmail] = useState(""); // 이메일
-    const [userAddr, setUserAddr] = useState({address:""}); // 주소
-
-
-    // 주소찾기 영역
-    const [popup, setPopup] = useState(false);
-
-    // 팝업창 열기
-    const handleComplete = () => {
-        setPopup(!popup);
-    }
-
-    // 모달 열기 & 닫기
-    const [modalOpen, setModalOpen] = useState(false);
-    
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-   
-
-
-    // 본인 정보만 담을 변수
-    const [myInfo, setmyInfo] = useState("");
-    const isLogin = window.localStorage.getItem("isLogin"); // 로그인 들어오면 마이페이지 후 수정화면 접속
+    const isLogin = window.localStorage.getItem("isLogin");
+    const getId = window.localStorage.getItem("Id")
+    if(isLogin !== "TRUE") navigate("/");
     console.log(isLogin);
 
-    if(isLogin !== "TRUE") navigate("/MainBody");
-    console.log(isLogin);
-
-
-    const context = useContext(UserContext);
-    const {Id} = context;
-
+    // 내정보를 조회하기위한 변수설정
+    const [myInfo, setMyInfo] = useState("");
 
     // userEffect를 통해 회원정보만 가져옴
     useEffect(() => {
-        const myInfo = async () => {
+        const MyInfoLoading = async () => {
             try {
-            const rsp = await AxiosApi.customEdit(Id); // 아이디를 기준으로 조회
-                console.log(rsp.data);
-                setmyInfo(rsp.data);
-                } catch(e) {
-                console.log(e);
+            const rsp = await AxiosApi.customEdit(getId); // 아이디를 기준으로 조회
+                console.log(rsp.data); // axios data 값 확인 위해 출력
+                setMyInfo(rsp.data);  
+                } catch (e) {
+                console.log(e); // 에러 출력
                 }
             };
-            myInfo();
-        }, []);
-        
+            MyInfoLoading();
+        }, [getId]);
 
-    const [value, setValue] = useState('');
-    const onChange = (e)=> {
-        setValue(e.target.value)
-    }    
-
-
-
-
-
-
-    // 검색한 주소
-    const handleInput = (e) => {
-        setUserAddr({
-            // ... => enroll_company에 다 담겠다는 의미
-            ...userAddr,
-            [e.target.name]:e.target.value,
-        })
-        console.log(e.target.name);
-    }
-
-    
+ 
     
     return(
         <>
             <MainContainer> 
                 <Titlebox>
                 <MypageEdTitle><h1>회원정보조회</h1></MypageEdTitle>
+                <div className="linkarea">
+                    <Link to="/Mypage" className="setting">이전단계</Link>
+                    <Link to="/MypageEdit" className="setting" >정보수정</Link>
+                </div>
+                <br /><br />    
                 </Titlebox>
                 <div className="mypageditInfo">
                 <div className="coverpage">
-                    <CustomInfo>
-        
+                <CustomInfo>
+                    <h2>나의프로필</h2>
+
                 <div className="area">
                     <TextField 
                     style={{ backgroundColor: 'lightgray', width: '350px' }}
                     label="이름"  
                     variant="filled"
                     value={myInfo.name}
-                    onChange={onChange}
                     size= "small"
                     InputLabelProps={{ 
                         shrink: true,
@@ -243,7 +221,6 @@ const MypageInfo = () => {
                     label="아이디"  
                     variant="filled"
                     value={myInfo.id}
-                    onChange={onChange}
                     size= "small"
                     InputLabelProps={{ 
                         shrink: true,
@@ -296,8 +273,7 @@ const MypageInfo = () => {
                     style={{ width: '350px' }}
                     label="포인트" 
                     variant="filled"
-                    value = "5000point"
-                    onChange={onChange}
+                    value = "5000 point"
                     size= "small"
                     InputLabelProps={{ // 라벨 hover 적용하지 않고 고정시키기
                         shrink: true,
@@ -307,8 +283,7 @@ const MypageInfo = () => {
                 </div>
                 
                 <div className="area">
-                <Link to = "/MypageEdit"><button className="enable-btn" >수정하기</button></Link> 
-                </div>
+                <Link to = "/MypageEdit"><button className="chbtn" >수정하기</button></Link> </div>
                 </CustomInfo>
                 </div>
                 </div>

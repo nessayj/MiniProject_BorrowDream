@@ -8,6 +8,9 @@ import {GiMountains} from "react-icons/gi"
 import {TbBeach} from "react-icons/tb"
 import {FaCampground} from "react-icons/fa"
 
+import { animateScroll as scroll } from "react-scroll";
+
+
 // 주소 변경
 import cr from "../../../images/카테고리이미지/캐리어.jpg";
 import cm from "../../../images/카테고리이미지/카메라.jpg";
@@ -104,6 +107,9 @@ const Image = styled.img`
   height: 240px;
   border-radius: 25px;
 `;
+const scrollToSection = () => {
+  scroll.scrollTo(30); 
+}
 
 const Ct_pages = () => {
   return (
@@ -113,22 +119,22 @@ const Ct_pages = () => {
         <div className="title-container"><TbPlaneDeparture size="30" />해외여행</div>
         <div className="imgContainer">
           <div className="img">
-            <Link to="/Carrier" className="img">
+            <Link to="/Carrier" onClick={scrollToSection} className="img">
               <Image src={cr} />
             </Link>
             <div className="productName">캐리어</div>
           </div>
           <div className="img">
-            <Link to="/Camera" className="img">
+            <Link to="/Camera"onClick={scrollToSection} className="img">
               <Image src={cm} />
             </Link>
-            <div className="productName">카메라</div>
+            <div className="productName"onClick={scrollToSection}>카메라</div>
           </div>
           <div className="img">
             <Link to="/Devices" className="img">
               <Image src={dv} />
             </Link>
-            <div className="productName">전자기기</div>
+            <div className="productName" onClick={scrollToSection}>전자기기</div>
           </div>
           <div className="img">
             <Link to="/Travel" className="img">
