@@ -230,7 +230,7 @@ const [boardStates, setBoardStates] = useState({
                     <div class="item">
                         <Title><RiTruckLine size="17" /> 주문관리</Title>
                         <MypageItem><a href="!#">장바구니</a></MypageItem>
-                        <MypageItem><a href="!#">빌린내역</a></MypageItem>
+                        <Link to="/order"><MypageItem>주문내역</MypageItem></Link>
                     </div>
                 </Container> 
                 <Container>
@@ -244,7 +244,7 @@ const [boardStates, setBoardStates] = useState({
                 <Container>
                     <div class="item">
                         <Title><RiGift2Line size="17" /> 내빌드</Title>
-                        <MypageItem onClick={() => toggleBoard("lendHistoryOpen")}>빌려준내역
+                        <MypageItem onClick={() => toggleBoard("lendHistoryOpen")} style={{ cursor: 'pointer' }}>빌려준내역
                         {boardStates.lendHistoryOpen && <MyLendById/>}</MypageItem>
                         <MypageItem><a href="/myLentItem">내빌드</a></MypageItem>
                     </div>
@@ -252,10 +252,10 @@ const [boardStates, setBoardStates] = useState({
                 <Container>
                     <div class="item">
                         <Title><RiMagicLine size="17" /> 활동관리</Title>
-                        <MypageItem onClick={() => toggleBoard("inquiryOpen")}>1:1 문의
+                        <MypageItem onClick={() => toggleBoard("inquiryOpen")} style={{ cursor: 'pointer' }}>1:1 문의
                              {boardStates.inquiryOpen && <BoardById />}  
                         </MypageItem>
-                        <MypageItem onClick={() => toggleBoard("returnStatusOpen") }>후기내역
+                        <MypageItem onClick={() => toggleBoard("returnStatusOpen")} style={{ cursor: 'pointer' }}>후기내역
                             {boardStates.returnStatusOpen && <ReviewById/>}
                         </MypageItem>
                         </div>
