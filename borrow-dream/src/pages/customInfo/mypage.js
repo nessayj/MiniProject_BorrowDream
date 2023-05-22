@@ -229,8 +229,8 @@ const [boardStates, setBoardStates] = useState({
                 <Container>
                     <div class="item">
                         <Title><RiTruckLine size="17" /> 주문관리</Title>
-                        <MypageItem><a href="!#">장바구니</a></MypageItem>
-                        <Link to="/order"><MypageItem>주문내역</MypageItem></Link>
+                        <Link to={`/cart/${id}`}><MypageItem>장바구니</MypageItem></Link>
+                        <Link to={`/order/${id}`}><MypageItem>주문내역</MypageItem></Link>
                     </div>
                 </Container> 
                 <Container>
