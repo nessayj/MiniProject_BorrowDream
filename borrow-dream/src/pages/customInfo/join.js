@@ -217,11 +217,13 @@ const Join = () => {
 
 
      const [modalOpen, setModalOpen] = useState(false);
+    //  const [modalOption, setModalOption] = useState("");
      const [modalText, setModalText] = useState("중복된 아이디 입니다.");
-
-    const closeModal = () => {
+     
+     const closeModal = () => {
         setModalOpen(false);
     };
+
 
     const onChangeUserName = (e) => {
         const nameNow = e.target.value;
@@ -309,8 +311,6 @@ const Join = () => {
         }        
     }
 
-
-
     
 
     const onClickJoin = async() => {
@@ -321,10 +321,16 @@ const Join = () => {
             console.log("가입된 아이디가 없습니다. 다음 단계 진행 합니다.");
             const memberReg = await AxiosApi.customReg(userName, userId, userPwd, userTel, userEmail, userAddr.address);
             console.log(memberReg.data);
+            
             if(memberReg.data === true) {
+                console.log(memberReg.data);
                 setModalOpen(true);
+                // setModalOption("회원가입")
+                // setComment("회원가입에 성공했습니다")
+
                 setModalText("회원가입에 성공했습니다");
-                navigate("/Mypage");
+                navigate("/");
+
             } else {
                 setModalOpen(true);
                 setModalText("회원 가입에 실패 했습니다.");
@@ -351,7 +357,8 @@ const Join = () => {
 
 
     return(
-        <div class="joinpage">        
+        <div class="joinpage">
+            {/* <Modal open={modalOpen} close={closeModal} option={modalOption}>{comment}</Modal>         */}
         <Container>
             <div class="joincoverpaper">
                 <div class="jointitle">
